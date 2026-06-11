@@ -1,0 +1,311 @@
+---
+import Layout from '../layouts/Layout.astro';
+import nosotrosData from '../data/nosotros.json';
+import CTA from '../components/ui/CTA.astro';
+
+// Extraemos los datos con fallbacks ({}) por si alguna sección es eliminada del JSON
+const hero = nosotrosData?.hero || {};
+const quienesSomos = nosotrosData?.quienesSomos || {};
+const estadisticas = nosotrosData?.estadisticas || [];
+const filosofia = nosotrosData?.filosofia || [];
+const trayectoria = nosotrosData?.trayectoria || {};
+
+// Función auxiliar para elegir el degradado según el JSON
+const getGradientClass = (tipo?: string) => {
+  if (tipo === 'naranja') return 'bg-gradient-to-r from-[#cc4a04] to-[#fb923c] text-transparent bg-clip-text';
+  if (tipo === 'azul') return 'bg-gradient-to-r from-[#173154] to-[#3b82f6] text-transparent bg-clip-text';
+  return 'text-cr-dark dark:text-white'; 
+};
+---
+
+<Layout title="Nosotros | CR Publicidad">
+  
+  {Object.keys(hero).length > 0 && (
+    <section class="relative w-full pt-[140px] md:pt-[180px] pb-16 md:pb-24 flex items-center justify-center transition-all duration-700 overflow-hidden">
+      
+      <div class="absolute inset-0 w-full h-full z-0">
+        <div class="absolute inset-0 bg-white/85 dark:bg-[#050505]/85 z-10 transition-colors duration-700"></div>
+        {hero?.imagenFondo && <img src={hero.imagenFondo} alt="Oficina CR Publicidad" class="absolute inset-0 w-full h-full object-cover z-0 opacity-80 dark:opacity-40" />}
+      </div>
+
+      <div class="absolute bottom-0 left-0 w-full h-16 md:h-24 bg-gradient-to-t from-white dark:from-[#050505] to-transparent z-10 pointer-events-none transition-colors duration-700"></div>
+
+      <div id="hero-nosotros-content" class="relative z-20 flex flex-col items-center text-center px-6 max-w-4xl transform translate-y-12 opacity-0 blur-md transition-all duration-1000 ease-out">
+        {hero?.etiqueta && (
+          <span class="font-mono text-[10px] md:text-[11px] tracking-[0.3em] text-[#cc4a04] uppercase font-bold mb-4">
+            {hero.etiqueta}
+          </span>
+        )}
+        
+        <h1 class="font-display font-extrabold uppercase leading-[1.05] md:leading-[0.95] flex flex-col items-center transition-all duration-700">
+          {hero?.titulos?.map((t: any) => (
+            <span class={`text-4xl sm:text-5xl md:text-6xl lg:text-[70px] tracking-tight pb-1 ${getGradientClass(t.gradiente)}`}>
+              {t.texto}
+            </span>
+          ))}
+        </h1>
+        
+        {hero?.descripcion && (
+          <p class="font-sans text-gray-600 dark:text-gray-400 mt-6 text-sm md:text-base font-medium max-w-2xl transition-colors duration-700">
+            {hero.descripcion}
+          </p>
+        )}
+      </div>
+    </section>
+  )}
+
+  {Object.keys(quienesSomos).length > 0 && (
+    <section class="w-full bg-white dark:bg-[#050505] py-20 lg:py-32 overflow-hidden transition-colors duration-700 border-b border-gray-100 dark:border-gray-900">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-24 flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+
+        <div class="w-full lg:w-1/2 flex flex-col items-start text-left transform translate-y-12 opacity-0 blur-md observer-blur transition-all duration-1000 ease-out">
+          {quienesSomos?.etiqueta && (
+            <span class="font-mono text-[10px] md:text-[11px] tracking-[0.3em] text-[#cc4a04] uppercase font-bold mb-4">
+              {quienesSomos.etiqueta}
+            </span>
+          )}
+          <h2 class="font-display font-bold text-4xl md:text-5xl mb-6">
+            {quienesSomos?.titulos?.map((t: any) => (
+              <span class={`transition-colors duration-700 pr-2 ${getGradientClass(t.gradiente)}`}>
+                {t.texto}
+              </span>
+            ))}
+          </h2>
+          {quienesSomos?.descripcion && (
+            <p class="font-sans text-gray-600 dark:text-gray-400 text-sm md:text-base leading-relaxed transition-colors duration-700">
+              {quienesSomos.descripcion}
+            </p>
+          )}
+        </div>
+
+        <div class="w-full lg:w-1/2 relative transform translate-y-12 opacity-0 blur-md observer-blur transition-all duration-1000 ease-out delay-200">
+          <div class="relative w-full aspect-[4/5] sm:aspect-video lg:aspect-square max-w-lg mx-auto md:mx-0 lg:ml-auto">
+            <div class="absolute inset-0 bg-gradient-to-tr from-[#173154]/20 to-transparent z-10 mix-blend-multiply rounded-sm"></div>
+            
+            {quienesSomos?.imagen && (
+              <img src={quienesSomos.imagen} alt="Agencia CR Publicidad" class="absolute inset-0 w-full h-full object-cover shadow-2xl z-0 rounded-sm" />
+            )}
+            
+            {quienesSomos?.iconosFlotantes?.[0] && (
+              <div class="absolute -top-6 -left-6 md:-top-8 md:-left-8 z-20 w-16 h-16 md:w-20 md:h-20 bg-white dark:bg-[#111] shadow-xl flex items-center justify-center rounded-2xl animate-float-slow border border-gray-100 dark:border-gray-800">
+                <img src={quienesSomos.iconosFlotantes[0]} alt="Misión" class="w-8 h-8 md:w-10 md:h-10" />
+              </div>
+            )}
+            
+            {quienesSomos?.iconosFlotantes?.[1] && (
+              <div class="absolute top-1/2 -right-4 md:-right-8 -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 bg-white dark:bg-[#111] shadow-lg flex items-center justify-center rounded-xl animate-float border border-gray-100 dark:border-gray-800" style="animation-delay: 1.5s;">
+                <img src={quienesSomos.iconosFlotantes[1]} alt="Visión" class="w-6 h-6 md:w-8 md:h-8" />
+              </div>
+            )}
+            
+            {quienesSomos?.iconosFlotantes?.[2] && (
+              <div class="absolute -bottom-6 left-10 md:left-16 z-20 w-14 h-14 md:w-[72px] md:h-[72px] bg-white dark:bg-[#111] shadow-2xl flex items-center justify-center rounded-2xl animate-float-fast border border-gray-100 dark:border-gray-800" style="animation-delay: 0.7s;">
+                <img src={quienesSomos.iconosFlotantes[2]} alt="Valores" class="w-7 h-7 md:w-9 md:h-9" />
+              </div>
+            )}
+          </div>
+        </div>
+
+      </div>
+    </section>
+  )}
+
+  {estadisticas.length > 0 && (
+    <section class="relative z-20 w-full bg-white dark:bg-[#050505] border-b border-gray-100 dark:border-gray-900 transition-colors duration-700">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-24 py-16 transform translate-y-12 opacity-0 blur-md observer-blur transition-all duration-1000 ease-out">
+        <div class="flex flex-col md:flex-row items-center justify-center divide-y md:divide-y-0 md:divide-x divide-gray-200 dark:divide-gray-800 transition-colors duration-700">
+          {estadisticas.map((stat: any) => (
+            <div class="flex flex-col items-center justify-center w-full py-8 md:py-0">
+              <div class={`font-display font-extrabold text-5xl md:text-6xl tracking-tight pb-1 ${getGradientClass(stat.gradiente)}`}>
+                <span class="counter-number" data-target={stat.valorFinal || 0}>0</span><span>{stat.sufijo || ''}</span>
+              </div>
+              <span class="font-sans text-gray-500 text-xs md:text-sm mt-2 font-medium">{stat.etiqueta}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {filosofia.length > 0 && (
+    <section class="w-full bg-white dark:bg-[#050505] py-20 lg:py-32 border-b border-gray-100 dark:border-gray-900 transition-colors duration-700">
+      <div class="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-24">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+          {filosofia.map((item: any, index: number) => (
+            <div class="flex flex-col items-center text-center transform translate-y-12 opacity-0 blur-md observer-blur transition-all duration-1000 ease-out" style={`transition-delay: ${index * 150}ms`}>
+              <div class="w-16 h-16 flex items-center justify-center mb-6 bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-lg transition-colors duration-700 shadow-sm">
+                {item.icono && <img src={item.icono} alt={item.titulo} class="w-7 h-7" />}
+              </div>
+              <h3 class="font-display font-bold text-cr-dark dark:text-white text-2xl md:text-3xl mb-4 transition-colors duration-700">{item.titulo}</h3>
+              <p class="font-sans text-gray-500 text-sm md:text-base leading-relaxed transition-colors duration-700">{item.descripcion}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {Object.keys(trayectoria).length > 0 && (
+    <section class="w-full bg-white dark:bg-[#050505] py-20 lg:py-32 overflow-hidden transition-colors duration-700">
+      <div class="max-w-[1200px] mx-auto px-6 sm:px-12 lg:px-24 text-center">
+        
+        <div class="mb-20 transform translate-y-12 opacity-0 blur-md observer-blur transition-all duration-1000 ease-out">
+          {trayectoria?.etiqueta && (
+            <span class="font-mono text-[10px] md:text-[11px] tracking-[0.3em] text-[#cc4a04] uppercase font-bold mb-4 block">
+              {trayectoria.etiqueta}
+            </span>
+          )}
+          <h2 class="font-display font-bold text-4xl md:text-5xl">
+            {trayectoria?.titulos?.map((t: any) => (
+              <span class={`transition-colors duration-700 pr-2 ${getGradientClass(t.gradiente)}`}>
+                {t.texto}
+              </span>
+            ))}
+          </h2>
+        </div>
+
+        <div class="relative w-full p-4 h-full">
+          <div class="absolute border-opacity-20 border-gray-400 h-full border border-dashed left-[30px] lg:left-1/2"></div>
+
+          {(trayectoria?.hitos || []).map((hito: any, i: number) => {
+            const isEven = i % 2 === 0; 
+            const dotColor = isEven ? 'bg-[#cc4a04]' : 'bg-[#173154]';
+            const textColor = isEven ? 'text-[#cc4a04]' : 'text-[#173154]';
+
+            return (
+              <div class={`mb-10 lg:mb-12 flex justify-between items-start lg:items-center w-full observer-timeline transition-all duration-1000 ease-out
+                ${isEven ? 'lg:flex-row-reverse' : 'flex-row'}
+              `}>
+                <div class="hidden lg:block w-5/12"></div>
+
+                <div class={`z-20 flex items-center order-1 w-[12px] h-[12px] absolute left-[25px] lg:left-1/2 lg:-translate-x-1/2 border-2 border-white dark:border-[#050505] rounded-full transition-colors duration-700 ${dotColor}`}>
+                </div>
+
+                <div class={`order-1 w-full pl-14 lg:pl-0 lg:w-5/12 transition-all duration-700
+                  ${isEven ? 'text-left lg:text-right lg:pr-12' : 'text-left lg:pl-12'}
+                `}>
+                  <span class={`font-display font-bold text-sm md:text-base tracking-widest block transition-colors duration-700 ${textColor}`}>
+                    {hito.anio}
+                  </span>
+                  <h3 class="font-display font-bold text-cr-dark dark:text-white text-xl md:text-2xl mt-1 mb-2 transition-colors duration-700">{hito.titulo}</h3>
+                  <p class="font-sans text-gray-500 text-sm md:text-base leading-relaxed transition-colors duration-700">{hito.descripcion}</p>
+                </div>
+              </div>
+            );
+          })}
+
+        </div>
+      </div>
+    </section>
+  )}
+  
+  <CTA id="cta-final-contacto" />
+
+</Layout>
+
+<style>
+  .blur-hidden {
+    filter: blur(12px);
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .blur-visible {
+    filter: blur(0px);
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .animate-float-slow {
+    animation: float 8s ease-in-out infinite;
+  }
+  .animate-float-fast {
+    animation: float 4.5s ease-in-out infinite;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Entrada inicial del Hero con lógica inteligente (sessionStorage)
+    const heroContent = document.getElementById('hero-nosotros-content');
+    const initHero = () => {
+      heroContent?.classList.remove('translate-y-12', 'opacity-0', 'blur-md');
+    };
+    
+    if (sessionStorage.getItem('preloaderVisto')) {
+      setTimeout(initHero, 50);
+    } else {
+      document.addEventListener('preloaderTerminado', initHero);
+      setTimeout(initHero, 3000); 
+    }
+
+    // 2. Animación del Contador de Estadísticas
+    const animateCounters = () => {
+      const counters = document.querySelectorAll('.counter-number');
+      const speed = 200; 
+
+      counters.forEach(counter => {
+        const updateCount = () => {
+          const targetStr = counter.getAttribute('data-target');
+          if (!targetStr) return;
+          const target = +targetStr;
+          const count = +counter.innerHTML;
+          const inc = target / speed;
+
+          if (count < target) {
+            counter.innerHTML = Math.ceil(count + inc).toString();
+            setTimeout(updateCount, 15);
+          } else {
+            counter.innerHTML = target.toString();
+          }
+        };
+        updateCount();
+      });
+    };
+
+    // 3. Observers para la Animación Borrosa
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.2
+    };
+
+    const scrollObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          
+          if (entry.target.classList.contains('observer-blur')) {
+            entry.target.classList.remove('opacity-0', 'translate-y-12', 'blur-md');
+            if (entry.target.querySelector('.counter-number')) {
+              animateCounters();
+            }
+          }
+          
+          if (entry.target.classList.contains('observer-timeline')) {
+            entry.target.classList.remove('blur-hidden');
+            entry.target.classList.add('blur-visible');
+          }
+
+          observer.unobserve(entry.target); 
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.observer-timeline').forEach(item => {
+      item.classList.add('blur-hidden');
+      scrollObserver.observe(item);
+    });
+
+    document.querySelectorAll('.observer-blur').forEach(item => {
+      scrollObserver.observe(item);
+    });
+
+  });
+</script>

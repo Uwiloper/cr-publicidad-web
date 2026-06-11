@@ -1,0 +1,112 @@
+---
+import inicioData from '../data/inicio.json';
+
+const data = inicioData.serviciosDestacados;
+
+// Función para el color dinámico de los títulos de las tarjetas
+const getGradientTextClass = (color?: string) => {
+  if (color === 'azul') return 'bg-gradient-to-r from-[#173154] to-[#3b82f6] text-transparent bg-clip-text';
+  return 'bg-gradient-to-r from-[#cc4a04] to-[#fb923c] text-transparent bg-clip-text';
+};
+
+// Función para el color de fondo del Botón General
+const getButtonGradientClass = (color?: string) => {
+  if (color === 'azul') return 'bg-gradient-to-r from-[#173154] to-[#3b82f6] shadow-blue-500/20';
+  return 'bg-gradient-to-r from-[#cc4a04] to-[#fb923c] shadow-orange-500/20';
+};
+---
+
+<section class="w-full bg-[#f8f9fa] dark:bg-[#050505] py-24 md:py-32 transition-colors duration-700 overflow-hidden relative">
+  <div class="max-w-[1200px] mx-auto px-6 lg:px-8 observer-blur opacity-0 translate-y-12 blur-md transition-all duration-1000 ease-out">
+    
+    <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-6 mb-16">
+      <div class="max-w-xl">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-8 h-[2px] bg-[#cc4a04]"></div>
+          <span class="font-mono text-[10px] md:text-xs tracking-[0.3em] text-gray-500 uppercase font-bold">
+            {data.etiqueta}
+          </span>
+        </div>
+        <h2 class="font-display font-extrabold text-3xl md:text-4xl lg:text-5xl text-cr-dark dark:text-white uppercase leading-[1.1] tracking-tight">
+          {data.titulo}
+        </h2>
+      </div>
+
+      <p class="font-sans text-gray-600 dark:text-gray-400 text-sm md:text-base max-w-md leading-relaxed md:pb-2">
+        {data.descripcion}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      
+      {data.items.map((item: any, index: number) => {
+        const delayClass = index === 0 ? 'delay-100' : index === 1 ? 'delay-200' : 'delay-300';
+        
+        return (
+          <div class={`group flex flex-col relative bg-white dark:bg-[#0a0a0a] rounded-sm overflow-hidden border border-gray-100 dark:border-gray-900 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 observer-blur opacity-0 translate-y-12 blur-md ${delayClass}`}>
+            
+            <div class="relative w-full h-[260px] lg:h-[300px] overflow-hidden bg-[#111]">
+              <img 
+                src={item.imagen} 
+                alt={item.titulo} 
+                class="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110 opacity-90 group-hover:opacity-100" 
+                loading="lazy" 
+              />
+              
+              <span class="absolute top-4 left-6 font-display font-extrabold text-7xl md:text-8xl text-white/30 dark:text-white/10 drop-shadow-md z-10 transition-all duration-500 group-hover:-translate-y-2 group-hover:text-white/40 dark:group-hover:text-white/20">
+                {item.numero}
+              </span>
+              
+              <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white dark:from-[#0a0a0a] to-transparent z-10 pointer-events-none transition-colors duration-700"></div>
+            </div>
+
+            <div class="px-8 pb-10 pt-2 flex flex-col flex-grow relative z-20 bg-white dark:bg-[#0a0a0a] transition-colors duration-700">
+              <span class="font-mono text-[9px] md:text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-3">
+                {item.categoria}
+              </span>
+              <h3 class={`font-display text-2xl lg:text-3xl font-bold mb-4 ${getGradientTextClass(item.color)}`}>
+                {item.titulo}
+              </h3>
+              <p class="font-sans text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-0 flex-grow transition-colors duration-700">
+                {item.descripcion}
+              </p>
+            </div>
+          </div>
+        );
+      })}
+
+    </div>
+
+    {data.botonGeneral && (
+      <div class="w-full flex justify-center mt-12 md:mt-16 observer-blur opacity-0 translate-y-8 blur-md delay-500 transition-all duration-1000 ease-out">
+        <a 
+          href={data.botonGeneral.ruta} 
+          class={`group flex items-center justify-center gap-3 text-white px-8 py-4 rounded-sm font-sans text-xs md:text-sm font-bold uppercase tracking-widest transition-all duration-300 hover:-translate-y-1 shadow-lg ${getButtonGradientClass(data.botonGeneral.gradiente)}`}
+        >
+          <span>{data.botonGeneral.texto}</span>
+          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </a>
+      </div>
+    )}
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const scrollObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('opacity-0', 'translate-y-12', 'translate-y-8', 'blur-md');
+          observer.unobserve(entry.target); 
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.observer-blur').forEach(item => {
+      scrollObserver.observe(item);
+    });
+  });
+</script>

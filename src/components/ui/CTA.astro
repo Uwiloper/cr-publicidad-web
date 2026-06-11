@@ -1,0 +1,107 @@
+---
+import ctasData from '../../data/ctas.json';
+
+interface Props {
+  id: string; 
+}
+
+const { id } = Astro.props;
+const data = ctasData.secciones.find((s: any) => s.id === id);
+
+if (!data) return null;
+
+// Colores de texto/gradiente
+const getGradientClass = (tipo?: string) => {
+  if (tipo === 'naranja') return 'bg-gradient-to-r from-[#cc4a04] to-[#fb923c] text-transparent bg-clip-text';
+  if (tipo === 'azul') return 'bg-gradient-to-r from-[#173154] to-[#3b82f6] text-transparent bg-clip-text';
+  return 'text-cr-dark dark:text-white';
+};
+
+// Colores de botones
+const getBtnGradient = (tipo?: string) => {
+  if (tipo === 'azul') return 'from-[#173154] to-[#3b82f6] shadow-blue-500/25';
+  return 'from-[#cc4a04] to-[#fb923c] shadow-orange-500/25';
+};
+
+// VALIDADORES ANTI-HUECOS (Ahora blindados al 100%)
+const hasEtiqueta = data.etiqueta && data.etiqueta.trim() !== '';
+const hasDescripcion = data.descripcion && data.descripcion.trim() !== '';
+const hasBotones = data.botones && data.botones.length > 0;
+
+// Filtramos los títulos: Solo pasarán los que existan y tengan texto real (no espacios en blanco)
+const titulosValidos = (data.titulos || []).filter((t: any) => t.texto && t.texto.trim() !== '');
+const hasTitulos = titulosValidos.length > 0;
+---
+
+<section class="cta-section w-full bg-white dark:bg-[#050505] py-20 md:py-32 transition-all duration-[1000ms] ease-out opacity-0 translate-y-12 blur-md">
+  <div class="max-w-[1200px] mx-auto px-6 text-center flex flex-col items-center">
+    
+    {hasEtiqueta && (
+      <div class="mb-6 md:mb-8 flex flex-col items-center">
+        <span class="font-mono text-[10px] md:text-[11px] tracking-[0.4em] text-gray-400 uppercase font-bold">
+          {data.etiqueta}
+        </span>
+        <div class="w-12 h-[2px] bg-[#cc4a04] mt-4"></div>
+      </div>
+    )}
+
+    {hasTitulos && (
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] md:leading-[1] uppercase max-w-4xl">
+        {titulosValidos.map((t: any) => (
+          <span class={`inline-block pb-1 pt-2 px-1 -my-1 ${getGradientClass(t.gradiente)}`}>
+            {t.texto}
+          </span>
+        ))}
+      </h2>
+    )}
+
+    {hasDescripcion && (
+      <p class="font-sans text-gray-600 dark:text-gray-400 mt-6 md:mt-8 text-sm md:text-base lg:text-lg max-w-2xl font-medium transition-colors duration-700">
+        {data.descripcion}
+      </p>
+    )}
+
+    {hasBotones && (
+      <div class="mt-8 md:mt-12 flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 w-full sm:w-auto">
+        {data.botones.map((btn: any) => (
+          btn.tipo === 'principal' ? (
+            <a href={btn.ruta} class={`group bg-gradient-to-r text-white font-sans font-bold text-xs md:text-[14px] tracking-widest py-3.5 px-10 transition-all duration-300 hover:scale-105 shadow-lg items-center justify-center gap-3 rounded-sm flex ${getBtnGradient(btn.gradiente)}`}>
+              <span>{btn.texto}</span>
+              <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </a>
+          ) : (
+            <a href={btn.ruta} class="group bg-transparent border border-gray-200 dark:border-gray-800 hover:border-gray-400 dark:hover:border-gray-600 text-cr-dark dark:text-white font-sans font-bold text-xs md:text-[14px] tracking-widest py-3.5 px-10 transition-all duration-300 flex items-center justify-center gap-3 rounded-sm">
+              <span>{btn.texto}</span>
+              <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 17L17 7M17 7H7m10 0v10"></path>
+              </svg>
+            </a>
+          )
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+<script>
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.2
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('opacity-0', 'translate-y-12', 'blur-md');
+        entry.target.classList.add('opacity-100', 'translate-y-0');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.cta-section').forEach(section => {
+    observer.observe(section);
+  });
+</script>

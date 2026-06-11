@@ -1,0 +1,273 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTA from '../components/ui/CTA.astro';
+import ServicioPanel from '../components/ServicioPanel.astro';
+import serviciosData from '../data/servicios.json';
+import TrabajosMarquee from '../components/TrabajosMarquee.astro';
+
+const hero = serviciosData.hero;
+const listaServicios = serviciosData.lista;
+
+const getGradientClass = (tipo?: string) => {
+  if (tipo === 'azul') return 'bg-gradient-to-r from-[#173154] to-[#3b82f6] text-transparent bg-clip-text';
+  return 'bg-gradient-to-r from-[#cc4a04] to-[#fb923c] text-transparent bg-clip-text';
+};
+---
+
+<Layout title="Servicios | CR Publicidad">
+
+  <section class="relative w-full pt-[140px] md:pt-[180px] pb-16 md:pb-24 flex items-center justify-center transition-all duration-700 overflow-hidden">
+    <div class="absolute inset-0 w-full h-full z-0">
+      <div class="absolute inset-0 bg-white/85 dark:bg-[#050505]/85 z-10 transition-colors duration-700"></div>
+      {hero?.imagenFondo && <img src={hero.imagenFondo} alt="Oficina CR Publicidad" class="absolute inset-0 w-full h-full object-cover z-0 opacity-80 dark:opacity-40" />}
+    </div>
+    <div class="absolute bottom-0 left-0 w-full h-16 md:h-24 bg-gradient-to-t from-white dark:from-[#050505] to-transparent z-10 pointer-events-none transition-colors duration-700"></div>
+    <div id="hero-nosotros-content" class="relative z-20 flex flex-col items-center text-center px-6 max-w-4xl transform translate-y-12 opacity-0 blur-md transition-all duration-1000 ease-out">
+      {hero?.etiqueta && (
+        <span class="font-mono text-[10px] md:text-[11px] tracking-[0.3em] text-[#cc4a04] uppercase font-bold mb-4">
+          {hero.etiqueta}
+        </span>
+      )}
+      <h1 class="font-display font-extrabold uppercase leading-[1.05] md:leading-[0.95] flex flex-col items-center transition-all duration-700">
+        {hero?.titulos?.map((t: any) => (
+          <span class={`text-4xl sm:text-5xl md:text-6xl lg:text-[70px] tracking-tight pb-1 ${getGradientClass(t.gradiente)}`}>
+            {t.texto}
+          </span>
+        ))}
+      </h1>
+      {hero?.descripcion && (
+        <p class="font-sans text-gray-600 dark:text-gray-400 mt-6 text-sm md:text-base font-medium max-w-2xl transition-colors duration-700">
+          {hero.descripcion}
+        </p>
+      )}
+    </div>
+  </section>
+
+  <section class="w-full bg-white dark:bg-[#050505] pb-24 transition-colors duration-700 overflow-hidden relative">
+    
+    <div class="w-full max-w-[1200px] mx-auto observer-blur transform translate-y-12 opacity-0 blur-md transition-all duration-[1000ms] ease-out pt-6 md:pt-10 px-6 lg:px-8">
+      
+      <div class="md:hidden w-full mb-10 z-20 relative">
+        <div class="flex overflow-x-auto no-scrollbar gap-2 w-full bg-gray-100 dark:bg-[#111] p-1.5 rounded-sm border border-gray-200 dark:border-gray-800">
+          {listaServicios.map((servicio: any, index: number) => (
+            <button 
+              class={`tab-btn shrink-0 flex items-center justify-center py-2.5 px-4 rounded-sm transition-all duration-300
+                ${index === 0 ? 'active active-' + servicio.gradiente : 'text-gray-500 dark:text-gray-400'}
+              `}
+              data-target={`content-${servicio.id}`}
+              data-color={servicio.gradiente}
+            >
+              <span class="font-display font-bold text-[11px] uppercase tracking-widest text-center">
+                {servicio.tituloCorto || servicio.titulo}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div class="hidden md:flex w-full justify-center mb-12 z-20 relative">
+        <div class="flex w-full bg-gray-100 dark:bg-[#111] p-1.5 rounded-sm shadow-inner border border-gray-200 dark:border-gray-800 transition-colors duration-700">
+          {listaServicios.map((servicio: any, index: number) => (
+            <button 
+              class={`tab-btn flex-1 flex items-center justify-center py-3.5 px-1 lg:px-2 rounded-sm transition-all duration-300 hover:text-cr-dark dark:hover:text-white
+                ${index === 0 ? 'active active-' + servicio.gradiente : 'text-gray-500 dark:text-gray-400'}
+              `}
+              data-target={`content-${servicio.id}`}
+              data-color={servicio.gradiente}
+            >
+              <span class="font-display font-bold text-[9px] lg:text-[11px] xl:text-xs uppercase tracking-widest leading-none text-center whitespace-nowrap overflow-hidden text-ellipsis">
+                {servicio.tituloCorto || servicio.titulo}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div class="tab-container w-full relative transition-all duration-700">
+        {listaServicios.map((servicio: any, index: number) => (
+          <ServicioPanel servicio={servicio} index={index} />
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <TrabajosMarquee />
+
+  <CTA id="cta-final-contacto" />
+</Layout>
+
+<style is:global>
+  /* Ocultar barra de scroll en móvil */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Acomodación fluida del Grid para Paneles */
+  .tab-container { display: grid; align-items: start; }
+  .tab-content { grid-area: 1 / 1; }
+  .tab-content.active-panel { pointer-events: auto; position: relative !important; }
+
+  /* ESTADOS ACTIVOS BARRAS DE NAVEGACIÓN */
+  .active.active-naranja { 
+    background: linear-gradient(135deg, #cc4a04, #fb923c); 
+    color: white !important;
+  }
+  .active.active-azul { 
+    background: linear-gradient(135deg, #173154, #3b82f6); 
+    color: white !important;
+  }
+  .active span { color: white !important; }
+
+  /* EFECTOS HOVER SEGUROS DE LAS CARACTERÍSTICAS */
+  .hover-naranja:hover .feature-text { color: #cc4a04 !important; }
+  .hover-naranja:hover .feature-icon { 
+    filter: drop-shadow(0 0 5px rgba(204,74,4,0.6)); 
+    opacity: 1 !important; 
+    transform: scale(1.1);
+  }
+
+  .hover-azul:hover .feature-text { color: #3b82f6 !important; }
+  .hover-azul:hover .feature-icon { 
+    filter: drop-shadow(0 0 5px rgba(59,130,246,0.6)); 
+    opacity: 1 !important; 
+    transform: scale(1.1);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. ARRANCADOR DEL HERO
+    const heroContent = document.getElementById('hero-nosotros-content');
+    const initPage = () => {
+      heroContent?.classList.remove('translate-y-12', 'opacity-0', 'blur-md');
+    };
+    if (sessionStorage.getItem('preloaderVisto')) {
+      setTimeout(initPage, 50);
+    } else {
+      document.addEventListener('preloaderTerminado', initPage);
+      setTimeout(initPage, 3000);
+    }
+
+    // 2. SCROLL OBSERVER
+    const scrollObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('opacity-0', 'translate-y-12', 'blur-md');
+          observer.unobserve(entry.target); 
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.observer-blur').forEach(item => {
+      scrollObserver.observe(item);
+    });
+
+    // 3. LÓGICA DEL CARRUSEL (Autoplay y reinicio al click)
+    let globalIntervals: Record<string, number> = {};
+
+    const runCarousel = (panel: HTMLElement) => {
+      const carouselRoot = panel.querySelector('.service-carousel-root') as HTMLElement;
+      if (!carouselRoot) return;
+
+      const mainImages = carouselRoot.querySelectorAll('.carousel-main-img');
+      const totalImages = mainImages.length;
+      if (totalImages <= 1) return;
+
+      const panelId = panel.id;
+      if (globalIntervals[panelId]) clearInterval(globalIntervals[panelId]);
+
+      const switchToIndex = (nextIndex: number) => {
+        carouselRoot.dataset.current = nextIndex.toString();
+        mainImages.forEach((img, idx) => {
+          if (idx === nextIndex) {
+            img.classList.remove('opacity-0', 'z-0', 'pointer-events-none');
+            img.classList.add('opacity-100', 'z-10');
+          } else {
+            img.classList.remove('opacity-100', 'z-10');
+            img.classList.add('opacity-0', 'z-0', 'pointer-events-none');
+          }
+        });
+      };
+
+      const startInterval = () => {
+        globalIntervals[panelId] = window.setInterval(() => {
+          let current = parseInt(carouselRoot.dataset.current || '0');
+          let next = (current + 1) % totalImages;
+          switchToIndex(next);
+        }, 4000);
+      };
+
+      startInterval();
+
+      const thumbs = carouselRoot.querySelectorAll('.carousel-thumb-btn');
+      thumbs.forEach((thumb) => {
+        thumb.addEventListener('click', (e) => {
+          e.preventDefault();
+          clearInterval(globalIntervals[panelId]); 
+          const targetIdx = parseInt((e.currentTarget as HTMLElement).dataset.index || '0');
+          switchToIndex(targetIdx);
+          startInterval(); 
+        });
+      });
+    };
+
+    const firstActivePanel = document.querySelector('.tab-content.active-panel') as HTMLElement;
+    if (firstActivePanel) runCarousel(firstActivePanel);
+
+    // 4. LÓGICA DE LAS BARRAS (Sincronización PC y Móvil)
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const targetId = (e.currentTarget as HTMLElement).dataset.target;
+        const color = (e.currentTarget as HTMLElement).dataset.color || 'naranja';
+
+        // Apagar todos los botones
+        tabBtns.forEach(b => {
+          b.classList.remove('active', 'active-naranja', 'active-azul');
+          b.classList.add('text-gray-500', 'dark:text-gray-400');
+        });
+
+        // Encender botones correspondientes
+        document.querySelectorAll(`.tab-btn[data-target="${targetId}"]`).forEach(b => {
+          b.classList.remove('text-gray-500', 'dark:text-gray-400');
+          b.classList.add('active', `active-${color}`);
+        });
+
+        // Ocultar paneles actuales
+        tabContents.forEach(content => {
+          // Quitamos las clases de "visible"
+          content.classList.remove('active-panel', 'opacity-100', 'translate-y-0', 'z-10');
+          // Añadimos las clases de "oculto" Y bloqueamos el mouse con pointer-events-none
+          content.classList.add('opacity-0', 'translate-y-8', 'pointer-events-none', 'z-0');
+          
+          const panelId = content.id;
+          if (globalIntervals[panelId]) clearInterval(globalIntervals[panelId]); 
+          
+          setTimeout(() => {
+            if (!content.classList.contains('active-panel')) {
+              content.classList.add('absolute', 'top-0', 'left-0');
+            }
+          }, 500); 
+        });
+
+        // Mostrar nuevo panel
+        const targetContent = document.getElementById(targetId!);
+        if (targetContent) {
+          // LA MAGIA: Al mostrarlo, le quitamos el pointer-events-none para que el mouse lo detecte de nuevo
+          targetContent.classList.remove('absolute', 'top-0', 'left-0', 'pointer-events-none', 'z-0');
+          targetContent.classList.add('active-panel', 'z-10');
+          
+          setTimeout(() => {
+            targetContent.classList.remove('opacity-0', 'translate-y-8');
+            targetContent.classList.add('opacity-100', 'translate-y-0');
+            runCarousel(targetContent); 
+          }, 50);
+        }
+      });
+    });
+
+  });
+</script>

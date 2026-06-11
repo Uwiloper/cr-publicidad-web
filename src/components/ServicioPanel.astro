@@ -1,0 +1,130 @@
+---
+const { servicio, index } = Astro.props;
+
+// El primer servicio (índice 0) se carga visible y activo por defecto
+const isFirst = index === 0;
+
+// Definimos la clase de hover segura para CSS puro
+const hoverClass = servicio.gradiente === 'azul' ? 'hover-azul' : 'hover-naranja';
+---
+
+<div 
+  id={`content-${servicio.id}`} 
+  class={`tab-content w-full grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 transition-all duration-700 ease-in-out
+    ${isFirst ? 'active-panel opacity-100 translate-y-0 z-10' : 'opacity-0 translate-y-8 pointer-events-none z-0 absolute top-0 left-0'}
+  `}
+>
+  
+  <div class="w-full md:col-span-7 flex flex-col text-left">
+    
+    <h2 class={`font-display font-extrabold text-3xl md:text-4xl lg:text-5xl mb-6 uppercase tracking-tight leading-[1.05] text-transparent bg-clip-text ${servicio.gradiente === 'azul' ? 'bg-gradient-to-r from-[#173154] to-[#3b82f6]' : 'bg-gradient-to-r from-[#cc4a04] to-[#fb923c]'}`}>
+      {servicio.titulo}
+    </h2>
+    
+    {servicio.descripcion && (
+      <p class="font-sans text-gray-600 dark:text-gray-400 text-sm md:text-base leading-relaxed mb-10 transition-colors duration-300">
+        {servicio.descripcion}
+      </p>
+    )}
+
+    <div class="w-full mb-8">
+      <div class="flex items-center gap-4 mb-6">
+        <span class="font-mono text-[10px] md:text-xs tracking-[0.3em] text-gray-400 dark:text-gray-500 uppercase font-bold">Ventajas Clave</span>
+        <div class="flex-grow h-[1px] bg-gray-200 dark:bg-gray-800"></div>
+      </div>
+      
+      <div class="flex flex-col gap-5 lg:gap-6">
+        {servicio.caracteristicas?.map((carac: any) => (
+          <div class={`feature-item flex items-center gap-4 transition-all duration-300 cursor-default group ${hoverClass}`}>
+            
+            {carac.iconoLocal && (
+              <div class="w-6 h-6 md:w-7 md:h-7 shrink-0 flex items-center justify-center transition-all duration-500">
+                <img src={carac.iconoLocal} alt="Icono" class="feature-icon w-full h-full object-contain filter dark:invert opacity-70 transition-all duration-300" />
+              </div>
+            )}
+            
+            <span class="feature-text font-sans font-medium text-gray-800 dark:text-gray-200 text-sm md:text-base leading-snug transition-colors duration-300">
+              {carac.texto || carac.titulo}
+            </span>
+
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CONTENEDOR DE LA GALERÍA -->
+  <div class="w-full md:col-span-5 flex flex-col justify-start gap-3 service-carousel-root" id={`carousel-${servicio.id}`}>
+    
+    <div class="w-full aspect-[4/3] rounded-sm overflow-hidden shadow-sm border border-gray-200 dark:border-gray-800 relative bg-gray-100 dark:bg-[#111]">
+      {servicio.galeria && servicio.galeria.length > 0 ? (
+        <img 
+          src={servicio.galeria[0]} 
+          alt={`Imagen principal de ${servicio.titulo}`} 
+          class="carousel-main-img absolute inset-0 w-full h-full object-cover transition-all duration-300 ease-in-out z-10"
+        />
+      ) : (
+        <div class="absolute inset-0 flex items-center justify-center z-0">
+          <span class="font-mono text-gray-400 dark:text-gray-600 text-[10px] tracking-widest uppercase">Sin imágenes</span>
+        </div>
+      )}
+    </div>
+    
+    {servicio.galeria && servicio.galeria.length > 1 && (
+      <div class="grid grid-cols-3 gap-3 w-full">
+        {servicio.galeria.slice(1, 4).map((imgUrl: string, thumbIndex: number) => (
+          <button 
+            type="button"
+            class={`carousel-thumb-btn aspect-[4/3] rounded-sm overflow-hidden border-2 border-transparent transition-all duration-300 focus:outline-none relative group ${servicio.gradiente === 'azul' ? 'hover:border-[#3b82f6]' : 'hover:border-[#cc4a04]'}`}
+          >
+            <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-300 z-10 pointer-events-none"></div>
+            <img src={imgUrl} alt="Miniatura" class="carousel-thumb-img w-full h-full object-cover z-0 transition-transform duration-300 group-hover:scale-110" loading="lazy" />
+          </button>
+        ))}
+      </div>
+    )}
+    
+  </div>
+
+</div> 
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const carousels = document.querySelectorAll('.service-carousel-root');
+    
+    carousels.forEach(carousel => {
+      // Le decimos a TypeScript que estamos 100% seguros de que es una etiqueta <img>
+      const mainImg = carousel.querySelector('.carousel-main-img') as HTMLImageElement;
+      const thumbBtns = carousel.querySelectorAll('.carousel-thumb-btn');
+      
+      if (!mainImg || thumbBtns.length === 0) return;
+
+      thumbBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // También le decimos que esto es una <img>
+          const thumbImg = btn.querySelector('.carousel-thumb-img') as HTMLImageElement;
+          if (!thumbImg) return;
+
+          // 1. Efecto de parpadeo suave
+          mainImg.style.opacity = '0.4';
+          
+          setTimeout(() => {
+            // 2. Obtenemos las rutas de forma segura (añadimos || '' para evitar nulos)
+            const currentMainSrc = mainImg.getAttribute('src') || '';
+            const currentThumbSrc = thumbImg.getAttribute('src') || '';
+            
+            // Hacemos el intercambio solo si ambos existen
+            if (currentMainSrc && currentThumbSrc) {
+              mainImg.setAttribute('src', currentThumbSrc);
+              thumbImg.setAttribute('src', currentMainSrc);
+            }
+            
+            // 3. Restauramos la opacidad
+            mainImg.style.opacity = '1';
+          }, 150);
+        });
+      });
+    });
+  });
+</script>

@@ -1,0 +1,98 @@
+---
+import globalData from '../../data/global.json';
+import CrLogo from '../../assets/icons/cr-logo.svg';
+const { textoEscritura, textoCarga } = globalData.preloader;
+---
+
+<div id="preloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white dark:bg-[#050505] transition-opacity duration-700 ease-in-out">
+  
+  <CrLogo class="w-14 h-14 md:w-16 md:h-16 text-cr-blue mb-8 animate-pulse" />
+
+  <div class="h-8 mb-3 flex items-center">
+    <span id="typing-text" class="font-display font-bold text-xl md:text-2xl text-cr-dark dark:text-white" data-texto={textoEscritura}></span>
+    <span class="w-[2px] h-6 bg-cr-orange ml-1 animate-blink"></span>
+  </div>
+
+  <div class="w-48 md:w-56 h-[1px] bg-gray-200 dark:bg-gray-800 relative overflow-hidden mb-4">
+    <div id="loading-bar" class="absolute top-0 left-0 h-full w-0 bg-cr-orange transition-all duration-[2000ms] ease-out"></div>
+  </div>
+
+  <span class="font-mono text-[8px] md:text-[9px] tracking-[0.3em] text-gray-500 uppercase font-semibold">
+    {textoCarga}
+  </span>
+
+</div>
+
+<style>
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+</style>
+
+<script is:inline>
+  if (sessionStorage.getItem('preloaderVisto')) {
+    const loader = document.getElementById('preloader');
+    if (loader) {
+      loader.style.display = 'none'; // Lo desaparece antes de que lo veas
+    }
+  }
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const preloader = document.getElementById('preloader');
+    
+    // Si no existe el contenedor, salimos
+    if (!preloader) return;
+
+    // Si ya lo vio (el script inline ya lo ocultó), solo avisamos a las páginas que arranquen
+    if (sessionStorage.getItem('preloaderVisto')) {
+      document.dispatchEvent(new Event('preloaderTerminado'));
+      return; 
+    }
+
+    // ==========================================
+    // SI ES LA PRIMERA VEZ, CORRE TU ANIMACIÓN
+    // ==========================================
+    const typingElement = document.getElementById('typing-text');
+    const loadingBar = document.getElementById('loading-bar');
+    
+    if (!typingElement || !loadingBar) return;
+
+    const textToType = typingElement.getAttribute('data-texto') || '';
+    let i = 0;
+
+    function typeWriter() {
+      if (i < textToType.length) {
+        typingElement.innerHTML += textToType.charAt(i);
+        i++;
+        setTimeout(typeWriter, 40); 
+      }
+    }
+
+    setTimeout(typeWriter, 300);
+
+    setTimeout(() => {
+      loadingBar.style.width = '100%';
+    }, 100);
+
+    setTimeout(() => {
+      preloader.classList.add('opacity-0'); 
+      
+      setTimeout(() => {
+        preloader.style.display = 'none'; 
+        
+        // Guardamos en memoria que ya lo vio
+        sessionStorage.setItem('preloaderVisto', 'true');
+        
+        // Avisamos a las páginas que arranquen
+        document.dispatchEvent(new Event('preloaderTerminado'));
+      }, 700); 
+      
+    }, 2400); 
+  });
+</script>

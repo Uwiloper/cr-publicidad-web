@@ -1,0 +1,125 @@
+{
+  "hero": {
+    "diapositivas": [
+      {
+        "imagen": "/assets/images/hero1.jpg",
+        "etiqueta": "AGENCIA DE PUBLICIDAD B2B",
+        "tituloNaranja": "DISEÑAMOS",
+        "tituloNormal": "TU",
+        "tituloAzul": "MARCA",
+        "descripcion": "Más de 8 años de experiencia en producción publicitaria, trade marketing, imprenta, merchandising y línea textil a nivel nacional.",
+        "btnPrincipal": {
+          "texto": "Inicia tu Proyecto",
+          "ruta": "/contacto",
+          "active": true
+        },
+        "btnSecundario": {
+          "texto": "Nuestros Servicios",
+          "ruta": "/servicios",
+          "active": true
+        }
+      },
+      {
+        "imagen": "/assets/images/hero2.jpg",
+        "etiqueta": "PRODUCCIÓN E IMPLEMENTACIÓN",
+        "tituloNaranja": "IMPACTO",
+        "tituloNormal": "EN CADA",
+        "tituloAzul": "DETALLE",
+        "descripcion": "Desarrollo de identidad corporativa y planes estratégicos de marketing omnicanal para potenciar tus marcas.",
+        "btnPrincipal": {
+          "active": true,
+          "texto": "HABLEMOS",
+          "ruta": "/contacto",
+          "gradiente": "naranja" 
+        },
+        "btnSecundario": {
+          "texto": "Ver Portafolio",
+          "ruta": "/portafolio",
+          "active": false
+        }
+      }
+    ]
+  },
+  "marcas": {
+    "etiquetaIzquierda": "CARTERA DE CLIENTES",
+    "etiquetaDerecha": "EMPRESAS LÍDERES",
+    "logos": [
+      {
+        "nombre":       "alicorp",
+        "imagen":       "/assets/images/marcas/alicorp.svg",
+        "imagenOscura": "/assets/images/marcas/alicorp.svg" 
+      },
+      {
+        "nombre":       "arcor",
+        "imagen":       "/assets/images/marcas/arcor.svg",
+        "imagenOscura": "/assets/images/marcas/arcor.svg" 
+      },
+      {
+        "nombre":       "aruma",
+        "imagen":       "/assets/images/marcas/aruma.png",
+        "imagenOscura": "/assets/images/marcas/aruma.png" 
+      },
+      {
+        "nombre":       "autoniza",
+        "imagen":       "/assets/images/marcas/autoniza.png",
+        "imagenOscura": "/assets/images/marcas/autoniza.png" 
+      },
+      {
+        "nombre":       "emasa",
+        "imagen":       "/assets/images/marcas/emasa.png",
+        "imagenOscura": "/assets/images/marcas/emasa.png" 
+      },
+      {
+        "nombre":       "perufarma",
+        "imagen":       "/assets/images/marcas/perufarma.png",
+        "imagenOscura": "/assets/images/marcas/perufarma.png" 
+      },
+      {
+        "nombre":       "realplaza",
+        "imagen":       "/assets/images/marcas/realplaza.png",
+        "imagenOscura": "/assets/images/marcas/realplaza.png" 
+      },
+      {
+        "nombre":       "tasa",
+        "imagen":       "/assets/images/marcas/tasa.png",
+        "imagenOscura": "/assets/images/marcas/tasa.png" 
+      }
+    ]
+  },
+  "serviciosDestacados": {
+    "etiqueta": "PRODUCCIÓN Y SERVICIOS",
+    "titulo": "NUESTRAS LÍNEAS DE PRODUCTOS",
+    "descripcion": "Desde la conceptualización hasta la entrega final, ofrecemos solucionesa tu medida para cada necesidad publicitaria a nivel nacional.",
+    "items": [
+      {
+        "numero": "01",
+        "categoria": "ESTRATEGIA VISUAL",
+        "titulo": "Trade Marketing",
+        "descripcion": "Creamos, diseñamos, producimos e implementamos elementos publicitarios disruptivos para los diversos canales de venta a nivel nacional.",
+        "imagen": "/assets/images/inicio/tm5.png",
+        "color": "azul"
+      },
+      {
+        "numero": "02",
+        "categoria": "SOPORTE Y GESTIÓN",
+        "titulo": "Facility Management",
+        "descripcion": "Planificamos y gestionamos espacios comerciales para garantizar un ambiente seguro, funcional y amigable para tus colaboradores y clientes.",
+        "imagen": "/assets/images/inicio/fm1.png",
+        "color": "naranja"
+      },
+      {
+        "numero": "03",
+        "categoria": "PUBLICIDAD IN-HOUSE",
+        "titulo": "Proyecto Mercados",
+        "descripcion": "ublicidad estratégica en el Punto de Venta (PDV) diseñada para maximizar el impacto visual e influir directamente en la decisión de compra.",
+        "imagen": "/assets/images/inicio/pm1.png",
+        "color": "azul"
+      }
+    ],
+    "botonGeneral": {
+      "texto": "Explorar más servicios",
+      "ruta": "/servicios",
+      "gradiente": "azul"
+    }
+  }
+}

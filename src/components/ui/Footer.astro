@@ -1,0 +1,198 @@
+---
+import footerData from '../../data/footer.json';
+
+const data = footerData || {};
+const cta = data?.cta || {};
+const bottom = data?.bottom || {};
+
+// Textos con degradado
+const getGradientClass = (tipo?: string) => {
+  if (tipo === 'naranja') return 'bg-gradient-to-r from-[#cc4a04] to-[#fb923c] text-transparent bg-clip-text inline-block';
+  if (tipo === 'azul') return 'bg-gradient-to-r from-[#173154] to-[#3b82f6] text-transparent bg-clip-text inline-block';
+  return 'text-cr-dark dark:text-white inline-block';
+};
+
+// Fondos con degradado (Botón)
+const getBgGradientClass = (tipo?: string) => {
+  if (tipo === 'naranja') return 'bg-gradient-to-r from-[#cc4a04] to-[#fb923c]';
+  if (tipo === 'azul') return 'bg-gradient-to-r from-[#173154] to-[#3b82f6]';
+  return 'bg-[#cc4a04]'; 
+};
+
+// NUEVO: Color de Hover para los textos (Links)
+const getTextHoverClass = (tipo?: string) => {
+  if (tipo === 'azul') return 'hover:text-[#173154] dark:hover:text-[#3b82f6]';
+  // Por defecto será naranja si no pones nada o pones "naranja"
+  return 'hover:text-[#cc4a04] dark:hover:text-[#cc4a04]';
+};
+
+// Extraemos la clase de hover para usarla en los <a>
+const hoverClass = getTextHoverClass(data?.colorHover);
+
+const marqueeText = (data?.marquee || "CR PUBLICIDAD - ").repeat(15);
+const currentYear = new Date().getFullYear().toString();
+const finalCopyright = bottom?.copyright ? bottom.copyright.replace('AÑO', currentYear) : `© ${currentYear} CR PUBLICIDAD. TODOS LOS DERECHOS RESERVADOS.`;
+---
+
+<footer class="w-full bg-[#f8f9fa] dark:bg-[#050505] transition-colors duration-700 overflow-hidden relative">
+  
+  {data?.marquee && (
+    <div class="marquee-container w-full border-y border-gray-200 dark:border-gray-900 py-3 flex overflow-hidden relative bg-[#f8f9fa] dark:bg-[#050505] transition-colors duration-700">
+      <div class="animate-marquee whitespace-nowrap font-mono text-[9px] md:text-[10px] tracking-[0.3em] text-gray-400 dark:text-gray-600 uppercase font-bold">
+        {marqueeText}
+      </div>
+      <div class="animate-marquee whitespace-nowrap font-mono text-[9px] md:text-[10px] tracking-[0.3em] text-gray-400 dark:text-gray-600 uppercase font-bold" aria-hidden="true">
+        {marqueeText}
+      </div>
+      <div class="absolute inset-0 z-10 pointer-events-none animate-shine-sweep mix-blend-overlay"></div>
+    </div>
+  )}
+
+  <div class="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-24 py-16 lg:py-20">
+    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12 lg:gap-8 transition-all duration-700">
+      
+      <div class="w-full lg:w-1/2 flex flex-col items-start gap-6 observer-blur opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+        
+        {data?.logo && (
+          <a href="/" class="block mb-2">
+            {data.logo.rutaClaro && <img src={data.logo.rutaClaro} alt="CR Publicidad" class="h-8 md:h-10 w-auto object-contain dark:hidden transition-transform duration-300 hover:scale-105" />}
+            {data.logo.rutaOscuro && <img src={data.logo.rutaOscuro} alt="CR Publicidad" class="h-8 md:h-10 w-auto object-contain hidden dark:block transition-transform duration-300 hover:scale-105" />}
+          </a>
+        )}
+
+        {data?.navegacion && (
+          <nav class="flex flex-wrap gap-x-5 gap-y-2 mt-2 transition-all duration-700">
+            {data.navegacion.map((link: any) => (
+              <a href={link.ruta || '#'} class={`font-sans text-[10px] md:text-xs tracking-widest font-bold text-gray-500 dark:text-gray-400 uppercase transition-colors ${hoverClass}`}>
+                {link.nombre}
+              </a>
+            ))}
+          </nav>
+        )}
+
+        {data?.contacto && (
+          <div class="flex flex-col gap-1.5 mt-2 transition-all duration-700">
+            {data.contacto.map((linea: any) => (
+              <a 
+                href={linea.ruta || '#'} 
+                target={linea.ruta?.startsWith('http') ? '_blank' : '_self'}
+                rel={linea.ruta?.startsWith('http') ? 'noopener noreferrer' : ''}
+                class={`font-sans text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 transition-colors ${hoverClass}`}
+              >
+                {linea.texto}
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {Object.keys(cta).length > 0 && (
+        <div class="w-full lg:w-1/2 flex flex-col items-start lg:items-end text-left lg:text-right observer-blur opacity-0 translate-y-8 transition-all duration-1000 ease-out delay-200">
+          
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-[45px] leading-[1.1] tracking-tight mb-8 max-w-lg transition-all duration-700">
+            {cta?.titulos?.map((t: any) => (
+              <span class={`pr-2 transition-colors duration-700 ${getGradientClass(t.gradiente)}`}>
+                {t.texto}
+              </span>
+            ))}
+          </h2>
+
+          {cta?.boton && (
+            <a href={cta.boton.ruta || '#'} class={`group relative text-white font-sans font-bold text-[11px] md:text-[12px] tracking-widest py-3.5 px-10 transition-all duration-500 hover:scale-105 flex items-center justify-center gap-3 rounded-sm shadow-sm ${getBgGradientClass(cta.boton.gradiente)}`}>
+              <span class="relative z-10">{cta.boton.texto}</span>
+              <svg class="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </a>
+          )}
+          
+        </div>
+      )}
+
+    </div>
+  </div>
+
+  <div class="w-full border-t border-gray-200 dark:border-gray-900 transition-colors duration-700">
+    <div class="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-24 py-6 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 observer-blur opacity-0 translate-y-6 transition-all duration-1000 ease-out delay-300">
+      
+      <span class="font-sans text-[9px] md:text-[10px] font-bold tracking-widest text-gray-400 dark:text-gray-500 uppercase transition-all duration-700">
+        {finalCopyright}
+      </span>
+
+      <div class="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-10 w-full lg:w-auto transition-all duration-700">
+        
+        {bottom?.legales && (
+          <div class="flex flex-wrap gap-4 md:gap-8 transition-all duration-700">
+            {bottom.legales.map((legal: any) => (
+              <a href={legal.ruta || '#'} class={`font-sans text-[9px] md:text-[10px] font-bold tracking-widest text-gray-400 dark:text-gray-500 uppercase transition-colors ${hoverClass}`}>
+                {legal.nombre}
+              </a>
+            ))}
+          </div>
+        )}
+
+        {bottom?.redes && (
+          <div class="flex items-center gap-4 transition-all duration-700">
+            {bottom.redes.map((red: any) => (
+              <a href={red.enlace || '#'} target="_blank" rel="noopener noreferrer" class="opacity-40 hover:opacity-100 transition-all duration-300 hover:scale-110">
+                <img src={red.rutaIcono} alt={red.nombre} class="w-4 h-4 md:w-5 md:h-5 object-contain dark:invert" />
+              </a>
+            ))}
+          </div>
+        )}
+
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+<style>
+  .animate-marquee {
+    animation: marquee 90s linear infinite;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  .animate-shine-sweep {
+    background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+    width: 30%;
+    transform: skewX(-20deg);
+    animation: shineSweep 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+  .dark .animate-shine-sweep {
+    background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%);
+  }
+
+  @keyframes shineSweep {
+    0% { left: -50%; opacity: 0; }
+    10% { opacity: 1; }
+    30% { left: 150%; opacity: 0; }
+    100% { left: 150%; opacity: 0; }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const footerObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('opacity-0', 'translate-y-8', 'translate-y-6');
+          observer.unobserve(entry.target); 
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('footer .observer-blur').forEach(item => {
+      footerObserver.observe(item);
+    });
+  });
+</script>

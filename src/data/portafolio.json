@@ -1,0 +1,69 @@
+{
+  "hero": {
+    "etiqueta": "NUESTRO TRABAJO",
+    "titulos": [
+      { "texto": "Implementaciones", "gradiente": "ninguno" },
+      { "texto": "nacionales", "gradiente": "azul" }
+    ],
+    "descripcion": "Cada proyecto es una muestra de nuestro compromiso con la calidad, la creatividad y la cobertura a nivel nacional.",
+    "imagenFondo": "/images/hero2.jpg"
+  },
+  "categorias": [
+    { "id": "todas", "nombre": "Todas", "gradiente": "naranja" },
+    { "id": "branding", "nombre": "Branding", "gradiente": "azul" },
+    { "id": "impresion", "nombre": "Impresión", "gradiente": "naranja" },
+    { "id": "estructuras", "nombre": "Estructuras", "gradiente": "naranja" }
+  ],
+  "trabajos": [
+    {
+      "id": "proyecto-1",
+      "categoriaId": "branding",
+      "titulo": "Identidad Visual Corporativa",
+      "cliente": "TechCorp",
+      "ubicacion": "Lima, Perú",
+      "anio": "2025",
+      "descripcion": "Desarrollo integral de la identidad corporativa para las nuevas oficinas de TechCorp. Se priorizó un diseño minimalista que refleje la innovación de la marca, implementando señalética inteligente y revestimientos de alta durabilidad.",
+      "servicios": [
+        { "texto": "BRANDING DE PDV", "color": "azul" },
+        { "texto": "VINIL LAMINADO", "color": "naranja" },
+        { "texto": "BRANDING INTERNO DE OFICINAS", "color": "azul" }
+      ],
+      "imagenPrincipal": "/images/hero1.jpg",
+      "galeria": [
+        "/images/hero1.jpg",
+        "/images/hero2.jpg",
+        "/images/hero1.jpg",
+        "/images/hero2.jpg"
+      ],
+      "redes": {
+        "instagram": "https://instagram.com/crpublicidad",
+        "facebook": "https://facebook.com/crpublicidad",
+        "youtube": "https://youtube.com/"
+      }
+    },
+    {
+      "id": "proyecto-2",
+      "categoriaId": "estructuras",
+      "titulo": "Módulo Interactivo",
+      "cliente": "FarmaSalud",
+      "ubicacion": "Trujillo, Perú",
+      "anio": "2026",
+      "descripcion": "Implementación de un módulo de exhibición de alto tráfico en cadena de supermercados. Incluye iluminación LED, acabados en acrílico y pantallas para interacción directa.",
+      "servicios": [
+        { "texto": "MUEBLES PERSONALIZADOS", "color": "naranja" },
+        { "texto": "BANNERS CON ESTRUCTURA", "color": "azul" }
+      ],
+      "imagenPrincipal": "/images/hero2.jpg",
+      "galeria": [
+        "/images/hero1.jpg",
+        "/images/hero2.jpg",
+        "/images/hero1.jpg",
+        "/images/hero2.jpg"
+      ],
+      "redes": {
+        "whatsapp": "https://wa.me/51999999999",
+        "tiktok": "https://tiktok.com/@crpublicidad"
+      }
+    }
+  ]
+}

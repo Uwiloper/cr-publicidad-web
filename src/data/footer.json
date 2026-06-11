@@ -1,0 +1,46 @@
+{
+  "colorHover": "naranja",
+  "marquee": "TRADE MARKETING - DISEÑO GRÁFICO - VISUAL MERCHANDISING - PRODUCCIÓN E IMPLEMENTACIÓN - ",
+  "logo": {
+    "rutaClaro": "/assets/icons/cr-logo.svg",
+    "rutaOscuro": "/assets/icons/cr-logo-n.svg"
+  },
+  "navegacion": [
+    { "nombre": "INICIO", "ruta": "/" },
+    { "nombre": "NOSOTROS", "ruta": "/nosotros" },
+    { "nombre": "SERVICIOS", "ruta": "/servicios" },
+    { "nombre": "PORTAFOLIO", "ruta": "/portafolio" },
+    { "nombre": "CONTACTO", "ruta": "/contacto" }
+  ],
+  "contacto": [
+    { "texto": "www.crpublicidad.com.pe", "ruta": "https://www.crpublicidad.com.pe" },
+    { "texto": "Tel: 960 585 315", "ruta": "tel:+51960585315" },
+    { "texto": "Email: ventas@crpublicidad.com.pe", "ruta": "mailto:ventas@crpublicidad.com.pe" },
+    { "texto": "Calle Independencia 1021, Miraflores", "ruta": "https://maps.google.com/?q=Calle+Independencia+1021,+Miraflores" }
+  ],
+  "cta": {
+    "titulos": [
+      { "texto": "¡VIDA", "gradiente": "naranja" },
+      { "texto": "para tus", "gradiente": "ninguno" },
+      { "texto": "PROYECTOS!", "gradiente": "azul" }
+    ],
+    "boton": {
+      "texto": "HABLEMOS",
+      "ruta": "/contacto",
+      "gradiente": "naranja"
+    }
+  },
+  "bottom": {
+    "copyright": "© AÑO CR PUBLICIDAD. TODOS LOS DERECHOS RESERVADOS.",
+    "legales": [
+      { "nombre": "POLÍTICAS DE PRIVACIDAD", "ruta": "/privacidad" },
+      { "nombre": "LIBRO DE RECLAMACIONES", "ruta": "/reclamaciones" }
+    ],
+    "redes": [
+      { "nombre": "Facebook", "rutaIcono": "/icons/facebook.svg", "enlace": "#" },
+      { "nombre": "Instagram", "rutaIcono": "/icons/instagram.svg", "enlace": "#" },
+      { "nombre": "LinkedIn", "rutaIcono": "/icons/linkedin.svg", "enlace": "#" },
+      { "nombre": "WhatsApp", "rutaIcono": "/icons/whatsapp.svg", "enlace": "#" }
+    ]
+  }
+}

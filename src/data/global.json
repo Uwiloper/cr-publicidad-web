@@ -1,0 +1,37 @@
+{
+  "logo": {
+    "rutaClaro": "/assets/icons/cr-logo.svg",
+    "rutaOscuro": "/assets/icons/cr-logo-n.svg"
+  },
+  "navegacion": [
+    { "nombre": "Inicio", "ruta": "/" },
+    { "nombre": "Nosotros", "ruta": "/nosotros" },
+    { "nombre": "Servicios", "ruta": "/servicios" },
+    { "nombre": "Portafolio", "ruta": "/portafolio" },
+    { "nombre": "Contacto", "ruta": "/contacto" }  
+  ],
+  "botonCTA": {
+    "texto": "Cotizar Ahora",
+    "ruta": "/contacto",
+    "gradiente": "naranja"
+  },
+  "preloader": {
+    "textoEscritura": "Creando experiencias desde 1990",
+    "textoCarga": "CARGANDO TU PROYECTO IDEAL"
+  },
+  "whatsapp": {
+    "mensajeDefecto": "Hola CR Publicidad, vengo de la página web y deseo cotizar un proyecto.",
+    "contactos": [
+      {
+        "nombre": "Lima Metropolitana",
+        "numero": "51960585315",
+        "mostrarComo": "960 585 315"
+      },
+      {
+        "nombre": "Provincia",
+        "numero": "51960585303",
+        "mostrarComo": "960 585 303"
+      }
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "secciones": [
+    {
+      "id": "cta-inicio",
+      "etiqueta": "",
+      "titulos": [
+        { "texto": "¡LE DAMOS", "gradiente": "ninguno" },
+        { "texto": "VIDA", "gradiente": "naranja" },
+        { "texto": "A TUS PROYECTOS!", "gradiente": "azul" }
+      ],
+      "descripcion": "Desde branding de punto de venta hasta merchandising personalizado, estamos listos para llevar tu marca al siguiente nivel.",
+      "botones": [
+        {
+          "texto": "Inicia tu Proyecto",
+          "ruta": "/contacto",
+          "tipo": "principal",
+          "gradiente": "naranja"
+        }
+      ]
+    },
+    {
+      "id": "cta-final-contacto",
+      "etiqueta": "",
+      "titulos": [
+        { "texto": "Hagamos algo", "gradiente": "ninguno" },
+        { "texto": "INCREÍBLE", "gradiente": "azul" },
+        { "texto": "", "gradiente": "ninguno" }
+      ],
+      "descripcion": "Escríbenos hoy mismo y recibe un diagnóstico publicitario completamente gratuito para tu empresa.",
+      "botones": [
+        {
+          "texto": "Hablemos Ahora",
+          "ruta": "/contacto",
+          "tipo": "principal",
+          "gradiente": "naranja"
+        }
+      ]
+    }
+  ]
+}

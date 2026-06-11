@@ -1,0 +1,103 @@
+{
+  "hero": {
+    "etiqueta": "LO QUE HACEMOS",
+    "titulos": [
+      { "texto": "Nuestros", "gradiente": "ninguno" },
+      { "texto": "SERVICIOS", "gradiente": "azul" }
+    ],
+    "descripcion": "Estrategias visuales y producción publicitaria de alto impacto para potenciar tu marca.",
+    "imagenFondo": "/assets/images/hero1.jpg"
+  },
+  "lista": [
+    {
+      "id": "trade-marketing",
+      "titulo": "TRADE MARKETING",
+      "tituloCorto": "TRADE MKT",
+      "descripcion": "Potenciamos la visibilidad de tu marca en el punto de venta con estrategias enfocadas en el consumidor. Impactamos en supermercados, mayoristas y bodegas a través de materiales visuales personalizados y diseños disruptivos, asegurando el éxito de tus campañas corporativas en cualquier canal comercial.",
+      "gradiente": "naranja",
+      "caracteristicas": [
+        { "texto": "Diseños disruptivos y 100% personalizados para cada campaña",                 "iconoLocal": "/assets/icons/servicios/tmv1.svg" },
+        { "texto": "Alcance en supermercados, mayoristas y tiendas de conveniencia",              "iconoLocal": "/assets/icons/servicios/tmv2.svg" },
+        { "texto": "Propuestas visuales adaptables a cualquier formato y categoría de producto",  "iconoLocal": "/assets/icons/servicios/tmv3.svg" }
+      ],
+      "galeria": [
+        "/assets/images/servicios/tm1.webp",
+        "/assets/images/servicios/tm2.webp",
+        "/assets/images/servicios/tm3.webp",
+        "/assets/images/servicios/tm4.webp"
+      ]
+    },
+    {
+      "id": "diseno-grafico",
+      "titulo": "DISEÑO GRÁFICO",
+      "tituloCorto": "DISEÑO",
+      "descripcion": "Transformamos la identidad de tu empresa en elementos visuales estratégicos para el punto de venta. Nuestro equipo creativo desarrolla y adapta material publicitario manteniendo estricta fidelidad a tu línea gráfica corporativa, garantizando que tu marca sea reconocida y destaque frente a la competencia.",
+      "gradiente": "azul",
+      "caracteristicas": [
+        { "texto": "Propuestas creativas exclusivas para campañas personalizadas en PDV", "iconoLocal": "/icons/shield.png" },
+        { "texto": "Adaptación técnica de diseños preexistentes para una producción impecable", "iconoLocal": "/icons/pen.png" },
+        { "texto": "Respeto absoluto por los elementos visuales y la línea gráfica de tu empresa", "iconoLocal": "/icons/refresh.png" }
+      ],
+      "galeria": [
+        "/assets/images/servicios/dg1.png",
+        "/assets/images/hero2.jpg",
+        "/assets/images/hero1.jpg",
+        "/assets/images/hero2.jpg"
+      ]
+    },
+    {
+      "id": "impresion",
+      "titulo": "IMPRESIÓN EN GRAN FORMATO",
+      "tituloCorto": "IMPRESIÓN",
+      "descripcion": "Brindamos servicios de impresión digital de gran formato con equipos de última tecnología, ideales para el mercado de la publicidad exterior e interior. Garantizamos una calidad gráfica superior, ofreciendo la velocidad y precisión que los proyectos corporativos necesitan.",
+      "gradiente": "naranja",
+      "caracteristicas": [
+        { "texto": "Impresiones de gran formato con calidad superior para interiores y exteriores", "iconoLocal": "/icons/maximize.png" },
+        { "texto": "Alta velocidad de producción y secado rápido para entregas eficientes", "iconoLocal": "/icons/gauge.png" },
+        { "texto": "Tecnología moderna y optimizada que genera un menor impacto con el medio ambiente", "iconoLocal": "/icons/leaf.png" }
+      ],
+      "galeria": [
+        "/assets/images/servicios/imp1.png",
+        "/assets/images/servicios/imp2.png",
+        "/assets/images/servicios/imp3.png",
+        "/assets/images/servicios/imp4.png"
+      ]
+    },
+    {
+      "id": "produccion",
+      "titulo": "PRODUCCIÓN E IMPLEMENTACIÓN",
+      "tituloCorto": "PRODUCCIÓN",
+      "descripcion": "Materializamos tus proyectos publicitarios desde cero gracias a nuestra capacidad in-house con taller de carpintería y metalmecánica. Fabricamos todos los elementos de nuestro portafolio y proyectos a medida, asegurando un control de calidad total hasta la implementación final",
+      "gradiente": "azul",
+      "caracteristicas": [
+        { "texto": "Producción in-house con talleres propios de carpintería y metalmecánica", "iconoLocal": "/icons/box.png" },
+        { "texto": "Fabricación integral de todos los elementos de nuestro portafolio de productos", "iconoLocal": "/icons/tool.png" },
+        { "texto": "Desarrollo e implementación de proyectos 100% personalizados a solicitud del cliente", "iconoLocal": "/icons/star.png" }
+      ],
+      "galeria": [
+        "/assets/images/servicios/prod1.png",
+        "/assets/images/hero2.jpg",
+        "/assets/images/hero1.jpg",
+        "/assets/images/hero2.jpg"
+      ]
+    },
+    {
+      "id": "visual-merchandising",
+      "titulo": "VISUAL MERCHANDISING",
+      "tituloCorto": "VISUAL MERCH",
+      "descripcion": "Reforzamos el posicionamiento de tu empresa suministrando artículos publicitarios y merchandising estratégico. Nos enfocamos en transmitir la esencia corporativa de tus campañas a través de un branding integral, combinando alta calidad técnica con un sólido liderazgo de precios.",
+      "gradiente": "naranja",
+      "caracteristicas": [
+        { "texto": "Suministro especializado de productos publicitarios para merchandising corporativo", "iconoLocal": "/icons/shoppingBag.png" },
+        { "texto": "Implementación de branding integral para transmitir fielmente la imagen de tu cliente", "iconoLocal": "/icons/eye.png" },
+        { "texto": "Operaciones respaldadas por altos estándares de calidad y estrategia en liderazgo de precios", "iconoLocal": "/icons/trendingUp.png" }
+      ],
+      "galeria": [
+        "/assets/images/servicios/merch1.png",
+        "/assets/images/hero2.jpg",
+        "/assets/images/hero1.jpg",
+        "/assets/images/hero2.jpg"
+      ]
+    }
+  ]
+}

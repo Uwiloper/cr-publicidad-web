@@ -1,0 +1,240 @@
+---
+import inicioData from '../../data/inicio.json';
+const { diapositivas } = inicioData.hero;
+const tieneVarios = diapositivas.length > 1;
+
+// Función para el color inicial del botón
+const getBtnGradient = (tipo?: string) => {
+  if (tipo === 'azul') return 'from-[#173154] to-[#3b82f6] shadow-blue-500/25';
+  return 'from-[#cc4a04] to-[#fb923c] shadow-orange-500/25';
+};
+---
+
+<section class="relative w-full min-h-screen overflow-hidden flex items-center justify-center bg-white dark:bg-[#050505] pt-[88px] pb-16 md:pb-20 transition-colors duration-700">
+  
+  <div id="hero-slider" class="absolute inset-0 w-full h-full z-0 overflow-hidden">
+    {diapositivas.map((slide: any, index: number) => (
+      <div 
+        class={`hero-slide absolute inset-0 w-full h-full transition-transform duration-[1200ms] ease-in-out flex items-center justify-center
+        ${index === 0 ? 'translate-x-0' : 'translate-x-full'}`}
+      >
+        <div class="absolute inset-0 bg-white/85 dark:bg-[#050505]/85 z-10 transition-colors duration-700"></div>
+        <img src={slide.imagen} alt="Hero Fondo" class="absolute inset-0 w-full h-full object-cover z-0 opacity-80 dark:opacity-40" />
+      </div>
+    ))}
+  </div>
+
+  <div class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-white dark:from-[#050505] to-transparent z-10 pointer-events-none transition-colors duration-700"></div>
+
+  <div id="hero-content" class="relative z-20 flex flex-col items-center text-center px-6 sm:px-12 w-full max-w-[1200px] mx-auto transform translate-y-12 opacity-0 blur-md transition-all duration-1000 ease-out">
+    
+    <span id="t-etiqueta" class="font-mono text-[10px] sm:text-xs md:text-sm tracking-[0.25em] text-gray-500 dark:text-gray-400 mb-4 md:mb-6 uppercase transition-all duration-500">
+      {diapositivas[0].etiqueta}
+    </span>
+
+    <h1 class="font-display flex flex-col items-center uppercase leading-none w-full">
+      <span id="t-naranja" class="bg-gradient-to-r from-[#cc4a04] to-[#fb923c] text-transparent bg-clip-text font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-[85px] tracking-tight pt-2 pb-1 -mb-1 lg:-mb-2 z-10">
+        {diapositivas[0].tituloNaranja}
+      </span>
+      <span id="t-normal" class="text-cr-dark dark:text-white font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[55px] tracking-widest transition-colors duration-700 z-20 relative my-1">
+        {diapositivas[0].tituloNormal}
+      </span>
+      <span id="t-azul" class="bg-gradient-to-r from-[#173154] to-[#3b82f6] text-transparent bg-clip-text font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-[85px] tracking-tight pb-2 pt-1 -mt-1 lg:-mt-2 z-10">
+        {diapositivas[0].tituloAzul}
+      </span>
+    </h1>
+    
+    <p id="t-desc" class="font-sans text-gray-600 dark:text-gray-400 mt-6 md:mt-8 text-xs sm:text-sm md:text-base lg:text-lg max-w-2xl font-medium px-4 transition-colors duration-700">
+      {diapositivas[0].descripcion}
+    </p>
+    
+    <div id="hero-buttons" class="mt-8 md:mt-10 flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 w-full sm:w-auto">
+        <a id="link-principal" href={diapositivas[0].btnPrincipal.ruta} class={`group bg-gradient-to-r text-white font-sans font-bold text-xs md:text-[14px] tracking-widest py-3 md:py-3.5 px-8 md:px-10 transition-all duration-300 hover:scale-105 shadow-lg items-center justify-center gap-3 rounded-sm ${getBtnGradient(diapositivas[0].btnPrincipal.gradiente)} ${diapositivas[0].btnPrincipal.active ? 'flex' : 'hidden'}`}>
+          <span id="txt-principal">{diapositivas[0].btnPrincipal.texto}</span>
+          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </a>
+      
+        <a id="link-secundario" href={diapositivas[0].btnSecundario.ruta} class={`group bg-white/40 dark:bg-[#0a0a0a]/40 backdrop-blur-md border border-gray-200 dark:border-gray-800 hover:border-gray-400 dark:hover:border-gray-600 text-cr-dark dark:text-white font-sans font-bold text-xs md:text-[14px] tracking-widest py-3 md:py-3.5 px-8 md:px-10 transition-all duration-300 hover:shadow-md items-center justify-center gap-3 rounded-sm ${diapositivas[0].btnSecundario.active ? 'flex' : 'hidden'}`}>
+          <span id="txt-secundario">{diapositivas[0].btnSecundario.texto}</span>
+          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 17L17 7M17 7H7m10 0v10"></path>
+          </svg>
+        </a>
+    </div>
+  </div>
+
+  {tieneVarios && (
+    <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 z-30 flex justify-between px-2 sm:px-6 md:px-10 pointer-events-none">
+      <button id="prev-slide" class="pointer-events-auto p-2 md:p-3 text-gray-400 dark:text-gray-600 hover:text-[#cc4a04] dark:hover:text-[#cc4a04] transition-colors group">
+        <svg class="w-8 h-8 md:w-10 md:h-10 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+      <button id="next-slide" class="pointer-events-auto p-2 md:p-3 text-gray-400 dark:text-gray-600 hover:text-[#cc4a04] dark:hover:text-[#cc4a04] transition-colors group">
+        <svg class="w-8 h-8 md:w-10 md:h-10 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
+  )}
+
+  <div id="scroll-mobile" class="md:hidden absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-0 transition-opacity duration-1000 delay-500">
+    <span class="font-sans text-[9px] tracking-[0.2em] text-gray-500 dark:text-gray-400 uppercase font-bold">Desliza abajo</span>
+    <svg class="w-5 h-5 text-gray-400 dark:text-gray-500 animate-bounce" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"></path>
+      <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"></path>
+      <path d="M10 10.5V5a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"></path>
+      <path d="M6 14v-2a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"></path>
+      <path d="M18 11v4a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6v-1"></path>
+    </svg>
+  </div>
+
+  <div id="scroll-desktop" class="hidden md:flex absolute right-6 lg:right-12 bottom-12 z-20 flex-col items-center gap-3 opacity-0 transition-opacity duration-1000 delay-500">
+    <span class="font-sans text-[10px] tracking-[0.3em] text-gray-400 dark:text-gray-500 uppercase font-bold" style="writing-mode: vertical-rl;">Scroll</span>
+    <svg class="w-6 h-6 text-gray-400 dark:text-gray-500 animate-bounce mt-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <rect x="5" y="2" width="14" height="20" rx="7" stroke-width="2"/>
+      <circle cx="12" cy="8" r="2" fill="currentColor"/>
+    </svg>
+  </div>
+
+</section>
+
+<style>
+  .text-slide-out {
+    animation: textSlideOut 800ms forwards cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .text-slide-in {
+    animation: textSlideIn 1000ms forwards cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @keyframes textSlideOut {
+    from { opacity: 1; transform: translateX(0); filter: blur(0); }
+    to { opacity: 0; transform: translateX(-100px); filter: blur(10px); }
+  }
+
+  @keyframes textSlideIn {
+    from { opacity: 0; transform: translateX(100px); filter: blur(10px); }
+    to { opacity: 1; transform: translateX(0); filter: blur(0); }
+  }
+</style>
+
+<script>
+  import inicioData from '../../data/inicio.json';
+  
+  const TIEMPO_ENTRE_SLIDES = 7000;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const heroContent = document.getElementById('hero-content');
+    const scrollMobile = document.getElementById('scroll-mobile');
+    const scrollDesktop = document.getElementById('scroll-desktop');
+    
+    // 1. ARRANCADOR DEL HERO (Remueve el blur-md junto con la opacidad)
+    const initHero = () => {
+      heroContent?.classList.remove('translate-y-12', 'opacity-0', 'blur-md');
+      scrollMobile?.classList.remove('opacity-0');
+      scrollDesktop?.classList.remove('opacity-0');
+    };
+
+    if (sessionStorage.getItem('preloaderVisto')) {
+      setTimeout(initHero, 50);
+    } else {
+      document.addEventListener('preloaderTerminado', initHero);
+      setTimeout(initHero, 3500); 
+    }
+
+    // 2. LÓGICA DEL SLIDER 
+    const slides = document.querySelectorAll('.hero-slide') as NodeListOf<HTMLElement>;
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+    const diapositivas = inicioData.hero.diapositivas;
+
+    const tEtiqueta = document.getElementById('t-etiqueta');
+    const tNaranja = document.getElementById('t-naranja');
+    const tNormal = document.getElementById('t-normal');
+    const tAzul = document.getElementById('t-azul');
+    const tDesc = document.getElementById('t-desc');
+    const btnP = document.getElementById('link-principal');
+    const btnS = document.getElementById('link-secundario');
+    const txtP = document.getElementById('txt-principal');
+    const txtS = document.getElementById('txt-secundario');
+
+    const updateBtnColor = (gradiente: string) => {
+      if (!btnP) return;
+      btnP.classList.remove('from-[#cc4a04]', 'to-[#fb923c]', 'shadow-orange-500/25', 'from-[#173154]', 'to-[#3b82f6]', 'shadow-blue-500/25');
+      
+      if (gradiente === 'azul') {
+        btnP.classList.add('from-[#173154]', 'to-[#3b82f6]', 'shadow-blue-500/25');
+      } else {
+        btnP.classList.add('from-[#cc4a04]', 'to-[#fb923c]', 'shadow-orange-500/25');
+      }
+    };
+
+    const updateContent = (index: number) => {
+        if (tEtiqueta) tEtiqueta.textContent = diapositivas[index].etiqueta;
+        if (tNaranja) tNaranja.textContent = diapositivas[index].tituloNaranja;
+        if (tNormal) tNormal.textContent = diapositivas[index].tituloNormal;
+        if (tAzul) tAzul.textContent = diapositivas[index].tituloAzul;
+        if (tDesc) tDesc.textContent = diapositivas[index].descripcion;
+        
+        if (btnP && txtP) {
+            btnP.style.display = diapositivas[index].btnPrincipal.active ? 'flex' : 'none';
+            txtP.textContent = diapositivas[index].btnPrincipal.texto;
+            btnP.setAttribute('href', diapositivas[index].btnPrincipal.ruta);
+            updateBtnColor(diapositivas[index].btnPrincipal.gradiente);
+        }
+        if (btnS && txtS) {
+            btnS.style.display = diapositivas[index].btnSecundario.active ? 'flex' : 'none';
+            txtS.textContent = diapositivas[index].btnSecundario.texto;
+            btnS.setAttribute('href', diapositivas[index].btnSecundario.ruta);
+        }
+    };
+
+    const changeSlide = (direction = 1) => {
+        heroContent?.classList.remove('text-slide-in');
+        heroContent?.classList.add('text-slide-out');
+
+        slides[currentSlide].classList.remove('translate-x-0');
+        slides[currentSlide].classList.add(direction > 0 ? '-translate-x-full' : 'translate-x-full');
+
+        currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+
+        slides[currentSlide].style.transition = 'none';
+        slides[currentSlide].classList.remove('-translate-x-full', 'translate-x-full', 'translate-x-0');
+        slides[currentSlide].classList.add(direction > 0 ? 'translate-x-full' : '-translate-x-full');
+
+        void slides[currentSlide].offsetWidth;
+
+        setTimeout(() => {
+          updateContent(currentSlide);
+
+          heroContent?.classList.remove('text-slide-out');
+          heroContent?.classList.add('text-slide-in');
+
+          slides[currentSlide].style.transition = '';
+          slides[currentSlide].classList.remove('translate-x-full', '-translate-x-full');
+          slides[currentSlide].classList.add('translate-x-0');
+        }, 400);
+    };
+
+    if (totalSlides > 1) {
+        let slideInterval = setInterval(() => changeSlide(1), TIEMPO_ENTRE_SLIDES);
+
+        const resetInterval = () => {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(() => changeSlide(1), TIEMPO_ENTRE_SLIDES);
+        };
+
+        document.getElementById('next-slide')?.addEventListener('click', () => {
+            changeSlide(1);
+            resetInterval();
+        });
+
+        document.getElementById('prev-slide')?.addEventListener('click', () => {
+            changeSlide(-1);
+            resetInterval();
+        });
+    }
+  });
+</script>

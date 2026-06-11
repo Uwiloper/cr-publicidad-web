@@ -1,0 +1,74 @@
+---
+import Navbar from '../components/ui/Navbar.astro';
+import Preloader from '../components/ui/Preloader.astro';
+import Footer from '../components/ui/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  keywords?: string;
+  canonicalURL?: string | URL;
+}
+
+const { 
+  title,
+  // Descripción
+  description = "CR Publicidad es una empresa peruana B2B dedicada a la producción e implementación publicitaria, Trade Marketing y Branding Comercial a nivel nacional con más de 8 años de experiencia.",
+  // Imagen
+  image = "assets/images/og-crpublicidad.jpg",
+  // Palabras clave estratégicas
+  keywords = "Agencia B2B Perú, Producción publicitaria, Trade Marketing, Branding de PDV, Activaciones BTL, Vinil laminado, Letreros luminosos, Muebles exhibidores",
+  // URL canónica para evitar penalizaciones de contenido duplicado en Google
+  canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url)
+} = Astro.props;
+
+// Construimos la URL absoluta para la imagen de OpenGraph (necesario para WhatsApp/Facebook)
+const socialImageURL = new URL(image, Astro.site ?? Astro.url);
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="CR Publicidad" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImageURL} />
+    <meta property="og:site_name" content="CR Publicidad" />
+    <meta property="og:locale" content="es_PE" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={socialImageURL} />
+
+  </head>
+  <body class="bg-white text-cr-dark font-sans antialiased selection:bg-cr-orange selection:text-white transition-colors duration-300 dark:bg-[#050505] dark:text-white">
+    <Preloader />
+    <Navbar />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppFloat />
+  </body>
+</html>
