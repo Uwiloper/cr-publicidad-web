@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Página no encontrada | CR Publicidad">
+  
+  <section class="relative w-full min-h-[100dvh] flex flex-col items-center justify-center bg-white dark:bg-[#050505] transition-colors duration-700 overflow-hidden px-4 py-12 md:py-20">
+    
+    <div class="absolute inset-0 w-full h-full z-0 pointer-events-none flex items-center justify-center overflow-hidden">
+      <div class="w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] md:w-[600px] md:h-[600px] bg-gradient-to-tr from-[#cc4a04]/10 to-[#173154]/10 blur-[80px] md:blur-[120px] rounded-full"></div>
+    </div>
+
+    <div class="relative z-10 w-full max-w-3xl flex flex-col items-center text-center transform translate-y-6 opacity-0 animate-fade-in-up">
+      
+      <span class="font-sans text-[10px] sm:text-xs md:text-sm tracking-[0.3em] text-[#cc4a04] uppercase font-bold mb-2 sm:mb-4 select-none">
+        Error de Sistema
+      </span>
+      
+      <h1 class="font-display font-extrabold text-[80px] sm:text-[120px] md:text-[150px] lg:text-[180px] leading-none tracking-tight bg-gradient-to-r from-[#173154] to-[#3b82f6] text-transparent bg-clip-text filter drop-shadow-sm select-none mb-2 sm:mb-6">
+        404
+      </h1>
+      
+      <h2 class="font-display font-bold text-xl sm:text-2xl md:text-4xl text-cr-dark dark:text-white uppercase tracking-tight px-2 mb-3 sm:mb-4">
+        Página no encontrada
+      </h2>
+      
+      <p class="font-sans text-gray-500 dark:text-gray-400 text-xs sm:text-sm md:text-base max-w-[280px] sm:max-w-md md:max-w-lg mx-auto leading-relaxed mb-8 sm:mb-10">
+        La ruta a la que intentas acceder no existe, ha sido reubicada o cambió de nombre dentro de nuestro catálogo de producción.
+      </p>
+      
+      <a href="/" class="group relative bg-gradient-to-r from-[#cc4a04] to-[#fb923c] text-white font-sans font-bold text-[11px] sm:text-xs md:text-[13px] tracking-widest py-3.5 sm:py-4 px-8 sm:px-10 rounded-sm transition-all duration-300 hover:scale-105 shadow-md shadow-orange-500/20 flex items-center justify-center gap-3 w-full sm:w-auto mb-10 sm:mb-14">
+        <svg class="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5"></path>
+          <path d="M12 19l-7-7 7-7"></path>
+        </svg>
+        <span>VOLVER AL INICIO</span>
+      </a>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 px-5 sm:px-8 py-3 border border-gray-100 dark:border-gray-900 bg-gray-50/50 dark:bg-[#0a0a0a]/50 rounded-lg sm:rounded-full shadow-inner group backdrop-blur-sm transition-colors duration-500 w-full sm:w-auto max-w-[280px] sm:max-w-none">
+        
+        <div class="relative w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center text-[#cc4a04] dark:text-[#fb923c] flex-shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-full h-full">
+            <circle cx="12" cy="12" r="9"></circle>
+            <line x1="12" y1="12" x2="12" y2="7" class="clock-hand-anim"></line>
+            <line x1="12" y1="12" x2="15" y2="12" class="opacity-60"></line>
+          </svg>
+        </div>
+        
+        <p class="font-sans text-[9px] sm:text-[10px] md:text-[11px] text-gray-400 dark:text-gray-500 tracking-wider uppercase font-semibold text-center">
+          Serás redirigido al inicio en <span id="countdown" class="text-[#cc4a04] dark:text-[#fb923c] font-bold text-xs sm:text-sm transition-all duration-300 inline-block min-w-[1.2rem]">12</span> segundos
+        </p>
+        
+      </div>
+
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .clock-hand-anim {
+    transform-origin: 12px 12px;
+    animation: clockTick 12s linear infinite;
+  }
+
+  @keyframes clockTick {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let timeLeft = 12; 
+    const countdownEl = document.getElementById('countdown');
+    
+    const timer = setInterval(() => {
+      timeLeft--;
+      
+      if (countdownEl) {
+        countdownEl.textContent = timeLeft.toString();
+        countdownEl.classList.add('scale-110', 'text-cr-dark', 'dark:text-white');
+        
+        setTimeout(() => {
+          countdownEl.classList.remove('scale-110', 'text-cr-dark', 'dark:text-white');
+        }, 150);
+      }
+      
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        window.location.href = '/';
+      }
+    }, 1000);
+  });
+</script>

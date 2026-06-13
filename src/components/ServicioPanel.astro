@@ -17,7 +17,8 @@ const hoverClass = servicio.gradiente === 'azul' ? 'hover-azul' : 'hover-naranja
   
   <div class="w-full md:col-span-7 flex flex-col text-left">
     
-    <h2 class={`font-display font-extrabold text-3xl md:text-4xl lg:text-5xl mb-6 uppercase tracking-tight leading-[1.05] text-transparent bg-clip-text ${servicio.gradiente === 'azul' ? 'bg-gradient-to-r from-[#173154] to-[#3b82f6]' : 'bg-gradient-to-r from-[#cc4a04] to-[#fb923c]'}`}>
+    {/* SOLUCIÓN: Se agregó "py-2" en la clase h2 para evitar el recorte del bg-clip-text */}
+    <h2 class={`font-display font-extrabold text-3xl md:text-4xl lg:text-5xl mb-6 uppercase tracking-tight py-2 leading-[1.05] text-transparent bg-clip-text ${servicio.gradiente === 'azul' ? 'bg-gradient-to-r from-[#173154] to-[#3b82f6]' : 'bg-gradient-to-r from-[#cc4a04] to-[#fb923c]'}`}>
       {servicio.titulo}
     </h2>
     
@@ -54,7 +55,6 @@ const hoverClass = servicio.gradiente === 'azul' ? 'hover-azul' : 'hover-naranja
 
   </div>
 
-  <!-- CONTENEDOR DE LA GALERÍA -->
   <div class="w-full md:col-span-5 flex flex-col justify-start gap-3 service-carousel-root" id={`carousel-${servicio.id}`}>
     
     <div class="w-full aspect-[4/3] rounded-sm overflow-hidden shadow-sm border border-gray-200 dark:border-gray-800 relative bg-gray-100 dark:bg-[#111]">
@@ -94,7 +94,6 @@ const hoverClass = servicio.gradiente === 'azul' ? 'hover-azul' : 'hover-naranja
     const carousels = document.querySelectorAll('.service-carousel-root');
     
     carousels.forEach(carousel => {
-      // Le decimos a TypeScript que estamos 100% seguros de que es una etiqueta <img>
       const mainImg = carousel.querySelector('.carousel-main-img') as HTMLImageElement;
       const thumbBtns = carousel.querySelectorAll('.carousel-thumb-btn');
       
@@ -102,25 +101,20 @@ const hoverClass = servicio.gradiente === 'azul' ? 'hover-azul' : 'hover-naranja
 
       thumbBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-          // También le decimos que esto es una <img>
           const thumbImg = btn.querySelector('.carousel-thumb-img') as HTMLImageElement;
           if (!thumbImg) return;
 
-          // 1. Efecto de parpadeo suave
           mainImg.style.opacity = '0.4';
           
           setTimeout(() => {
-            // 2. Obtenemos las rutas de forma segura (añadimos || '' para evitar nulos)
             const currentMainSrc = mainImg.getAttribute('src') || '';
             const currentThumbSrc = thumbImg.getAttribute('src') || '';
             
-            // Hacemos el intercambio solo si ambos existen
             if (currentMainSrc && currentThumbSrc) {
               mainImg.setAttribute('src', currentThumbSrc);
               thumbImg.setAttribute('src', currentMainSrc);
             }
             
-            // 3. Restauramos la opacidad
             mainImg.style.opacity = '1';
           }, 150);
         });

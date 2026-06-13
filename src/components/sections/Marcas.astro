@@ -1,12 +1,17 @@
 ---
 import inicioData from '../../data/inicio.json';
 const { etiquetaIzquierda, etiquetaDerecha, logos } = inicioData.marcas;
+
+// LÓGICA MÁGICA: Dividimos el array de logos en dos mitades automáticamente
+const mitad = Math.ceil(logos.length / 2);
+const logosFila1 = logos.slice(0, mitad);
+const logosFila2 = logos.slice(mitad);
 ---
 
-<section id="marcas-section" class="w-full bg-white dark:bg-[#050505] py-12 md:py-16 border-b border-gray-100 dark:border-gray-900 transition-all duration-[1000ms] ease-out opacity-0 translate-y-12 blur-md">
+<section id="marcas-section" class="w-full bg-white dark:bg-[#050505] py-12 md:py-16 border-b border-gray-100 dark:border-gray-900 transition-all duration-[1000ms] ease-out opacity-0 translate-y-12 blur-md overflow-hidden">
   
   <div class="max-w-[1920px] mx-auto px-6 sm:px-12 md:px-16 lg:px-24">
-    <div class="flex justify-between items-center mb-6 md:mb-8">
+    <div class="flex justify-between items-center mb-8 md:mb-10">
       <span class="font-mono text-[10px] sm:text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] text-gray-400 dark:text-gray-500 uppercase font-bold transition-colors duration-700">
         {etiquetaIzquierda}
       </span>
@@ -16,65 +21,71 @@ const { etiquetaIzquierda, etiquetaDerecha, logos } = inicioData.marcas;
     </div>
   </div>
 
-  <div class="relative w-full overflow-hidden flex group">
+  <div class="relative w-full flex flex-col gap-6 md:gap-10">
     
-    <div class="absolute inset-y-0 left-0 w-12 md:w-24 bg-gradient-to-r from-white dark:from-[#050505] to-transparent z-10 pointer-events-none transition-colors duration-700"></div>
-    <div class="absolute inset-y-0 right-0 w-12 md:w-24 bg-gradient-to-l from-white dark:from-[#050505] to-transparent z-10 pointer-events-none transition-colors duration-700"></div>
+    <div class="absolute inset-y-0 left-0 w-12 md:w-32 bg-gradient-to-r from-white dark:from-[#050505] to-transparent z-10 pointer-events-none transition-colors duration-700"></div>
+    <div class="absolute inset-y-0 right-0 w-12 md:w-32 bg-gradient-to-l from-white dark:from-[#050505] to-transparent z-10 pointer-events-none transition-colors duration-700"></div>
 
-    <div class="flex flex-shrink-0 items-center animate-marquee group-hover:[animation-play-state:paused] gap-16 md:gap-24 pr-16 md:pr-24 py-6 md:py-8">
-      {logos.map((logo: any) => (
-        <div class="flex items-center justify-center cursor-pointer min-w-max">
-          {logo.imagenOscura ? (
-            // LÓGICA MANUAL: Si hay imagen oscura, mostramos/ocultamos según el tema
-            <>
-              <img 
-                src={logo.imagen} 
-                alt={`Logo ${logo.nombre}`} 
-                class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.25] opacity-60 hover:opacity-100 dark:hidden" 
-              />
-              <img 
-                src={logo.imagenOscura} 
-                alt={`Logo ${logo.nombre}`} 
-                class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.25] opacity-60 hover:opacity-100 hidden dark:block" 
-              />
-            </>
-          ) : (
-            // LÓGICA AUTOMÁTICA: Si no hay, la volvemos blanca en modo oscuro usando filtros
-            <img 
-              src={logo.imagen} 
-              alt={`Logo ${logo.nombre}`} 
-              class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.25] opacity-60 hover:opacity-100 dark:brightness-0 dark:invert" 
-            />
-          )}
-        </div>
-      ))}
+    <div class="flex group w-full overflow-hidden py-4 md:py-6">
+      <div class="flex flex-shrink-0 items-center animate-marquee group-hover:[animation-play-state:paused] gap-16 md:gap-24 pr-16 md:pr-24">
+        {logosFila1.map((logo: any) => (
+          <div class="flex items-center justify-center cursor-pointer min-w-max">
+            {logo.imagenOscura ? (
+              <>
+                <img src={logo.imagen} alt={`Logo ${logo.nombre}`} class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.25] opacity-60 hover:opacity-100 dark:hidden" />
+                <img src={logo.imagenOscura} alt={`Logo ${logo.nombre}`} class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.25] opacity-60 hover:opacity-100 hidden dark:block" />
+              </>
+            ) : (
+              <img src={logo.imagen} alt={`Logo ${logo.nombre}`} class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.25] opacity-60 hover:opacity-100 dark:brightness-0 dark:invert" />
+            )}
+          </div>
+        ))}
+      </div>
+      <div class="flex flex-shrink-0 items-center animate-marquee group-hover:[animation-play-state:paused] gap-16 md:gap-24 pr-16 md:pr-24" aria-hidden="true">
+        {logosFila1.map((logo: any) => (
+          <div class="flex items-center justify-center cursor-pointer min-w-max">
+            {logo.imagenOscura ? (
+              <>
+                <img src={logo.imagen} alt={`Logo ${logo.nombre}`} class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.25] opacity-60 hover:opacity-100 dark:hidden" />
+                <img src={logo.imagenOscura} alt={`Logo ${logo.nombre}`} class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.25] opacity-60 hover:opacity-100 hidden dark:block" />
+              </>
+            ) : (
+              <img src={logo.imagen} alt={`Logo ${logo.nombre}`} class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.25] opacity-60 hover:opacity-100 dark:brightness-0 dark:invert" />
+            )}
+          </div>
+        ))}
+      </div>
     </div>
 
-    <div class="flex flex-shrink-0 items-center animate-marquee group-hover:[animation-play-state:paused] gap-16 md:gap-24 pr-16 md:pr-24 py-6 md:py-8" aria-hidden="true">
-      {logos.map((logo: any) => (
-        <div class="flex items-center justify-center cursor-pointer min-w-max">
-          {logo.imagenOscura ? (
-            <>
-              <img 
-                src={logo.imagen} 
-                alt={`Logo ${logo.nombre}`} 
-                class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.25] opacity-60 hover:opacity-100 dark:hidden" 
-              />
-              <img 
-                src={logo.imagenOscura} 
-                alt={`Logo ${logo.nombre}`} 
-                class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.25] opacity-60 hover:opacity-100 hidden dark:block" 
-              />
-            </>
-          ) : (
-            <img 
-              src={logo.imagen} 
-              alt={`Logo ${logo.nombre}`} 
-              class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.25] opacity-60 hover:opacity-100 dark:brightness-0 dark:invert" 
-            />
-          )}
-        </div>
-      ))}
+    <div class="flex group w-full overflow-hidden py-4 md:py-6">
+      <div class="flex flex-shrink-0 items-center animate-marquee-reverse group-hover:[animation-play-state:paused] gap-16 md:gap-24 pr-16 md:pr-24">
+        {logosFila2.map((logo: any) => (
+          <div class="flex items-center justify-center cursor-pointer min-w-max">
+            {logo.imagenOscura ? (
+              <>
+                <img src={logo.imagen} alt={`Logo ${logo.nombre}`} class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.25] opacity-60 hover:opacity-100 dark:hidden" />
+                <img src={logo.imagenOscura} alt={`Logo ${logo.nombre}`} class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.25] opacity-60 hover:opacity-100 hidden dark:block" />
+              </>
+            ) : (
+              <img src={logo.imagen} alt={`Logo ${logo.nombre}`} class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.25] opacity-60 hover:opacity-100 dark:brightness-0 dark:invert" />
+            )}
+          </div>
+        ))}
+      </div>
+      <div class="flex flex-shrink-0 items-center animate-marquee-reverse group-hover:[animation-play-state:paused] gap-16 md:gap-24 pr-16 md:pr-24" aria-hidden="true">
+        {logosFila2.map((logo: any) => (
+          <div class="flex items-center justify-center cursor-pointer min-w-max">
+            {logo.imagenOscura ? (
+              <>
+                <img src={logo.imagen} alt={`Logo ${logo.nombre}`} class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.25] opacity-60 hover:opacity-100 dark:hidden" />
+                <img src={logo.imagenOscura} alt={`Logo ${logo.nombre}`} class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.25] opacity-60 hover:opacity-100 hidden dark:block" />
+              </>
+            ) : (
+              <img src={logo.imagen} alt={`Logo ${logo.nombre}`} class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.25] opacity-60 hover:opacity-100 dark:brightness-0 dark:invert" />
+            )}
+          </div>
+        ))}
+      </div>
     </div>
 
   </div>
@@ -82,13 +93,25 @@ const { etiquetaIzquierda, etiquetaDerecha, logos } = inicioData.marcas;
 </section>
 
 <style>
+  /* Animación Fila 1: Derecha a Izquierda */
   .animate-marquee {
-    animation: marquee 35s linear infinite; 
+    animation: marquee 50s linear infinite;
+  }
+  
+  /* Animación Fila 2: Izquierda a Derecha */
+  .animate-marquee-reverse {
+    animation: marquee-reverse 50s linear infinite;
   }
   
   @keyframes marquee {
     0% { transform: translateX(0%); }
     100% { transform: translateX(-100%); }
+  }
+
+  @keyframes marquee-reverse {
+    /* Iniciamos en -100% (desplazado a la izquierda) y lo movemos hacia 0% (derecha) */
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(0%); }
   }
 </style>
 
@@ -103,7 +126,6 @@ const { etiquetaIzquierda, etiquetaDerecha, logos } = inicioData.marcas;
     const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // AÑADIDO: Quitamos el blur-md junto con las otras clases
           entry.target.classList.remove('opacity-0', 'translate-y-12', 'blur-md');
           entry.target.classList.add('opacity-100', 'translate-y-0');
           observer.unobserve(entry.target); 

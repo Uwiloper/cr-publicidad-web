@@ -56,33 +56,88 @@
       },
       {
         "nombre":       "aruma",
-        "imagen":       "/assets/images/marcas/aruma.png",
-        "imagenOscura": "/assets/images/marcas/aruma.png" 
+        "imagen":       "/assets/images/marcas/aruma.svg",
+        "imagenOscura": "/assets/images/marcas/aruma.svg" 
       },
       {
         "nombre":       "autoniza",
-        "imagen":       "/assets/images/marcas/autoniza.png",
-        "imagenOscura": "/assets/images/marcas/autoniza.png" 
+        "imagen":       "/assets/images/marcas/autoniza.svg",
+        "imagenOscura": "/assets/images/marcas/autoniza-bn.svg" 
+      },
+      {
+        "nombre":       "cbc",
+        "imagen":       "/assets/images/marcas/cbc.svg",
+        "imagenOscura": "/assets/images/marcas/cbc-bn.svg" 
       },
       {
         "nombre":       "emasa",
-        "imagen":       "/assets/images/marcas/emasa.png",
-        "imagenOscura": "/assets/images/marcas/emasa.png" 
+        "imagen":       "/assets/images/marcas/emasa.svg",
+        "imagenOscura": "/assets/images/marcas/emasa-bn.svg" 
+      },
+      {
+        "nombre":       "europassistance",
+        "imagen":       "/assets/images/marcas/europ.svg",
+        "imagenOscura": "/assets/images/marcas/europ-bn.svg" 
+      },
+      {
+        "nombre":       "honda",
+        "imagen":       "/assets/images/marcas/honda.svg",
+        "imagenOscura": "/assets/images/marcas/honda.svg"
+      },
+      {
+        "nombre":       "itn",
+        "imagen":       "/assets/images/marcas/itn.svg",
+        "imagenOscura": "/assets/images/marcas/itn.svg" 
+      },
+      {
+        "nombre":       "maestro",
+        "imagen":       "/assets/images/marcas/maestro.svg",
+        "imagenOscura": "/assets/images/marcas/maestro.svg" 
+      },
+      {
+        "nombre":       "maped",
+        "imagen":       "/assets/images/marcas/maped.svg",
+        "imagenOscura": "/assets/images/marcas/maped.svg" 
+      },
+      {
+        "nombre":       "molitalia",
+        "imagen":       "/assets/images/marcas/molitalia.svg",
+        "imagenOscura": "/assets/images/marcas/molitalia.svg" 
+      },
+      {
+        "nombre":       "pepsico",
+        "imagen":       "/assets/images/marcas/pepsico.svg",
+        "imagenOscura": "/assets/images/marcas/pepsico-bn.svg" 
       },
       {
         "nombre":       "perufarma",
-        "imagen":       "/assets/images/marcas/perufarma.png",
-        "imagenOscura": "/assets/images/marcas/perufarma.png" 
+        "imagen":       "/assets/images/marcas/perufarma.svg",
+        "imagenOscura": "/assets/images/marcas/perufarma-bn.svg" 
+      },
+      {
+        "nombre":       "promart",
+        "imagen":       "/assets/images/marcas/promart.svg",
+        "imagenOscura": "/assets/images/marcas/promart-bn.svg" 
       },
       {
         "nombre":       "realplaza",
-        "imagen":       "/assets/images/marcas/realplaza.png",
-        "imagenOscura": "/assets/images/marcas/realplaza.png" 
+        "imagen":       "/assets/images/marcas/realplaza.svg",
+        "imagenOscura": "/assets/images/marcas/realplaza-bn.svg" 
+      },
+      {
+        "nombre":       "signify",
+        "imagen":       "/assets/images/marcas/signify.svg",
+        "imagenOscura": "/assets/images/marcas/signify.svg" 
+      },
+      {
+        "nombre":       "sodimac",
+        "imagen":       "/assets/images/marcas/sodimac.svg",
+        "imagenOscura": "/assets/images/marcas/sodimac.svg" 
       },
       {
         "nombre":       "tasa",
-        "imagen":       "/assets/images/marcas/tasa.png",
-        "imagenOscura": "/assets/images/marcas/tasa.png" 
+        "imagen":       "/assets/images/marcas/tasa.svg",
+        "imagenOscura": "/assets/images/marcas/tasa-bn.svg" 
       }
     ]
   },

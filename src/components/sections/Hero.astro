@@ -1,7 +1,10 @@
 ---
 import inicioData from '../../data/inicio.json';
-const { diapositivas } = inicioData.hero;
+
+// Validación estricta: Si no hay diapositivas, creamos un array vacío para no romper la web
+const diapositivas = inicioData?.hero?.diapositivas || [];
 const tieneVarios = diapositivas.length > 1;
+const primeraDiapositiva = diapositivas[0] || {};
 
 // Función para el color inicial del botón
 const getBtnGradient = (tipo?: string) => {
@@ -10,7 +13,7 @@ const getBtnGradient = (tipo?: string) => {
 };
 ---
 
-<section class="relative w-full min-h-screen overflow-hidden flex items-center justify-center bg-white dark:bg-[#050505] pt-[88px] pb-16 md:pb-20 transition-colors duration-700">
+<section class="relative w-full min-h-[100dvh] overflow-hidden flex items-center justify-center bg-white dark:bg-[#050505] pt-[88px] pb-16 md:pb-20 transition-colors duration-700">
   
   <div id="hero-slider" class="absolute inset-0 w-full h-full z-0 overflow-hidden">
     {diapositivas.map((slide: any, index: number) => (
@@ -26,44 +29,51 @@ const getBtnGradient = (tipo?: string) => {
 
   <div class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-white dark:from-[#050505] to-transparent z-10 pointer-events-none transition-colors duration-700"></div>
 
-  <div id="hero-content" class="relative z-20 flex flex-col items-center text-center px-6 sm:px-12 w-full max-w-[1200px] mx-auto transform translate-y-12 opacity-0 blur-md transition-all duration-1000 ease-out">
-    
-    <span id="t-etiqueta" class="font-mono text-[10px] sm:text-xs md:text-sm tracking-[0.25em] text-gray-500 dark:text-gray-400 mb-4 md:mb-6 uppercase transition-all duration-500">
-      {diapositivas[0].etiqueta}
-    </span>
-
-    <h1 class="font-display flex flex-col items-center uppercase leading-none w-full">
-      <span id="t-naranja" class="bg-gradient-to-r from-[#cc4a04] to-[#fb923c] text-transparent bg-clip-text font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-[85px] tracking-tight pt-2 pb-1 -mb-1 lg:-mb-2 z-10">
-        {diapositivas[0].tituloNaranja}
-      </span>
-      <span id="t-normal" class="text-cr-dark dark:text-white font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[55px] tracking-widest transition-colors duration-700 z-20 relative my-1">
-        {diapositivas[0].tituloNormal}
-      </span>
-      <span id="t-azul" class="bg-gradient-to-r from-[#173154] to-[#3b82f6] text-transparent bg-clip-text font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-[85px] tracking-tight pb-2 pt-1 -mt-1 lg:-mt-2 z-10">
-        {diapositivas[0].tituloAzul}
-      </span>
-    </h1>
-    
-    <p id="t-desc" class="font-sans text-gray-600 dark:text-gray-400 mt-6 md:mt-8 text-xs sm:text-sm md:text-base lg:text-lg max-w-2xl font-medium px-4 transition-colors duration-700">
-      {diapositivas[0].descripcion}
-    </p>
-    
-    <div id="hero-buttons" class="mt-8 md:mt-10 flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 w-full sm:w-auto">
-        <a id="link-principal" href={diapositivas[0].btnPrincipal.ruta} class={`group bg-gradient-to-r text-white font-sans font-bold text-xs md:text-[14px] tracking-widest py-3 md:py-3.5 px-8 md:px-10 transition-all duration-300 hover:scale-105 shadow-lg items-center justify-center gap-3 rounded-sm ${getBtnGradient(diapositivas[0].btnPrincipal.gradiente)} ${diapositivas[0].btnPrincipal.active ? 'flex' : 'hidden'}`}>
-          <span id="txt-principal">{diapositivas[0].btnPrincipal.texto}</span>
-          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-          </svg>
-        </a>
+  {/* Solo renderizamos el contenido si existe data */}
+  {diapositivas.length > 0 && (
+    <div id="hero-content" class="relative z-20 flex flex-col items-center text-center px-6 sm:px-12 w-full max-w-[1200px] mx-auto transform translate-y-12 opacity-0 blur-md transition-all duration-1000 ease-out">
       
-        <a id="link-secundario" href={diapositivas[0].btnSecundario.ruta} class={`group bg-white/40 dark:bg-[#0a0a0a]/40 backdrop-blur-md border border-gray-200 dark:border-gray-800 hover:border-gray-400 dark:hover:border-gray-600 text-cr-dark dark:text-white font-sans font-bold text-xs md:text-[14px] tracking-widest py-3 md:py-3.5 px-8 md:px-10 transition-all duration-300 hover:shadow-md items-center justify-center gap-3 rounded-sm ${diapositivas[0].btnSecundario.active ? 'flex' : 'hidden'}`}>
-          <span id="txt-secundario">{diapositivas[0].btnSecundario.texto}</span>
-          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 17L17 7M17 7H7m10 0v10"></path>
-          </svg>
-        </a>
+      <span id="t-etiqueta" class="font-sans text-[10px] sm:text-xs md:text-sm tracking-[0.25em] text-[#cc4a04] dark:text-[#fb923c] font-bold mb-4 md:mb-6 uppercase transition-all duration-500">
+        {primeraDiapositiva.etiqueta}
+      </span>
+
+      <h1 class="font-display flex flex-col items-center uppercase leading-none w-full">
+        <span id="t-naranja" class="bg-gradient-to-r from-[#cc4a04] to-[#fb923c] text-transparent bg-clip-text font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-[85px] tracking-tight pt-2 pb-1 -mb-1 lg:-mb-2 z-10">
+          {primeraDiapositiva.tituloNaranja}
+        </span>
+        <span id="t-normal" class="text-cr-dark dark:text-white font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[55px] tracking-widest transition-colors duration-700 z-20 relative my-1">
+          {primeraDiapositiva.tituloNormal}
+        </span>
+        <span id="t-azul" class="bg-gradient-to-r from-[#173154] to-[#3b82f6] text-transparent bg-clip-text font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-[85px] tracking-tight pb-2 pt-1 -mt-1 lg:-mt-2 z-10">
+          {primeraDiapositiva.tituloAzul}
+        </span>
+      </h1>
+      
+      <p id="t-desc" class="font-sans text-gray-600 dark:text-gray-400 mt-6 md:mt-8 text-xs sm:text-sm md:text-base lg:text-lg max-w-2xl font-medium px-4 transition-colors duration-700">
+        {primeraDiapositiva.descripcion}
+      </p>
+      
+      <div id="hero-buttons" class="mt-8 md:mt-10 flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 w-full sm:w-auto">
+          {primeraDiapositiva.btnPrincipal && (
+            <a id="link-principal" href={primeraDiapositiva.btnPrincipal.ruta} class={`group bg-gradient-to-r text-white font-sans font-bold text-xs md:text-[14px] tracking-widest py-3 md:py-3.5 px-8 md:px-10 transition-all duration-300 hover:scale-105 shadow-lg items-center justify-center gap-3 rounded-sm ${getBtnGradient(primeraDiapositiva.btnPrincipal.gradiente)} ${primeraDiapositiva.btnPrincipal.active ? 'flex' : 'hidden'}`}>
+              <span id="txt-principal">{primeraDiapositiva.btnPrincipal.texto}</span>
+              <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </a>
+          )}
+        
+          {primeraDiapositiva.btnSecundario && (
+            <a id="link-secundario" href={primeraDiapositiva.btnSecundario.ruta} class={`group bg-white/40 dark:bg-[#0a0a0a]/40 backdrop-blur-md border border-gray-200 dark:border-gray-800 hover:border-gray-400 dark:hover:border-gray-600 text-cr-dark dark:text-white font-sans font-bold text-xs md:text-[14px] tracking-widest py-3 md:py-3.5 px-8 md:px-10 transition-all duration-300 hover:shadow-md items-center justify-center gap-3 rounded-sm ${primeraDiapositiva.btnSecundario.active ? 'flex' : 'hidden'}`}>
+              <span id="txt-secundario">{primeraDiapositiva.btnSecundario.texto}</span>
+              <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 17L17 7M17 7H7m10 0v10"></path>
+              </svg>
+            </a>
+          )}
+      </div>
     </div>
-  </div>
+  )}
 
   {tieneVarios && (
     <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 z-30 flex justify-between px-2 sm:px-6 md:px-10 pointer-events-none">
@@ -130,21 +140,22 @@ const getBtnGradient = (tipo?: string) => {
     const scrollMobile = document.getElementById('scroll-mobile');
     const scrollDesktop = document.getElementById('scroll-desktop');
     
-    // 1. ARRANCADOR DEL HERO (Remueve el blur-md junto con la opacidad)
-   const initHero = () => {
+    const initHero = () => {
       heroContent?.classList.remove('translate-y-12', 'opacity-0', 'blur-md');
       scrollMobile?.classList.remove('opacity-0');
       scrollDesktop?.classList.remove('opacity-0');
     };
 
-    // Ejecuta la animación de entrada casi de inmediato
     setTimeout(initHero, 100);
 
-    // 2. LÓGICA DEL SLIDER 
     const slides = document.querySelectorAll('.hero-slide') as NodeListOf<HTMLElement>;
     let currentSlide = 0;
     const totalSlides = slides.length;
-    const diapositivas = inicioData.hero.diapositivas;
+    const diapositivas = inicioData?.hero?.diapositivas || [];
+
+    if (totalSlides <= 1 || diapositivas.length === 0) return;
+
+    let isAnimating = false;
 
     const tEtiqueta = document.getElementById('t-etiqueta');
     const tNaranja = document.getElementById('t-naranja');
@@ -168,26 +179,32 @@ const getBtnGradient = (tipo?: string) => {
     };
 
     const updateContent = (index: number) => {
-        if (tEtiqueta) tEtiqueta.textContent = diapositivas[index].etiqueta;
-        if (tNaranja) tNaranja.textContent = diapositivas[index].tituloNaranja;
-        if (tNormal) tNormal.textContent = diapositivas[index].tituloNormal;
-        if (tAzul) tAzul.textContent = diapositivas[index].tituloAzul;
-        if (tDesc) tDesc.textContent = diapositivas[index].descripcion;
+        const slideData = diapositivas[index];
+        if (!slideData) return;
+
+        if (tEtiqueta) tEtiqueta.textContent = slideData.etiqueta || '';
+        if (tNaranja) tNaranja.textContent = slideData.tituloNaranja || '';
+        if (tNormal) tNormal.textContent = slideData.tituloNormal || '';
+        if (tAzul) tAzul.textContent = slideData.tituloAzul || '';
+        if (tDesc) tDesc.textContent = slideData.descripcion || '';
         
-        if (btnP && txtP) {
-            btnP.style.display = diapositivas[index].btnPrincipal.active ? 'flex' : 'none';
-            txtP.textContent = diapositivas[index].btnPrincipal.texto;
-            btnP.setAttribute('href', diapositivas[index].btnPrincipal.ruta);
-            updateBtnColor(diapositivas[index].btnPrincipal.gradiente);
+        if (btnP && txtP && slideData.btnPrincipal) {
+            btnP.style.display = slideData.btnPrincipal.active ? 'flex' : 'none';
+            txtP.textContent = slideData.btnPrincipal.texto || '';
+            btnP.setAttribute('href', slideData.btnPrincipal.ruta || '#');
+            updateBtnColor(slideData.btnPrincipal.gradiente || 'naranja');
         }
-        if (btnS && txtS) {
-            btnS.style.display = diapositivas[index].btnSecundario.active ? 'flex' : 'none';
-            txtS.textContent = diapositivas[index].btnSecundario.texto;
-            btnS.setAttribute('href', diapositivas[index].btnSecundario.ruta);
+        if (btnS && txtS && slideData.btnSecundario) {
+            btnS.style.display = slideData.btnSecundario.active ? 'flex' : 'none';
+            txtS.textContent = slideData.btnSecundario.texto || '';
+            btnS.setAttribute('href', slideData.btnSecundario.ruta || '#');
         }
     };
 
     const changeSlide = (direction = 1) => {
+        if (isAnimating) return;
+        isAnimating = true;
+
         heroContent?.classList.remove('text-slide-in');
         heroContent?.classList.add('text-slide-out');
 
@@ -211,23 +228,29 @@ const getBtnGradient = (tipo?: string) => {
           slides[currentSlide].style.transition = '';
           slides[currentSlide].classList.remove('translate-x-full', '-translate-x-full');
           slides[currentSlide].classList.add('translate-x-0');
+
+          setTimeout(() => {
+              isAnimating = false;
+          }, 1200); 
         }, 400);
     };
 
     if (totalSlides > 1) {
-        let slideInterval = setInterval(() => changeSlide(1), TIEMPO_ENTRE_SLIDES);
+        let slideInterval = window.setInterval(() => changeSlide(1), TIEMPO_ENTRE_SLIDES);
 
         const resetInterval = () => {
             clearInterval(slideInterval);
-            slideInterval = setInterval(() => changeSlide(1), TIEMPO_ENTRE_SLIDES);
+            slideInterval = window.setInterval(() => changeSlide(1), TIEMPO_ENTRE_SLIDES);
         };
 
-        document.getElementById('next-slide')?.addEventListener('click', () => {
+        document.getElementById('next-slide')?.addEventListener('click', (e) => {
+            e.preventDefault();
             changeSlide(1);
             resetInterval();
         });
 
-        document.getElementById('prev-slide')?.addEventListener('click', () => {
+        document.getElementById('prev-slide')?.addEventListener('click', (e) => {
+            e.preventDefault();
             changeSlide(-1);
             resetInterval();
         });

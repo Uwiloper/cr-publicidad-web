@@ -30,7 +30,8 @@ const getGradientClass = (tipo?: string) => {
       )}
       <h1 class="font-display font-extrabold uppercase leading-[1.05] md:leading-[0.95] flex flex-col items-center transition-all duration-700">
         {hero?.titulos?.map((t: any) => (
-          <span class={`text-4xl sm:text-5xl md:text-6xl lg:text-[70px] tracking-tight pb-1 ${getGradientClass(t.gradiente)}`}>
+          /* SOLUCIÓN: Cambié pb-1 por py-2 para evitar cortes en el degradado de las mayúsculas con tilde */
+          <span class={`text-4xl sm:text-5xl md:text-6xl lg:text-[70px] tracking-tight py-2 ${getGradientClass(t.gradiente)}`}>
             {t.texto}
           </span>
         ))}
@@ -57,7 +58,8 @@ const getGradientClass = (tipo?: string) => {
               data-target={`content-${servicio.id}`}
               data-color={servicio.gradiente}
             >
-              <span class="font-display font-bold text-[11px] uppercase tracking-widest text-center">
+              {/* SOLUCIÓN: Agregué py-1 para dar margen arriba y abajo al texto móvil */}
+              <span class="font-display font-bold text-[11px] uppercase tracking-widest text-center py-1">
                 {servicio.tituloCorto || servicio.titulo}
               </span>
             </button>
@@ -75,7 +77,8 @@ const getGradientClass = (tipo?: string) => {
               data-target={`content-${servicio.id}`}
               data-color={servicio.gradiente}
             >
-              <span class="font-display font-bold text-[9px] lg:text-[11px] xl:text-xs uppercase tracking-widest leading-none text-center whitespace-nowrap overflow-hidden text-ellipsis">
+              {/* SOLUCIÓN: Quité "leading-none" y lo cambié a "leading-tight", añadiendo py-1 */}
+              <span class="font-display font-bold text-[9px] lg:text-[11px] xl:text-xs uppercase tracking-widest leading-tight text-center whitespace-nowrap overflow-hidden text-ellipsis py-1">
                 {servicio.tituloCorto || servicio.titulo}
               </span>
             </button>
@@ -98,16 +101,13 @@ const getGradientClass = (tipo?: string) => {
 </Layout>
 
 <style is:global>
-  /* Ocultar barra de scroll en móvil */
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-  /* Acomodación fluida del Grid para Paneles */
   .tab-container { display: grid; align-items: start; }
   .tab-content { grid-area: 1 / 1; }
   .tab-content.active-panel { pointer-events: auto; position: relative !important; }
 
-  /* ESTADOS ACTIVOS BARRAS DE NAVEGACIÓN */
   .active.active-naranja { 
     background: linear-gradient(135deg, #cc4a04, #fb923c); 
     color: white !important;
@@ -118,7 +118,6 @@ const getGradientClass = (tipo?: string) => {
   }
   .active span { color: white !important; }
 
-  /* EFECTOS HOVER SEGUROS DE LAS CARACTERÍSTICAS */
   .hover-naranja:hover .feature-text { color: #cc4a04 !important; }
   .hover-naranja:hover .feature-icon { 
     filter: drop-shadow(0 0 5px rgba(204,74,4,0.6)); 
@@ -137,16 +136,13 @@ const getGradientClass = (tipo?: string) => {
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. ARRANCADOR DEL HERO
     const heroContent = document.getElementById('hero-nosotros-content');
     const initPage = () => {
       heroContent?.classList.remove('translate-y-12', 'opacity-0', 'blur-md');
     };
     
-    // Ejecuta la animación instantáneamente
     setTimeout(initPage, 100);
 
-    // 2. SCROLL OBSERVER
     const scrollObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -160,7 +156,6 @@ const getGradientClass = (tipo?: string) => {
       scrollObserver.observe(item);
     });
 
-    // 3. LÓGICA DEL CARRUSEL (Autoplay y reinicio al click)
     let globalIntervals: Record<string, number> = {};
 
     const runCarousel = (panel: HTMLElement) => {
@@ -212,7 +207,6 @@ const getGradientClass = (tipo?: string) => {
     const firstActivePanel = document.querySelector('.tab-content.active-panel') as HTMLElement;
     if (firstActivePanel) runCarousel(firstActivePanel);
 
-    // 4. LÓGICA DE LAS BARRAS (Sincronización PC y Móvil)
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
 
@@ -221,23 +215,18 @@ const getGradientClass = (tipo?: string) => {
         const targetId = (e.currentTarget as HTMLElement).dataset.target;
         const color = (e.currentTarget as HTMLElement).dataset.color || 'naranja';
 
-        // Apagar todos los botones
         tabBtns.forEach(b => {
           b.classList.remove('active', 'active-naranja', 'active-azul');
           b.classList.add('text-gray-500', 'dark:text-gray-400');
         });
 
-        // Encender botones correspondientes
         document.querySelectorAll(`.tab-btn[data-target="${targetId}"]`).forEach(b => {
           b.classList.remove('text-gray-500', 'dark:text-gray-400');
           b.classList.add('active', `active-${color}`);
         });
 
-        // Ocultar paneles actuales
         tabContents.forEach(content => {
-          // Quitamos las clases de "visible"
           content.classList.remove('active-panel', 'opacity-100', 'translate-y-0', 'z-10');
-          // Añadimos las clases de "oculto" Y bloqueamos el mouse con pointer-events-none
           content.classList.add('opacity-0', 'translate-y-8', 'pointer-events-none', 'z-0');
           
           const panelId = content.id;
@@ -250,10 +239,8 @@ const getGradientClass = (tipo?: string) => {
           }, 500); 
         });
 
-        // Mostrar nuevo panel
         const targetContent = document.getElementById(targetId!);
         if (targetContent) {
-          // LA MAGIA: Al mostrarlo, le quitamos el pointer-events-none para que el mouse lo detecte de nuevo
           targetContent.classList.remove('absolute', 'top-0', 'left-0', 'pointer-events-none', 'z-0');
           targetContent.classList.add('active-panel', 'z-10');
           
@@ -265,6 +252,5 @@ const getGradientClass = (tipo?: string) => {
         }
       });
     });
-
   });
 </script>

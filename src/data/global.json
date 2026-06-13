@@ -16,17 +16,17 @@
     "gradiente": "naranja"
   },
   "whatsapp": {
-    "mensajeDefecto": "Hola CR Publicidad, vengo de la página web y deseo cotizar un proyecto.",
+    "mensajeDefecto": "Hola 👋, vengo de la página web y deseo cotizar un proyecto 😁",
     "contactos": [
       {
-        "nombre": "Lima Metropolitana",
+        "nombre": "960 585 315",
         "numero": "51960585315",
-        "mostrarComo": "960 585 315"
+        "mostrarComo": ""
       },
       {
-        "nombre": "Provincia",
+        "nombre": "966 184 142",
         "numero": "51960585303",
-        "mostrarComo": "960 585 303"
+        "mostrarComo": ""
       }
     ]
   }
