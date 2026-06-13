@@ -232,21 +232,18 @@ const recaptchaKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     
-    // --- LÓGICA DE ANIMACIÓN INICIAL ---
+    // --- 1. LÓGICA DE ANIMACIÓN INICIAL RÁPIDA (Sin Preloader) ---
     const initContacto = () => {
-      // Nota: También quitamos el 'blur-md' del nuevo Hero
+      // Aparece el Hero
       document.getElementById('hero-contacto-content')?.classList.remove('translate-y-12', 'opacity-0', 'blur-md');
+      // Aparece el Formulario y las Tarjetas (que estaban invisibles)
       document.querySelectorAll('.observer-blur').forEach(el => el.classList.remove('opacity-0', 'translate-y-8'));
     };
 
-    if (sessionStorage.getItem('preloaderVisto')) {
-      setTimeout(initContacto, 50);
-    } else {
-      document.addEventListener('preloaderTerminado', initContacto);
-      setTimeout(initContacto, 3000); 
-    }
+    // Ejecuta la animación casi instantáneamente
+    setTimeout(initContacto, 100);
 
-    // --- CONTADOR DE CARACTERES ---
+    // --- 2. CONTADOR DE CARACTERES ---
     const mensajeInput = document.getElementById('mensaje-input') as HTMLTextAreaElement;
     const charCounter = document.getElementById('char-counter');
     
@@ -264,7 +261,7 @@ const recaptchaKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
       });
     }
 
-    // --- LÓGICA DEL MODAL ---
+    // --- 3. LÓGICA DEL MODAL ---
     const modal = document.getElementById('custom-modal');
     const modalBox = document.getElementById('modal-box');
     const backdrop = document.getElementById('modal-backdrop');
@@ -279,7 +276,6 @@ const recaptchaKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 
       modal.classList.remove('hidden');
       modal.classList.add('flex');
-      
       setTimeout(() => {
         modal.classList.remove('opacity-0');
         modalBox.classList.remove('scale-95');
@@ -293,7 +289,6 @@ const recaptchaKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
       modal.classList.add('opacity-0');
       modalBox.classList.remove('scale-100');
       modalBox.classList.add('scale-95');
-      
       setTimeout(() => {
         modal.classList.add('hidden');
         modal.classList.remove('flex');
@@ -309,7 +304,7 @@ const recaptchaKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
       }
     });
 
-    // --- INTERCEPTAR FORMULARIO CON VALIDACIÓN COMPLETA ---
+    // --- 4. INTERCEPTAR FORMULARIO CON VALIDACIÓN COMPLETA ---
     const form = document.getElementById('contacto-form') as HTMLFormElement;
     
     form?.addEventListener('submit', (e) => {

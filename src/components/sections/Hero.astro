@@ -131,18 +131,14 @@ const getBtnGradient = (tipo?: string) => {
     const scrollDesktop = document.getElementById('scroll-desktop');
     
     // 1. ARRANCADOR DEL HERO (Remueve el blur-md junto con la opacidad)
-    const initHero = () => {
+   const initHero = () => {
       heroContent?.classList.remove('translate-y-12', 'opacity-0', 'blur-md');
       scrollMobile?.classList.remove('opacity-0');
       scrollDesktop?.classList.remove('opacity-0');
     };
 
-    if (sessionStorage.getItem('preloaderVisto')) {
-      setTimeout(initHero, 50);
-    } else {
-      document.addEventListener('preloaderTerminado', initHero);
-      setTimeout(initHero, 3500); 
-    }
+    // Ejecuta la animación de entrada casi de inmediato
+    setTimeout(initHero, 100);
 
     // 2. LÓGICA DEL SLIDER 
     const slides = document.querySelectorAll('.hero-slide') as NodeListOf<HTMLElement>;

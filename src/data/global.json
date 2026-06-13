@@ -15,10 +15,6 @@
     "ruta": "/contacto",
     "gradiente": "naranja"
   },
-  "preloader": {
-    "textoEscritura": "Creando experiencias desde 1990",
-    "textoCarga": "CARGANDO TU PROYECTO IDEAL"
-  },
   "whatsapp": {
     "mensajeDefecto": "Hola CR Publicidad, vengo de la página web y deseo cotizar un proyecto.",
     "contactos": [

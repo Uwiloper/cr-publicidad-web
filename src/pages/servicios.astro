@@ -142,12 +142,9 @@ const getGradientClass = (tipo?: string) => {
     const initPage = () => {
       heroContent?.classList.remove('translate-y-12', 'opacity-0', 'blur-md');
     };
-    if (sessionStorage.getItem('preloaderVisto')) {
-      setTimeout(initPage, 50);
-    } else {
-      document.addEventListener('preloaderTerminado', initPage);
-      setTimeout(initPage, 3000);
-    }
+    
+    // Ejecuta la animación instantáneamente
+    setTimeout(initPage, 100);
 
     // 2. SCROLL OBSERVER
     const scrollObserver = new IntersectionObserver((entries, observer) => {

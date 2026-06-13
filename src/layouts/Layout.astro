@@ -1,6 +1,5 @@
 ---
 import Navbar from '../components/ui/Navbar.astro';
-import Preloader from '../components/ui/Preloader.astro';
 import Footer from '../components/ui/Footer.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 
@@ -63,12 +62,13 @@ const socialImageURL = new URL(image, Astro.site ?? Astro.url);
 
   </head>
   <body class="bg-white text-cr-dark font-sans antialiased selection:bg-cr-orange selection:text-white transition-colors duration-300 dark:bg-[#050505] dark:text-white">
-    <Preloader />
+  
     <Navbar />
     <main>
       <slot />
     </main>
     <Footer />
     <WhatsAppFloat />
+    
   </body>
 </html>

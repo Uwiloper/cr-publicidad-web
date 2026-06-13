@@ -1,7 +1,7 @@
 {
   "hero": {
     "etiqueta": "CONTACTO",
-    "imagenFondo": "/assets/images/hero1.jpg",
+    "imagenFondo": "/assets/images/contacto/hero_cont.jpg",
     "titulos": [
       { "texto": "", "gradiente": "ninguno" },
       { "texto": "vida", "gradiente": "naranja" },
@@ -71,11 +71,8 @@
     "redes": {
       "etiqueta": "SÍGUENOS",
       "items": [
-        { "nombre": "Facebook", "icono": "facebook", "url": "#" },
-        { "nombre": "Instagram", "icono": "instagram", "url": "#" },
-        { "nombre": "LinkedIn", "icono": "linkedin", "url": "#" },
-        { "nombre": "WhatsApp", "icono": "whatsapp", "url": "#" }
-      ]
+        { "nombre": "Instagram", "icono": "instagram", "url": "https://www.linkedin.com/company/cr-publicidad-sac/" },
+        { "nombre": "LinkedIn", "icono": "linkedin", "url": "https://www.instagram.com/crpublicidad.peru/" }      ]
     }
   }
 }

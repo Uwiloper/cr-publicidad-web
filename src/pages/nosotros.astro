@@ -235,17 +235,13 @@ const getGradientClass = (tipo?: string) => {
     
     // 1. Entrada inicial del Hero con lógica inteligente (sessionStorage)
     const heroContent = document.getElementById('hero-nosotros-content');
-    const initHero = () => {
+    const initPage = () => {
       heroContent?.classList.remove('translate-y-12', 'opacity-0', 'blur-md');
     };
     
-    if (sessionStorage.getItem('preloaderVisto')) {
-      setTimeout(initHero, 50);
-    } else {
-      document.addEventListener('preloaderTerminado', initHero);
-      setTimeout(initHero, 3000); 
-    }
-
+    // Ejecuta la animación instantáneamente
+    setTimeout(initPage, 100);
+    
     // 2. Animación del Contador de Estadísticas
     const animateCounters = () => {
       const counters = document.querySelectorAll('.counter-number');

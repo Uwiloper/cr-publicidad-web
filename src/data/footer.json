@@ -37,10 +37,8 @@
       { "nombre": "LIBRO DE RECLAMACIONES", "ruta": "/reclamaciones" }
     ],
     "redes": [
-      { "nombre": "Facebook", "rutaIcono": "/icons/facebook.svg", "enlace": "#" },
-      { "nombre": "Instagram", "rutaIcono": "/icons/instagram.svg", "enlace": "#" },
-      { "nombre": "LinkedIn", "rutaIcono": "/icons/linkedin.svg", "enlace": "#" },
-      { "nombre": "WhatsApp", "rutaIcono": "/icons/whatsapp.svg", "enlace": "#" }
+      { "nombre": "Instagram", "rutaIcono": "/assets/icons/instagram.png", "enlace": "https://www.instagram.com/crpublicidad.peru/" },
+      { "nombre": "LinkedIn", "rutaIcono": "/assets/icons/linkedin.svg", "enlace": "https://www.linkedin.com/company/cr-publicidad-sac/" }
     ]
   }
 }
