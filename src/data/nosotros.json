@@ -5,7 +5,7 @@
       { "texto": "Sobre", "gradiente": "ninguno" },
       { "texto": "NOSOTROS", "gradiente": "azul" }
     ],
-    "descripcion": "Es una empresa peruana dedicada a la producción e implementación de elementos tradicionales...",
+    "descripcion": "Conoce nuestra historia y trayectoria",
     "imagenFondo": "/assets/images/nosotros/hero_nos.jpg"
   },
   "quienesSomos": {

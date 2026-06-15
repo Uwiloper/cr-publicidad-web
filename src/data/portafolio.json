@@ -17,16 +17,16 @@
   "trabajos": [
     {
       "id": "proyecto-1",
-      "categoriaId": "branding",
-      "titulo": "Identidad Visual Corporativa",
-      "cliente": "TechCorp",
-      "ubicacion": "Lima, Perú",
-      "anio": "2025",
-      "descripcion": "Desarrollo integral de la identidad corporativa para las nuevas oficinas de TechCorp. Se priorizó un diseño minimalista que refleje la innovación de la marca, implementando señalética inteligente y revestimientos de alta durabilidad.",
+      "categoriaId": "categoria",
+      "titulo": "Título Principal",
+      "cliente": "Cliente",
+      "ubicacion": "Ubicacion",
+      "anio": "Año",
+      "descripcion": "Descripcion del servicio.",
       "servicios": [
-        { "texto": "BRANDING DE PDV", "color": "azul" },
-        { "texto": "VINIL LAMINADO", "color": "naranja" },
-        { "texto": "BRANDING INTERNO DE OFICINAS", "color": "azul" }
+        { "texto": "Trabajo 1", "color": "azul" },
+        { "texto": "Trabajo 2", "color": "naranja" },
+        { "texto": "Trabajo 3", "color": "azul" }
       ],
       "imagenPrincipal": "/images/hero1.jpg",
       "galeria": [
@@ -38,32 +38,93 @@
       "redes": {
         "instagram": "https://instagram.com/crpublicidad",
         "facebook": "https://facebook.com/crpublicidad",
-        "youtube": "https://youtube.com/"
-      }
-    },
-    {
-      "id": "proyecto-2",
-      "categoriaId": "estructuras",
-      "titulo": "Módulo Interactivo",
-      "cliente": "FarmaSalud",
-      "ubicacion": "",
-      "anio": "2026",
-      "descripcion": "Implementación de un módulo de exhibición de alto tráfico en cadena de supermercados. Incluye iluminación LED, acabados en acrílico y pantallas para interacción directa.",
-      "servicios": [
-        { "texto": "MUEBLES PERSONALIZADOS", "color": "naranja" },
-        { "texto": "BANNERS CON ESTRUCTURA", "color": "azul" }
-      ],
-      "imagenPrincipal": "/images/hero2.jpg",
-      "galeria": [
-        "/images/hero1.jpg",
-        "/images/hero2.jpg",
-        "/images/hero1.jpg",
-        "/images/hero2.jpg"
-      ],
-      "redes": {
+        "youtube": "https://youtube.com/",
         "whatsapp": "https://wa.me/51999999999",
         "tiktok": "https://tiktok.com/@crpublicidad"
       }
+    },
+
+    {
+      "id": "proyecto-sodimac",
+      "categoriaId": "estructuras",
+      "titulo": "Sodimac Módulos",
+      "cliente": "Sodimac",
+      "ubicacion": "Lima",
+      "anio": "",
+      "descripcion": "Transformamos la experiencia de compra en el sector retail con el diseño, fabricación e implementación integral de módulos publicitarios de alto impacto para grandes superficies como Sodimac. En CR Publicidad gestionamos cada proyecto desde el preciso modelado 3D y la impresión gráfica de gran formato hasta el montaje final en el piso de venta. Garantizamos acabados premium combinando estructuras a medida con iluminación LED, acrílicos y exhibidores interactivos que hacen resaltar cualquier producto. Potencia la presencia visual de tu marca con material POP y mobiliario comercial desarrollado por expertos para dominar el punto de venta y captar la atención de cada cliente",
+      "servicios": [
+        { "texto": "Módulos Visuales", "color": "naranja" },
+        { "texto": "Vinil Laminado", "color": "azul" },
+        { "texto": "PVC", "color": "naranja" }
+      ],
+      "imagenPrincipal": "/assets/images/portafolio/sodimod7.jpeg",
+      "galeria": [
+        "/assets/images/portafolio/sodimod1.jpeg",
+        "/assets/images/portafolio/sodimod0.jpeg",
+        "/assets/images/portafolio/sodimod2.jpeg",
+        "/assets/images/portafolio/sodimod3.jpeg",
+        "/assets/images/portafolio/sodimod4.jpeg",
+        "/assets/images/portafolio/sodimod5.jpeg",
+        "/assets/images/portafolio/sodimod6.jpeg"
+      ],
+      "redes": {
+      }
+    },
+
+    {
+      "id": "proyecto-orion",
+      "categoriaId": "Implementaciones",
+      "titulo": "Tienda Orión",
+      "cliente": "Tienda Orion",
+      "ubicacion": "Cuzco",
+      "anio": "",
+      "descripcion": "Destaca tus productos en el punto de venta con exhibidores y cabeceras de góndola de alto impacto diseñados estratégicamente para captar la atención del consumidor en supermercados y tiendas de conveniencia. En CR Publicidad fabricamos mobiliario retail a medida combinando materiales de alta resistencia como madera, metal y estructuras iluminadas, ideales para soportar la alta rotación de productos de consumo masivo. Desarrollamos desde innovadores módulos interactivos en 360 grados hasta estanterías tradicionales de gran capacidad para marcas líderes, garantizando una excelente visibilidad y un impulso directo en la decisión de compra.",
+      "servicios": [
+        { "texto": "Producción", "color": "azul" },
+        { "texto": "Implementacion", "color": "naranja" },
+        { "texto": "Productos", "color": "azul" }
+      ],
+      "imagenPrincipal": "/images/hero2.jpg",
+      "galeria": [
+        "/assets/images/portafolio/protien1.jpeg",
+        "/assets/images/portafolio/protien2.jpeg",
+        "/assets/images/portafolio/protien3.jpeg"
+      ]
+    },
+
+    {
+      "id": "mercado-productores",
+      "categoriaId": "Mercado Productores",
+      "titulo": "Trade Marketing",
+      "cliente": "Mercado Productores",
+      "ubicacion": "Lima",
+      "anio": "",
+      "descripcion": "Transformamos por completo la identidad visual del Mercado de Productores mediante la ejecución integral de un proyecto de branding exterior de gran impacto. En CR Publicidad gestionamos el diseño, la fabricación y la instalación de imponentes estructuras metálicas de gran envergadura revestidas con gigantografías y banners de alta resolución que destacan por su calidad gráfica y durabilidad en exteriores. Nuestro equipo profesional supervisó toda la logística operativa, incluyendo el uso de grúas y equipos de altura para un montaje preciso y seguro en las fachadas principales y zonas de acceso. Esta intervención de gran formato no solo moderniza la imagen de la institución, sino que potencia drásticamente su visibilidad de marca ante miles de visitantes, optimizando la comunicación de sus servicios y productos de consumo masivo con acabados de calidad premium",
+      "servicios": [
+        { "texto": "Gigantografías", "color": "naranja" },
+        { "texto": "Publicidad", "color": "azul" },
+        { "texto": "Publicidad", "color": "naranja" },
+         { "texto": "Estructuras", "color": "azul" }
+      ],
+      "imagenPrincipal": "/images/hero2.jpg",
+      "galeria": [
+        "/assets/images/portafolio/merp.jpeg",
+        "/assets/images/portafolio/merp1.jpeg",
+        "/assets/images/portafolio/merp2.jpeg",
+        "/assets/images/portafolio/merp3.jpeg",
+        "/assets/images/portafolio/merp4.jpeg",
+        "/assets/images/portafolio/merp5.jpeg",
+        "/assets/images/portafolio/merp6.jpeg",
+        "/assets/images/portafolio/merp7.jpeg",
+        "/assets/images/portafolio/merp8.jpeg",
+        "/assets/images/portafolio/merp9.jpeg",
+        "/assets/images/portafolio/merp10.jpeg",
+        "/assets/images/portafolio/merp11.jpeg",
+        "/assets/images/portafolio/merp12.jpeg"
+      ]
     }
+
   ]
 }
+
+
