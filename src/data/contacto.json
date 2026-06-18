@@ -39,7 +39,7 @@
       {
         "id": "telefono",
         "titulo": "Teléfonos",
-        "lineas": ["960 585 315", "960 585 303"],
+        "lineas": ["960 585 315", "966 184 142"],
         "icono": "phone",
         "color": "naranja"
       },
@@ -71,8 +71,8 @@
     "redes": {
       "etiqueta": "SÍGUENOS",
       "items": [
-        { "nombre": "Instagram", "icono": "instagram", "url": "https://www.linkedin.com/company/cr-publicidad-sac/" },
-        { "nombre": "LinkedIn", "icono": "linkedin", "url": "https://www.instagram.com/crpublicidad.peru/" }      ]
+        { "nombre": "Instagram", "icono": "instagram", "url": "https://www.instagram.com/crpublicidad.peru/" },
+        { "nombre": "LinkedIn", "icono": "linkedin", "url": "https://www.linkedin.com/company/cr-publicidad-sac/" }      ]
     }
   }
 }

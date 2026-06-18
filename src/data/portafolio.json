@@ -6,7 +6,7 @@
       { "texto": "nacionales", "gradiente": "azul" }
     ],
     "descripcion": "Cada proyecto es una muestra de nuestro compromiso con la calidad, la creatividad y la cobertura a nivel nacional.",
-    "imagenFondo": "/images/hero2.jpg"
+    "imagenFondo": "/assets/images/portafolio/hero_port.jpg"
   },
   "categorias": [
     { "id": "todas", "nombre": "Todas", "gradiente": "naranja" },
@@ -16,37 +16,8 @@
   ],
   "trabajos": [
     {
-      "id": "proyecto-1",
-      "categoriaId": "categoria",
-      "titulo": "Título Principal",
-      "cliente": "Cliente",
-      "ubicacion": "Ubicacion",
-      "anio": "Año",
-      "descripcion": "Descripcion del servicio.",
-      "servicios": [
-        { "texto": "Trabajo 1", "color": "azul" },
-        { "texto": "Trabajo 2", "color": "naranja" },
-        { "texto": "Trabajo 3", "color": "azul" }
-      ],
-      "imagenPrincipal": "/images/hero1.jpg",
-      "galeria": [
-        "/images/hero1.jpg",
-        "/images/hero2.jpg",
-        "/images/hero1.jpg",
-        "/images/hero2.jpg"
-      ],
-      "redes": {
-        "instagram": "https://instagram.com/crpublicidad",
-        "facebook": "https://facebook.com/crpublicidad",
-        "youtube": "https://youtube.com/",
-        "whatsapp": "https://wa.me/51999999999",
-        "tiktok": "https://tiktok.com/@crpublicidad"
-      }
-    },
-
-    {
       "id": "proyecto-sodimac",
-      "categoriaId": "estructuras",
+      "tamano": "vertical",
       "titulo": "Sodimac Módulos",
       "cliente": "Sodimac",
       "ubicacion": "Lima",
@@ -73,7 +44,7 @@
 
     {
       "id": "proyecto-orion",
-      "categoriaId": "Implementaciones",
+      "tamano": "cuadrado",
       "titulo": "Tienda Orión",
       "cliente": "Tienda Orion",
       "ubicacion": "Cuzco",
@@ -84,7 +55,7 @@
         { "texto": "Implementacion", "color": "naranja" },
         { "texto": "Productos", "color": "azul" }
       ],
-      "imagenPrincipal": "/images/hero2.jpg",
+      "imagenPrincipal": "/assets/images/portafolio/protien1.jpeg",
       "galeria": [
         "/assets/images/portafolio/protien1.jpeg",
         "/assets/images/portafolio/protien2.jpeg",
@@ -94,8 +65,8 @@
 
     {
       "id": "mercado-productores",
-      "categoriaId": "Mercado Productores",
-      "titulo": "Trade Marketing",
+      "tamano": "grande",
+      "titulo": "Mercado Productores",
       "cliente": "Mercado Productores",
       "ubicacion": "Lima",
       "anio": "",
@@ -106,7 +77,7 @@
         { "texto": "Publicidad", "color": "naranja" },
          { "texto": "Estructuras", "color": "azul" }
       ],
-      "imagenPrincipal": "/images/hero2.jpg",
+      "imagenPrincipal": "/assets/images/portafolio/merp9.jpeg",
       "galeria": [
         "/assets/images/portafolio/merp.jpeg",
         "/assets/images/portafolio/merp1.jpeg",
@@ -122,6 +93,140 @@
         "/assets/images/portafolio/merp11.jpeg",
         "/assets/images/portafolio/merp12.jpeg"
       ]
+    },
+
+    {
+      "id": "proyecto-sanfrancisco",
+      "tamano": "cuadrado",
+      "titulo": "Mercado San Francisco",
+      "cliente": "Mercado San Francisco",
+      "ubicacion": "Villa Maria del Triunfo",
+      "anio": "",
+      "descripcion": "Maximizamos el alcance de las marcas líderes de consumo masivo con implementaciones de publicidad exterior en zonas de altísimo tránsito comercial. En el emblemático Mercado San Francisco, llevamos a cabo el despliegue e instalación de una imponente gigantografía en la fachada principal. Este proyecto abarcó el tensado perfecto de la lona publicitaria sobre estructuras seguras, garantizando colores vibrantes, alta legibilidad y máxima resistencia a la intemperie. Posicionar tu comunicación en los exteriores de un mercado tradicional de gran concurrencia asegura una conexión directa, efectiva y de alto impacto con el consumidor final justo en su ruta diaria de compras.",
+      "servicios": [
+        { "texto": "Banners", "color": "naranja" },
+        { "texto": "Estructuras", "color": "azul" },
+        { "texto": "Gigantografías", "color": "naranja" }
+      ],
+      "imagenPrincipal": "/assets/images/portafolio/sanfran1.jpeg",
+      "galeria": [
+        "/assets/images/portafolio/sanfran1.jpeg",
+        "/assets/images/portafolio/sanfran2.jpeg"
+      ],
+      "redes": {
+      }
+    },
+
+    {
+      "id": "proyecto-casaideal",
+      "tamano": "horizontal",
+      "titulo": "Casa Ideal",
+      "cliente": "Ideal",
+      "ubicacion": "Lima",
+      "anio": "",
+      "descripcion": "Llevamos el branding corporativo al corazón de las plantas de producción con implementaciones gráficas de alto impacto para marcas líderes como Leche Ideal mediante la instalación estratégica de banners de gran formato y viniles adhesivos sobre mallas de seguridad o paneles acristalados logrando transformar espacios industriales en entornos visualmente atractivos que refuerzan la identidad interna y garantizan una durabilidad excepcional frente a las exigencias operativas diarias",
+      "servicios": [
+        { "texto": "Oficinas", "color": "azul" },
+        { "texto": "Estructuras", "color": "naranja" },
+        { "texto": "Gigantografías", "color": "azul" },
+        { "texto": "Vinil Laminado", "color": "naranja" },
+        { "texto": "Diseño Gráfico", "color": "azul" }
+      ],
+      "imagenPrincipal": "/assets/images/portafolio/casaideal2.jpeg",
+      "galeria": [
+        "/assets/images/portafolio/casaideal1.jpg",
+        "/assets/images/portafolio/casaideal2.jpeg",
+        "/assets/images/portafolio/casaideal3.jpeg"
+      ],
+      "redes": {
+      }
+    },
+
+    {
+      "id": "proyecto-merprolima",
+      "tamano": "horizontal",
+      "titulo": "Mercado Merprolima",
+      "cliente": "Merprolima",
+      "ubicacion": "Lima",
+      "anio": "",
+      "descripcion": "Potenciamos la presencia de marcas de consumo masivo en el canal tradicional ejecutando estrategias integrales de trade marketing en el punto de venta mediante la instalación de toldos publicitarios letreros y brandeo lateral en bodegas del Mercado Merprolima logrando dominar la visibilidad del negocio local para conectar directamente con el comprador diario a través de materiales duraderos y de alta calidad gráfica",
+      "servicios": [
+        { "texto": "Trade Marketing", "color": "azul" },
+        { "texto": "Estructuras", "color": "naranja" },
+        { "texto": "Gigantografías", "color": "azul" }
+      ],
+      "imagenPrincipal": "/assets/images/portafolio/meprolima1.jpeg",
+      "galeria": [
+        "/assets/images/portafolio/meprolima1.jpeg"
+      ],
+      "redes": {
+      }
+    },
+
+    {
+      "id": "proyecto-bodegas",
+      "tamano": "grande",
+      "titulo": "Bodegas de Lima",
+      "cliente": "Lima",
+      "ubicacion": "Lima",
+      "anio": "",
+      "descripcion": "Transformamos la visibilidad de marca en el canal tradicional con estrategias de trade marketing en bodegas de Lima. Implementamos el brandeo integral de fachadas, incluyendo la pintura comercial, la instalación de paneles publicitarios con diseño de alto impacto y la rotulación de logotipos a gran escala, como el realizado para Nestlé Ideal Cremosita. Estas intervenciones renuevan la imagen del punto de venta y aseguran un posicionamiento dominante, atrayendo al consumidor local desde el exterior con colores institucionales vibrantes y mensajes claros que impulsan el reconocimiento y la compra diaria",
+      "servicios": [
+        { "texto": "Trade Marketing", "color": "naranja" },
+        { "texto": "Impresion Vinil", "color": "azul" },
+        { "texto": "Estructuras", "color": "naranja" }
+      ],
+      "imagenPrincipal": "/assets/images/portafolio/bodlim3.png",
+      "galeria": [
+        "/assets/images/portafolio/bodlim1.jpeg",
+        "/assets/images/portafolio/bodlim2.png",
+        "/assets/images/portafolio/bodlim3.png"
+      ],
+      "redes": {
+      }
+    },
+
+    {
+      "id": "proyecto-feria",
+      "tamano": "cuadrado",
+      "titulo": "Mercado Feria El Altiplano",
+      "cliente": "Mercado Feria El Altiplano",
+      "ubicacion": "Arequipa",
+      "anio": "",
+      "descripcion": "Consolidamos la presencia de marcas líderes con publicidad exterior de alto impacto en zonas de máxima concurrencia comercial. En el Mercado Feria del Altiplano, ejecutamos la instalación estratégica de pórticos publicitarios y gigantografías de gran formato en los accesos principales. Estas imponentes implementaciones dominan el ingreso al punto de venta, asegurando una exposición inigualable ante miles de compradores diarios con materiales de alta resistencia a la intemperie y una calidad gráfica excepcional que fortalece el posicionamiento regional de la marca.",
+      "servicios": [
+        { "texto": "Trade Marketing", "color": "azul" },
+        { "texto": "Estructuras", "color": "naranja" },
+        { "texto": "Gigantografías", "color": "azul" }
+      ],
+      "imagenPrincipal": "/assets/images/portafolio/merferia1.jpeg",
+      "galeria": [
+        "/assets/images/portafolio/merferia1.jpeg"
+      ],
+      "redes": {
+      }
+    },
+
+    {
+      "id": "proyecto-honda",
+      "tamano": "cuadrado",
+      "titulo": "Honda Showroom",
+      "cliente": "Honda",
+      "ubicacion": "Lima",
+      "anio": "",
+      "descripcion": "Diseñamos y fabricamos elementos 3D personalizados para transformar showrooms y puntos de venta en verdaderas experiencias inmersivas integrando escenografías temáticas como este montaje exclusivo para Honda que simula un entorno fluvial con viniles de piso fondos gráficos de alta resolución y utilería a escala destacando el producto en su hábitat natural para cautivar la atención del cliente y elevar la exhibición comercial al siguiente nivel",
+      "servicios": [
+        { "texto": "Exhibición de productos", "color": "naranja" },
+        { "texto": "showrooms", "color": "azul" },
+        { "texto": "Exhibición de productos", "color": "naranja" }
+      ],
+      "imagenPrincipal": "/assets/images/portafolio/elemperhonda2.jpeg",
+      "galeria": [
+        "/assets/images/portafolio/elemperhonda1.jpeg",
+        "/assets/images/portafolio/elemperhonda2.jpeg"
+      ],
+      "redes": {
+      }
     }
 
   ]

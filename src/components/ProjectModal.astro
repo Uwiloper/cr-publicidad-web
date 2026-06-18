@@ -83,22 +83,37 @@
 
     const modal = document.getElementById('project-modal');
     const modalBox = document.getElementById('modal-box');
-    const mainImg = document.getElementById('modal-main-img');
+    const mainImg = document.getElementById('modal-main-img') as HTMLImageElement;
     const thumbsCont = document.getElementById('modal-thumbs-container');
+    
     let timerId: number;
     let currentGallery: string[] = [];
-    let currentIdx = 0;
+    let currentIdx = -1;
+    // Candado para evitar que clics muy rápidos rompan la animación
+    let isTransitioning = false; 
 
     const changeImage = (idx: number) => {
-      if (!mainImg || !currentGallery[idx]) return;
+      // Si está cargando una imagen, bloqueamos clics adicionales o la misma imagen
+      if (!mainImg || !currentGallery[idx] || isTransitioning || idx === currentIdx) return;
+      
+      isTransitioning = true;
       currentIdx = idx;
       
-      mainImg.style.opacity = '0.4';
+      // 1. Ocultamos la imagen por completo
+      mainImg.style.opacity = '0';
+      
+      // 2. Esperamos el fade-out
       setTimeout(() => {
         mainImg.src = currentGallery[idx];
-        mainImg.style.opacity = '1';
-      }, 200);
+        
+        // 3. LA MAGIA: Solo volvemos a mostrarla cuando termine de descargar
+        mainImg.onload = () => {
+          mainImg.style.opacity = '1';
+          isTransitioning = false;
+        };
+      }, 300);
 
+      // Resaltar miniatura activa
       const thumbs = thumbsCont?.querySelectorAll('.thumb-btn');
       if (thumbs) {
         thumbs.forEach((t, i) => {
@@ -111,32 +126,28 @@
     const startTimer = () => {
       clearInterval(timerId);
       timerId = window.setInterval(() => {
-        let next = (currentIdx + 1) % currentGallery.length;
-        changePhotoManual(next);
-      }, 4000);
-    };
-
-    const changePhotoManual = (idx: number) => {
-      changeImage(idx);
-      startTimer();
+        if (!isTransitioning && currentGallery.length > 1) {
+          let next = (currentIdx + 1) % currentGallery.length;
+          changeImage(next);
+        }
+      }, 5500); // 5.5 segundos permite ver la imagen cómodamente
     };
 
     const openModal = (jsonString: string) => {
       const data = JSON.parse(jsonString);
 
       currentGallery = data.galeria && data.galeria.length > 0 ? data.galeria : [data.imagenPrincipal];
-      currentIdx = 0;
+      currentIdx = -1; // Reset seguro
+      isTransitioning = false;
 
       // === MANEJO DINÁMICO DE DATOS (Ocultar si no existen) ===
 
-      // Título y Categoría
       const elTitle = document.getElementById('modal-title');
       if (elTitle) elTitle.textContent = data.titulo || 'Proyecto';
       const catName = document.querySelector(`.filter-btn[data-filter="${data.categoriaId}"] span`)?.textContent;
       const elCat = document.getElementById('modal-category');
       if (elCat) elCat.textContent = catName || "Proyecto";
 
-      // Ubicación
       const elLocCont = document.getElementById('modal-loc-container');
       const elLoc = document.getElementById('modal-location');
       if (data.ubicacion) {
@@ -146,7 +157,6 @@
         if (elLocCont) elLocCont.classList.add('hidden');
       }
 
-      // Cliente
       const elClient = document.getElementById('modal-client');
       if (data.cliente) {
         if (elClient) {
@@ -157,7 +167,6 @@
         if (elClient) elClient.classList.add('hidden');
       }
 
-      // Año
       const elYear = document.getElementById('modal-year');
       if (data.anio) {
         if (elYear) {
@@ -168,7 +177,6 @@
         if (elYear) elYear.classList.add('hidden');
       }
 
-      // Descripción
       const descCont = document.getElementById('modal-desc-container');
       const elDesc = document.getElementById('modal-description');
       if (data.descripcion) {
@@ -178,7 +186,6 @@
         if (descCont) descCont.classList.add('hidden');
       }
 
-      // Tags de Servicios
       const tagsContParent = document.getElementById('modal-services-container');
       const tagsCont = document.getElementById('modal-services-tags');
       if (data.servicios && data.servicios.length > 0) {
@@ -193,7 +200,6 @@
         if (tagsContParent) tagsContParent.classList.add('hidden');
       }
 
-      // Redes Sociales
       const socCont = document.getElementById('modal-socials-container');
       const socBtns = document.getElementById('modal-social-buttons');
       if (data.redes && Object.keys(data.redes).length > 0) {
@@ -220,14 +226,20 @@
         thumbsCont.querySelectorAll('.thumb-btn').forEach(btn => {
           btn.addEventListener('click', (e) => {
             const idx = parseInt((e.currentTarget as HTMLElement).getAttribute('data-idx') || '0');
-            changePhotoManual(idx);
+            // Al hacer clic manual, anulamos el automático
+            clearInterval(timerId); 
+            changeImage(idx);
           });
         });
       }
 
-      // Cargar primera imagen y arrancar reloj
+      // Cargar primera imagen (Forzamos la carga)
       changeImage(0);
-      startTimer();
+      
+      // Solo activamos el temporizador si hay más de 1 imagen
+      if (currentGallery.length > 1) {
+        startTimer();
+      }
 
       // Mostrar Modal
       document.body.style.overflow = 'hidden';
@@ -248,7 +260,7 @@
       if (modal) modal.style.opacity = '0';
       if (modalBox) modalBox.style.transform = 'scale(0.95)';
       document.body.style.overflow = '';
-      clearInterval(timerId);
+      clearInterval(timerId); // Aseguramos que se apague el reloj al cerrar
       setTimeout(() => {
         if (modal) {
           modal.classList.add('hidden');
@@ -275,7 +287,6 @@
     updateGridListeners();
     // En caso de que se filtren o cambien, asegura que los botones siempre abran el modal
     document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => setTimeout(updateGridListeners, 350)));
-
 
     const btnClose = document.getElementById('modal-close-btn');
     if (btnClose) btnClose.addEventListener('click', closeModal);

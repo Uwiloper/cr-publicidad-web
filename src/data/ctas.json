@@ -18,6 +18,26 @@
         }
       ]
     },
+
+    {
+      "id": "cta-pregunta",
+      "etiqueta": "PUNTO DE VENTA",
+      "titulos": [
+        { "texto": "DIFERENCIATE", "gradiente": "azul" },
+        { "texto": "de la", "gradiente": "ninguno" },
+        { "texto": "Competencia", "gradiente": "naranja" }
+      ],
+      "descripcion": "Aumenta tu alcance e influye directamente en la decisión de compra de tus clientes con publicidad personalizada.",
+      "botones": [
+        {
+          "texto": "Cotiza tu Proyecto",
+          "ruta": "/contacto",
+          "tipo": "principal",
+          "gradiente": "naranja"
+        }
+      ]
+    },
+
     {
       "id": "cta-final-contacto",
       "etiqueta": "",

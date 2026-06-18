@@ -6,7 +6,7 @@
       { "texto": "SERVICIOS", "gradiente": "azul" }
     ],
     "descripcion": "Estrategias visuales y producción publicitaria de alto impacto para potenciar tu marca.",
-    "imagenFondo": "/assets/images/hero1.jpg"
+    "imagenFondo": "/assets/images/servicios/hero_ser.jpg"
   },
   "lista": [
     {
@@ -40,8 +40,8 @@
       ],
       "galeria": [
         "/assets/images/servicios/dg1.png",
-        "/assets/images/hero2.jpg",
-        "/assets/images/hero1.jpg",
+        "/assets/images/servicios/dg2.jpeg",
+        "/assets/images/portafolio/sodimod5.jpeg",
         "/assets/images/hero2.jpg"
       ]
     },
@@ -57,10 +57,10 @@
         { "texto": "Tecnología moderna y optimizada que genera un menor impacto con el medio ambiente", "iconoLocal": "/assets/icons/servicios/imv3.svg" }
       ],
       "galeria": [
-        "/assets/images/servicios/imp1.png",
         "/assets/images/servicios/imp2.png",
         "/assets/images/servicios/imp3.png",
-        "/assets/images/servicios/imp4.png"
+        "/assets/images/servicios/imp4.png",
+        "/assets/images/portafolio/sodimod0.jpeg"
       ]
     },
     {
@@ -75,10 +75,10 @@
         { "texto": "Desarrollo e implementación de proyectos 100% personalizados a solicitud del cliente", "iconoLocal": "/assets/icons/servicios/prv3.svg" }
       ],
       "galeria": [
-        "/assets/images/servicios/prod1.png",
-        "/assets/images/hero2.jpg",
-        "/assets/images/hero1.jpg",
-        "/assets/images/hero2.jpg"
+        "/assets/images/servicios/prod1.jpeg",
+        "/assets/images/servicios/prod2.jpeg",
+        "/assets/images/servicios/prod3.jpeg",
+        "/assets/images/servicios/prod4.jpeg"
       ]
     },
     {
@@ -88,15 +88,15 @@
       "descripcion": "Reforzamos el posicionamiento de tu empresa suministrando artículos publicitarios y merchandising estratégico. Nos enfocamos en transmitir la esencia corporativa de tus campañas a través de un branding integral, combinando alta calidad técnica con un sólido liderazgo de precios.",
       "gradiente": "naranja",
       "caracteristicas": [
-        { "texto": "Suministro especializado de productos publicitarios para merchandising corporativo", "iconoLocal": "/icons/shoppingBag.png" },
-        { "texto": "Implementación de branding integral para transmitir fielmente la imagen de tu cliente", "iconoLocal": "/icons/eye.png" },
-        { "texto": "Operaciones respaldadas por altos estándares de calidad y estrategia en liderazgo de precios", "iconoLocal": "/icons/trendingUp.png" }
+        { "texto": "Suministro especializado de productos publicitarios para merchandising corporativo", "iconoLocal": "/assets/icons/servicios/vismer1.svg" },
+        { "texto": "Implementación de branding integral para transmitir fielmente la imagen de tu cliente", "iconoLocal": "/assets/icons/servicios/vismer2.svg" },
+        { "texto": "Operaciones respaldadas por altos estándares de calidad y estrategia en liderazgo de precios", "iconoLocal": "/assets/icons/servicios/vismer3.svg" }
       ],
       "galeria": [
-        "/assets/images/servicios/merch1.png",
-        "/assets/images/hero2.jpg",
-        "/assets/images/hero1.jpg",
-        "/assets/images/hero2.jpg"
+        "/assets/images/portafolio/sodimod6.jpeg",
+        "/assets/images/portafolio/sodimod5.jpeg",
+        "/assets/images/portafolio/sodimod1.jpeg",
+        "/assets/images/portafolio/sodimod3.jpeg"
       ]
     }
   ]

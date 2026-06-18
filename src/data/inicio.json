@@ -2,12 +2,12 @@
   "hero": {
     "diapositivas": [
       {
-        "imagen": "/assets/images/hero1.jpg",
-        "etiqueta": "AGENCIA DE PUBLICIDAD B2B",
-        "tituloNaranja": "DISEÑAMOS",
+        "imagen": "/assets/images/inicio/hero1.png",
+        "etiqueta": "Vida a tus Proyectos",
+        "tituloNaranja": "Destaca",
         "tituloNormal": "TU",
         "tituloAzul": "MARCA",
-        "descripcion": "Más de 8 años de experiencia en producción publicitaria, trade marketing, imprenta, merchandising y línea textil a nivel nacional.",
+        "descripcion": "10+ años de experiencia en producción publicitaria, trade marketing, imprenta, merchandising a nivel nacional.",
         "btnPrincipal": {
           "texto": "Inicia tu Proyecto",
           "ruta": "/contacto",
@@ -20,7 +20,7 @@
         }
       },
       {
-        "imagen": "/assets/images/hero2.jpg",
+        "imagen": "/assets/images/inicio/hero2.png",
         "etiqueta": "PRODUCCIÓN E IMPLEMENTACIÓN",
         "tituloNaranja": "IMPACTO",
         "tituloNormal": "EN CADA",
@@ -35,7 +35,7 @@
         "btnSecundario": {
           "texto": "Ver Portafolio",
           "ruta": "/portafolio",
-          "active": false
+          "active": true
         }
       }
     ]
@@ -147,15 +147,15 @@
     "descripcion": "Desde la conceptualización hasta la entrega final, ofrecemos solucionesa tu medida para cada necesidad publicitaria a nivel nacional.",
     "items": [
       {
-        "numero": "01",
+        "numero": "",
         "categoria": "ESTRATEGIA VISUAL",
         "titulo": "Trade Marketing",
         "descripcion": "Creamos, diseñamos, producimos e implementamos elementos publicitarios disruptivos para los diversos canales de venta a nivel nacional.",
-        "imagen": "/assets/images/inicio/tm5.png",
+        "imagen": "/assets/images/inicio/tm5.jpeg",
         "color": "azul"
       },
       {
-        "numero": "02",
+        "numero": "",
         "categoria": "SOPORTE Y GESTIÓN",
         "titulo": "Facility Management",
         "descripcion": "Planificamos y gestionamos espacios comerciales para garantizar un ambiente seguro, funcional y amigable para tus colaboradores y clientes.",
@@ -163,11 +163,11 @@
         "color": "naranja"
       },
       {
-        "numero": "03",
+        "numero": "",
         "categoria": "PUBLICIDAD IN-HOUSE",
         "titulo": "Proyecto Mercados",
         "descripcion": "ublicidad estratégica en el Punto de Venta (PDV) diseñada para maximizar el impacto visual e influir directamente en la decisión de compra.",
-        "imagen": "/assets/images/inicio/pm1.png",
+        "imagen": "/assets/images/inicio/pm1.jpeg",
         "color": "azul"
       }
     ],

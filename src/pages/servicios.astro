@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import CTA from '../components/ui/CTA.astro';
 import ServicioPanel from '../components/ServicioPanel.astro';
 import serviciosData from '../data/servicios.json';
+import portafolioData from '../data/portafolio.json';
 import TrabajosMarquee from '../components/TrabajosMarquee.astro';
 
 const hero = serviciosData.hero;
@@ -97,7 +98,7 @@ const getGradientClass = (tipo?: string) => {
 
   <TrabajosMarquee />
 
-  <CTA id="cta-final-contacto" />
+  <CTA id="cta-inicio" />
 </Layout>
 
 <style is:global>

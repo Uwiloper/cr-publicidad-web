@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CTA from '../components/ui/CTA.astro';
-import Categorias from '../components/Categorias.astro';
+//import Categorias from '../components/Categorias.astro';
 import PortfolioItem from '../components/PortfolioItem.astro';
 import ProjectModal from '../components/ProjectModal.astro';
 import portafolioData from '../data/portafolio.json';
@@ -22,7 +22,13 @@ const getGradientClass = (tipo?: string) => {
   <section class="relative w-full pt-[140px] md:pt-[180px] pb-16 md:pb-24 flex items-center justify-center transition-all duration-700 overflow-hidden">
     <div class="absolute inset-0 w-full h-full z-0">
       <div class="absolute inset-0 bg-white/85 dark:bg-[#050505]/85 z-10 transition-colors duration-700"></div>
-      {hero?.imagenFondo && <img src={hero.imagenFondo} alt="Portafolio" class="absolute inset-0 w-full h-full object-cover z-0 opacity-80 dark:opacity-40" />}
+      {hero?.imagenFondo && (
+        <img 
+          src={hero.imagenFondo} 
+          alt="Portafolio" 
+          class="animate-hero-pan absolute inset-0 w-full h-full object-cover z-0 opacity-80 dark:opacity-40" 
+        />
+      )}
     </div>
     <div class="absolute bottom-0 left-0 w-full h-16 md:h-24 bg-gradient-to-t from-white dark:from-[#050505] to-transparent z-10 pointer-events-none transition-colors duration-700"></div>
     
@@ -38,10 +44,14 @@ const getGradientClass = (tipo?: string) => {
   <section class="w-full bg-white dark:bg-[#050505] pb-24 transition-colors duration-700 relative">
     <div class="w-full max-w-[1200px] mx-auto px-6 lg:px-8 observer-blur transform translate-y-12 opacity-0 blur-md transition-all duration-[1000ms] ease-out pt-6 md:pt-10">
       
-      <Categorias categorias={categorias} />
+      
 
-      <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 transition-all duration-700">
-        {trabajos.map((trabajo: any) => <PortfolioItem trabajo={trabajo} /> )}
+      <div id="portfolio-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[260px] transition-all duration-700">
+        {trabajos.map((trabajo: any, index: number) => (
+          <div style={`animation-delay: ${index * 80}ms;`} class="contents">
+            <PortfolioItem trabajo={trabajo} /> 
+          </div>
+        ))}
       </div>
 
     </div>
@@ -54,10 +64,25 @@ const getGradientClass = (tipo?: string) => {
 </Layout>
 
 <style is:global>
+
+/* Efecto de Paneo Suave para el Hero */
+  .animate-hero-pan {
+    /* 40 segundos hace que sea ultra lento, ease-in-out hace que frene suave al llegar a los bordes */
+    animation: heroPan 40s ease-in-out infinite;
+    /* Optimiza el rendimiento para que no consuma CPU ni se vea con tirones */
+    will-change: transform; 
+  }
+
+  @keyframes heroPan {
+    0% { transform: scale(1.15) translateX(2.5%); }
+    50% { transform: scale(1.15) translateX(-2.5%); }
+    100% { transform: scale(1.15) translateX(2.5%); }
+  }
+
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-  /* BARRITA DE SCROLL CORPORATIVA DEL MODAL */
+  /* BARRITA DE SCROLL  CORPORATIVA DEL MODAL */
   .custom-scrollbar::-webkit-scrollbar { width: 6px; }
   .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
   .custom-scrollbar::-webkit-scrollbar-thumb {
@@ -102,6 +127,7 @@ const getGradientClass = (tipo?: string) => {
   .dark .social-tiktok { background: #333333; }
   .social-youtube { background: #FF0000; }
   .social-whatsapp { background: #25D366; }
+
 </style>
 
 <script>
