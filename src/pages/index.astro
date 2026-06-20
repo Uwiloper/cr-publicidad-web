@@ -1,12 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
 import Hero from '../components/sections/Hero.astro';
+import HeroBentoAnimado from '../components/sections/HeroBentoAnimado.astro';
+import HeroSplit from '../components/sections/HeroSplit.astro';
+
 import Marcas from '../components/sections/Marcas.astro';
 import CTA from '../components/ui/CTA.astro';
 import ServiciosDestacados from '../components/ServiciosDestacados.astro'; // <-- Importas el componente
 ---
 
 <Layout title="CR Publicidad | Especialistas en Branding">
+  <HeroSplit />
+  <HeroBentoAnimado />
   <Hero />
   <Marcas />
   <ServiciosDestacados />

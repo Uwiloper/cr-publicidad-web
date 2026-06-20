@@ -1,0 +1,183 @@
+---
+import inicioData from '../../data/inicio.json';
+import portafolioData from '../../data/portafolio.json';
+
+const diapositiva = inicioData?.hero?.diapositivas?.[0] || {};
+const trabajos = portafolioData?.trabajos || [];
+const fotosBase = trabajos.map((t: any) => t.imagenPrincipal).filter(Boolean);
+
+// Bucle infinito
+const buildHorizontalLoop = (arr: any[]) => {
+  if (!arr || arr.length === 0) return [];
+  let track = [...arr];
+  while (track.length < 15) { track = [...track, ...arr]; }
+  return [...track, ...track]; 
+};
+
+const galeriaInfinita = buildHorizontalLoop(fotosBase);
+
+const getBtnGradient = (tipo?: string) => {
+  if (tipo === 'naranja') return 'from-[#cc4a04] to-[#fb923c] shadow-orange-500/25';
+  return 'from-[#173154] to-[#3b82f6] shadow-blue-500/25';
+};
+---
+
+<section class="relative w-full h-[100dvh] min-h-[650px] bg-[#f8f9fa] dark:bg-[#050505] transition-colors duration-700 flex flex-col items-center justify-between pt-16 md:pt-20 overflow-hidden">
+  
+  <!-- ================= 1. ZONA SUPERIOR: TEXTOS ================= -->
+  <div class="relative z-20 flex flex-col items-center text-center px-4 w-full max-w-5xl mt-2 md:mt-4">
+    
+    {diapositiva?.etiqueta && (
+      <div class="mb-3 md:mb-5 bg-white dark:bg-[#111] text-[#cc4a04] dark:text-[#fb923c] px-4 py-1.5 rounded-sm border border-gray-200 dark:border-gray-800 shadow-sm">
+        <span class="font-sans text-[9px] md:text-[11px] font-bold uppercase tracking-widest">
+          {diapositiva.etiqueta}
+        </span>
+      </div>
+    )}
+    
+    <h1 class="font-display font-extrabold uppercase leading-[1.05] tracking-tight flex flex-col sm:flex-row flex-wrap items-center justify-center gap-x-3 gap-y-1">
+      {diapositiva?.tituloNaranja && (
+        <span class="bg-gradient-to-r from-[#cc4a04] to-[#fb923c] text-transparent bg-clip-text text-[2.5rem] sm:text-5xl md:text-[4.5rem] lg:text-[5.5rem] pb-1">
+          {diapositiva.tituloNaranja}
+        </span>
+      )}
+      {diapositiva?.tituloNormal && (
+        <span class="text-cr-dark dark:text-white text-[2.5rem] sm:text-5xl md:text-[4.5rem] lg:text-[5.5rem]">
+          {diapositiva.tituloNormal}
+        </span>
+      )}
+      {diapositiva?.tituloAzul && (
+        <span class="bg-gradient-to-r from-[#173154] to-[#3b82f6] text-transparent bg-clip-text text-[2.5rem] sm:text-5xl md:text-[4.5rem] lg:text-[5.5rem] pb-1">
+          {diapositiva.tituloAzul}
+        </span>
+      )}
+    </h1>
+    
+    {diapositiva?.descripcion && (
+      <p class="font-sans text-gray-600 dark:text-gray-400 mt-3 md:mt-4 text-xs md:text-sm lg:text-base font-medium max-w-xl mx-auto leading-relaxed">
+        {diapositiva.descripcion}
+      </p>
+    )}
+  </div>
+
+  <!-- ================= 2. ZONA MEDIA: CARRUSEL 3D UNIFICADO ================= -->
+  <!-- LA CLAVE ESTÁ AQUÍ: Una sola cámara (perspective) para toda la pista, sin overflow-hidden interno -->
+  <div class="relative w-full flex-1 flex items-center justify-center z-10 my-4 md:my-6" style="perspective: 1500px;">
+    
+    <!-- Máscaras de fundido laterales -->
+    <div class="absolute inset-y-0 left-0 w-20 md:w-40 bg-gradient-to-r from-[#f8f9fa] to-transparent dark:from-[#050505] z-20 pointer-events-none"></div>
+    <div class="absolute inset-y-0 right-0 w-20 md:w-40 bg-gradient-to-l from-[#f8f9fa] to-transparent dark:from-[#050505] z-20 pointer-events-none"></div>
+
+    <!-- Pista de movimiento -->
+    <div class="flex marquee-track-horizontal w-max animate-scroll-x items-center gap-4 md:gap-6 px-4" style="transform-style: preserve-3d;">
+      {galeriaInfinita.map((img: string) => (
+        
+        <!-- Caja Guía (2D) -->
+        <div class="cinta-wrapper relative w-[180px] sm:w-[220px] md:w-[260px] lg:w-[320px] h-[240px] sm:h-[300px] md:h-[360px] lg:h-[420px] flex-shrink-0" style="transform-style: preserve-3d;">
+          
+          <!-- Elemento 3D (Se mueve en base a la cámara global del padre) -->
+          <div class="cinta-3d-item absolute inset-0 rounded-2xl md:rounded-[2rem] overflow-hidden shadow-xl bg-gray-200 dark:bg-gray-800 will-change-transform">
+            <img src={img} alt="Proyecto" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+            <div class="cinta-overlay absolute inset-0 bg-black/0 transition-colors pointer-events-none"></div>
+          </div>
+          
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- ================= 3. ZONA INFERIOR: BOTONES ================= -->
+  <div class="relative z-20 flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 w-full px-6 pb-12 md:pb-16">
+    
+    {diapositiva?.btnPrincipal?.active && (
+      <a href={diapositiva.btnPrincipal.ruta} class={`group relative text-white font-sans font-bold text-[10px] sm:text-xs tracking-widest py-3 md:py-3.5 px-8 md:px-10 rounded-sm transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center gap-3 w-full sm:w-auto bg-gradient-to-r ${getBtnGradient(diapositiva.btnPrincipal.gradiente || 'naranja')}`}>
+        <span>{diapositiva.btnPrincipal.texto}</span>
+        <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        </svg>
+      </a>
+    )}
+  
+    {diapositiva?.btnSecundario?.active && (
+      <a href={diapositiva.btnSecundario.ruta} class="group bg-white/40 dark:bg-[#0a0a0a]/40 backdrop-blur-md border border-gray-200 dark:border-gray-800 hover:border-gray-400 dark:hover:border-gray-600 text-cr-dark dark:text-white font-sans font-bold text-[10px] sm:text-xs tracking-widest py-3 md:py-3.5 px-8 md:px-10 transition-all duration-300 hover:shadow-md flex items-center justify-center gap-3 rounded-sm w-full sm:w-auto">
+        <span>{diapositiva.btnSecundario.texto}</span>
+        <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    )}
+  </div>
+
+  <!-- ================= FADE INFERIOR ================= -->
+  <div class="absolute bottom-0 left-0 w-full h-24 md:h-32 bg-gradient-to-t from-[#f8f9fa] dark:from-[#050505] to-transparent z-10 pointer-events-none"></div>
+
+</section>
+
+<style>
+  .marquee-track-horizontal {
+    will-change: transform;
+  }
+  
+  .marquee-track-horizontal:hover {
+    animation-play-state: paused;
+  }
+
+  .animate-scroll-x {
+    animation: scrollHorizontal 60s linear infinite;
+  }
+
+  @keyframes scrollHorizontal {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
+  }
+</style>
+
+<script>
+  // @ts-nocheck
+  document.addEventListener('DOMContentLoaded', () => {
+    const wrappers = document.querySelectorAll('.cinta-wrapper');
+    if (!wrappers.length) return;
+
+    const updateUnified3D = () => {
+      const centerX = window.innerWidth / 2;
+      
+      wrappers.forEach(wrapper => {
+        const rect = wrapper.getBoundingClientRect();
+        const wrapperCenterX = rect.left + rect.width / 2;
+        const dist = wrapperCenterX - centerX;
+        
+        // Normalizamos la distancia
+        const norm = dist / (window.innerWidth / 2); 
+        
+        // ========================================================
+        // MATEMÁTICA CORREGIDA (Una sola pared unificada)
+        // ========================================================
+        
+        // 1. ROTACIÓN: Gira hacia el centro suavemente (Max 35 grados)
+        const rotateY = norm * 35; 
+        
+        // 2. PROFUNDIDAD (translateZ): Se hunden ligeramente a los lados para formar la pared
+        const translateZ = Math.abs(norm) * -100;
+        
+        // 3. COMPENSADOR DE HUECOS (translateX): Mantiene los márgenes impecables
+        const translateX = norm * -20; 
+
+        const inner3D = wrapper.querySelector('.cinta-3d-item');
+        if (inner3D) {
+          // Nota cómo eliminé el "perspective()" de aquí. Ahora usan la cámara global del contenedor.
+          inner3D.style.transform = `translate3d(${translateX}px, 0, ${translateZ}px) rotateY(${rotateY}deg)`;
+        }
+
+        // 4. SOMBRAS DENSAS: Le da ese toque de estudio fotográfico
+        const overlay = wrapper.querySelector('.cinta-overlay');
+        if (overlay) {
+          overlay.style.backgroundColor = `rgba(0, 0, 0, ${Math.abs(norm) * 0.5})`;
+        }
+      });
+      
+      requestAnimationFrame(updateUnified3D);
+    };
+
+    requestAnimationFrame(updateUnified3D);
+  });
+</script>

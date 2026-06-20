@@ -1,0 +1,187 @@
+---
+import portafolioData from '../../data/portafolio.json';
+
+const hero = portafolioData?.hero || {};
+const trabajos = portafolioData?.trabajos || [];
+
+// 1. REPARTO EN 4 COLUMNAS (Para un look más denso y premium como la foto)
+const col1 = trabajos.filter((_: any, i: number) => i % 4 === 0);
+const col2 = trabajos.filter((_: any, i: number) => i % 4 === 1);
+const col3 = trabajos.filter((_: any, i: number) => i % 4 === 2);
+const col4 = trabajos.filter((_: any, i: number) => i % 4 === 3);
+
+// 2. FUNCIÓN DE BUCLE INFINITO PERFECTO
+// Multiplicamos hasta tener suficiente contenido y devolvemos 2 mitades idénticas
+const buildLoop = (col: any[]) => {
+  if (!col || col.length === 0) return [];
+  let track = [...col];
+  while (track.length < 8) { // Asegura que cubra pantallas 1080p
+    track = [...track, ...col];
+  }
+  return [...track, ...track]; // Exactamente 2 mitades para que CSS divida al -50%
+};
+
+const loopCol1 = buildLoop(col1);
+const loopCol2 = buildLoop(col2);
+const loopCol3 = buildLoop(col3);
+const loopCol4 = buildLoop(col4);
+
+// 3. GENERADOR DE ALTURAS ASIMÉTRICAS (Para el efecto de la foto)
+const heights = ['h-[280px]', 'h-[380px]', 'h-[240px]', 'h-[420px]', 'h-[320px]'];
+const getHeight = (i: number) => heights[i % heights.length];
+
+const getGradientClass = (tipo?: string) => {
+  if (tipo === 'azul') return 'bg-gradient-to-r from-[#173154] to-[#3b82f6] text-transparent bg-clip-text inline-block';
+  if (tipo === 'naranja') return 'bg-gradient-to-r from-[#cc4a04] to-[#fb923c] text-transparent bg-clip-text inline-block';
+  return 'text-cr-dark dark:text-white inline-block';
+};
+---
+
+<section class="relative w-full h-[100dvh] min-h-[600px] overflow-hidden bg-[#f8f9fa] dark:bg-[#030303] transition-colors duration-700 flex items-center justify-center">
+  
+  <div class="absolute inset-0 z-0 flex justify-center px-2 md:px-4 opacity-70 dark:opacity-50 transform scale-[1.05]">
+    
+    <div class="flex-1 max-w-[320px] flex flex-col marquee-track animate-scroll-up px-2 md:px-3">
+      {loopCol1.map((t: any, i: number) => (
+        <div class="w-full flex-shrink-0 flex flex-col pb-6 md:pb-8 group cursor-pointer">
+          <div class={`relative w-full rounded-2xl overflow-hidden ${getHeight(i)}`}>
+            <img src={t.imagenPrincipal} alt={t.titulo} class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110" loading="lazy" />
+            <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300"></div>
+          </div>
+          <div class="flex justify-between items-center mt-3 px-1">
+            <span class="font-sans font-bold text-sm md:text-base text-gray-900 dark:text-white tracking-tight">{t.titulo}</span>
+            <span class="font-mono text-[10px] text-gray-500">{t.anio || '2024'}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="flex-1 max-w-[320px] flex flex-col marquee-track animate-scroll-down px-2 md:px-3">
+      {loopCol2.map((t: any, i: number) => (
+        <div class="w-full flex-shrink-0 flex flex-col pb-6 md:pb-8 group cursor-pointer">
+          <div class={`relative w-full rounded-2xl overflow-hidden ${getHeight(i + 2)}`}>
+            <img src={t.imagenPrincipal} alt={t.titulo} class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110" loading="lazy" />
+            <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300"></div>
+          </div>
+          <div class="flex justify-between items-center mt-3 px-1">
+            <span class="font-sans font-bold text-sm md:text-base text-gray-900 dark:text-white tracking-tight">{t.titulo}</span>
+            <span class="font-mono text-[10px] text-gray-500">{t.anio || '2024'}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="flex-1 max-w-[320px] hidden md:flex flex-col marquee-track animate-scroll-up px-2 md:px-3">
+      {loopCol3.map((t: any, i: number) => (
+        <div class="w-full flex-shrink-0 flex flex-col pb-6 md:pb-8 group cursor-pointer">
+          <div class={`relative w-full rounded-2xl overflow-hidden ${getHeight(i + 1)}`}>
+            <img src={t.imagenPrincipal} alt={t.titulo} class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110" loading="lazy" />
+            <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300"></div>
+          </div>
+          <div class="flex justify-between items-center mt-3 px-1">
+            <span class="font-sans font-bold text-sm md:text-base text-gray-900 dark:text-white tracking-tight">{t.titulo}</span>
+            <span class="font-mono text-[10px] text-gray-500">{t.anio || '2024'}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="flex-1 max-w-[320px] hidden lg:flex flex-col marquee-track animate-scroll-down px-2 md:px-3">
+      {loopCol4.map((t: any, i: number) => (
+        <div class="w-full flex-shrink-0 flex flex-col pb-6 md:pb-8 group cursor-pointer">
+          <div class={`relative w-full rounded-2xl overflow-hidden ${getHeight(i + 3)}`}>
+            <img src={t.imagenPrincipal} alt={t.titulo} class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110" loading="lazy" />
+            <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300"></div>
+          </div>
+          <div class="flex justify-between items-center mt-3 px-1">
+            <span class="font-sans font-bold text-sm md:text-base text-gray-900 dark:text-white tracking-tight">{t.titulo}</span>
+            <span class="font-mono text-[10px] text-gray-500">{t.anio || '2024'}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+
+  <div class="absolute inset-0 z-10 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.85)_0%,rgba(255,255,255,0)_60%)] dark:bg-[radial-gradient(circle_at_center,rgba(5,5,5,0.9)_0%,rgba(5,5,5,0)_60%)]"></div>
+  
+  <div class="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-[#f8f9fa] via-transparent to-[#f8f9fa] dark:from-[#030303] dark:via-transparent dark:to-[#030303] opacity-90 md:opacity-80"></div>
+
+  <div class="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none px-4">
+    
+    <div class="pointer-events-auto flex flex-col items-center text-center transform translate-y-8 opacity-0 animate-fade-in-center">
+      
+      {hero?.etiqueta && (
+        <span class="font-sans text-[10px] md:text-xs tracking-[0.3em] text-[#cc4a04] dark:text-[#fb923c] uppercase font-bold mb-4 md:mb-6">
+          {hero.etiqueta}
+        </span>
+      )}
+      
+      <h1 class="font-display font-extrabold uppercase leading-[1.05] md:leading-[0.95] flex flex-col items-center">
+        {hero?.titulos?.map((t: any) => (
+          <span class={`text-4xl sm:text-5xl md:text-7xl lg:text-[85px] tracking-tight py-1 filter drop-shadow-lg dark:drop-shadow-none ${getGradientClass(t.gradiente)}`}>
+            {t.texto}
+          </span>
+        ))}
+      </h1>
+      
+      {hero?.descripcion && (
+        <p class="font-sans text-gray-800 dark:text-gray-300 mt-5 md:mt-8 text-xs sm:text-sm md:text-base font-medium max-w-xl mx-auto leading-relaxed drop-shadow-md">
+          {hero.descripcion}
+        </p>
+      )}
+
+      <a href="#portfolio-grid" class="mt-10 group relative bg-gradient-to-r from-[#cc4a04] to-[#fb923c] text-white font-sans font-bold text-[11px] sm:text-xs md:text-[13px] tracking-widest py-3.5 sm:py-4 px-8 sm:px-10 rounded-sm transition-all duration-300 hover:scale-105 shadow-lg shadow-orange-500/25 flex items-center justify-center gap-3">
+        <span>VER PROYECTOS</span>
+        <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14M19 12l-7 7-7-7"></path>
+        </svg>
+      </a>
+
+    </div>
+  </div>
+
+</section>
+
+<style>
+  /* CONFIGURACIÓN CRÍTICA PARA QUE NO DESAPAREZCAN LAS FOTOS */
+  .marquee-track {
+    will-change: transform;
+    height: max-content; /* Obliga a la columna a tener el alto real de sus fotos */
+  }
+  
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  .animate-scroll-up {
+    animation: scrollVertical 45s linear infinite;
+  }
+
+  .animate-scroll-down {
+    animation: scrollVerticalReverse 45s linear infinite;
+  }
+
+  /* El -50% funciona perfecto porque multiplicamos el array exactamente a la mitad */
+  @keyframes scrollVertical {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); } 
+  }
+
+  @keyframes scrollVerticalReverse {
+    0% { transform: translateY(-50%); }
+    100% { transform: translateY(0); }
+  }
+
+  .animate-fade-in-center {
+    animation: fadeInCenter 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.3s;
+  }
+
+  @keyframes fadeInCenter {
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+</style>
