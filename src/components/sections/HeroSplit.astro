@@ -6,7 +6,7 @@ const diapositiva = inicioData?.hero?.diapositivas?.[0] || {};
 const trabajos = portafolioData?.trabajos || [];
 const fotosBase = trabajos.map((t: any) => t.imagenPrincipal).filter(Boolean);
 
-// Bucle infinito
+// Construimos el bucle infinito
 const buildHorizontalLoop = (arr: any[]) => {
   if (!arr || arr.length === 0) return [];
   let track = [...arr];
@@ -22,14 +22,13 @@ const getBtnGradient = (tipo?: string) => {
 };
 ---
 
-<section class="relative w-full h-[100dvh] min-h-[650px] bg-[#f8f9fa] dark:bg-[#050505] transition-colors duration-700 flex flex-col items-center justify-between pt-16 md:pt-20 overflow-hidden">
+<section class="relative w-full h-[100dvh] min-h-[650px] md:min-h-[750px] bg-[#f8f9fa] dark:bg-[#050505] transition-colors duration-700 flex flex-col items-center pt-16 md:pt-24 overflow-hidden">
   
-  <!-- ================= 1. ZONA SUPERIOR: TEXTOS ================= -->
-  <div class="relative z-20 flex flex-col items-center text-center px-4 w-full max-w-5xl mt-2 md:mt-4">
+  <div class="relative z-20 flex flex-col items-center text-center px-4 w-full max-w-5xl mb-4 md:mb-8">
     
     {diapositiva?.etiqueta && (
-      <div class="mb-3 md:mb-5 bg-white dark:bg-[#111] text-[#cc4a04] dark:text-[#fb923c] px-4 py-1.5 rounded-sm border border-gray-200 dark:border-gray-800 shadow-sm">
-        <span class="font-sans text-[9px] md:text-[11px] font-bold uppercase tracking-widest">
+      <div class="mb-3 md:mb-5">
+        <span class="font-sans text-[10px] md:text-[12px] font-bold uppercase tracking-[0.2em] text-[#cc4a04] dark:text-[#fb923c]">
           {diapositiva.etiqueta}
         </span>
       </div>
@@ -37,147 +36,246 @@ const getBtnGradient = (tipo?: string) => {
     
     <h1 class="font-display font-extrabold uppercase leading-[1.05] tracking-tight flex flex-col sm:flex-row flex-wrap items-center justify-center gap-x-3 gap-y-1">
       {diapositiva?.tituloNaranja && (
-        <span class="bg-gradient-to-r from-[#cc4a04] to-[#fb923c] text-transparent bg-clip-text text-[2.5rem] sm:text-5xl md:text-[4.5rem] lg:text-[5.5rem] pb-1">
+        <span class="bg-gradient-to-r from-[#cc4a04] to-[#fb923c] text-transparent bg-clip-text text-[2.2rem] sm:text-5xl md:text-[4.5rem] lg:text-[5.5rem] pb-1">
           {diapositiva.tituloNaranja}
         </span>
       )}
       {diapositiva?.tituloNormal && (
-        <span class="text-cr-dark dark:text-white text-[2.5rem] sm:text-5xl md:text-[4.5rem] lg:text-[5.5rem]">
+        <span class="text-gray-900 dark:text-white text-[2.2rem] sm:text-5xl md:text-[4.5rem] lg:text-[5.5rem]">
           {diapositiva.tituloNormal}
         </span>
       )}
       {diapositiva?.tituloAzul && (
-        <span class="bg-gradient-to-r from-[#173154] to-[#3b82f6] text-transparent bg-clip-text text-[2.5rem] sm:text-5xl md:text-[4.5rem] lg:text-[5.5rem] pb-1">
+        <span class="bg-gradient-to-r from-[#173154] to-[#3b82f6] text-transparent bg-clip-text text-[2.2rem] sm:text-5xl md:text-[4.5rem] lg:text-[5.5rem] pb-1">
           {diapositiva.tituloAzul}
         </span>
       )}
     </h1>
     
     {diapositiva?.descripcion && (
-      <p class="font-sans text-gray-600 dark:text-gray-400 mt-3 md:mt-4 text-xs md:text-sm lg:text-base font-medium max-w-xl mx-auto leading-relaxed">
+      <p class="font-sans text-gray-600 dark:text-gray-400 mt-3 md:mt-6 text-xs sm:text-sm md:text-base lg:text-lg font-medium max-w-2xl mx-auto leading-relaxed px-2">
         {diapositiva.descripcion}
       </p>
     )}
-  </div>
 
-  <!-- ================= 2. ZONA MEDIA: CARRUSEL 3D UNIFICADO ================= -->
-  <!-- LA CLAVE ESTÁ AQUÍ: Una sola cámara (perspective) para toda la pista, sin overflow-hidden interno -->
-  <div class="relative w-full flex-1 flex items-center justify-center z-10 my-4 md:my-6" style="perspective: 1500px;">
+    <div class="mt-6 md:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 w-full px-6">
+      {diapositiva?.btnPrincipal?.active && (
+        <a href={diapositiva.btnPrincipal.ruta} class={`group relative text-white font-sans font-bold text-[11px] sm:text-xs tracking-widest py-3.5 md:py-4 px-8 md:px-10 rounded-sm transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center gap-3 w-full sm:w-auto bg-gradient-to-r ${getBtnGradient(diapositiva.btnPrincipal.gradiente || 'naranja')}`}>
+          <span>{diapositiva.btnPrincipal.texto}</span>
+          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </a>
+      )}
     
-    <!-- Máscaras de fundido laterales -->
-    <div class="absolute inset-y-0 left-0 w-20 md:w-40 bg-gradient-to-r from-[#f8f9fa] to-transparent dark:from-[#050505] z-20 pointer-events-none"></div>
-    <div class="absolute inset-y-0 right-0 w-20 md:w-40 bg-gradient-to-l from-[#f8f9fa] to-transparent dark:from-[#050505] z-20 pointer-events-none"></div>
-
-    <!-- Pista de movimiento -->
-    <div class="flex marquee-track-horizontal w-max animate-scroll-x items-center gap-4 md:gap-6 px-4" style="transform-style: preserve-3d;">
-      {galeriaInfinita.map((img: string) => (
-        
-        <!-- Caja Guía (2D) -->
-        <div class="cinta-wrapper relative w-[180px] sm:w-[220px] md:w-[260px] lg:w-[320px] h-[240px] sm:h-[300px] md:h-[360px] lg:h-[420px] flex-shrink-0" style="transform-style: preserve-3d;">
-          
-          <!-- Elemento 3D (Se mueve en base a la cámara global del padre) -->
-          <div class="cinta-3d-item absolute inset-0 rounded-2xl md:rounded-[2rem] overflow-hidden shadow-xl bg-gray-200 dark:bg-gray-800 will-change-transform">
-            <img src={img} alt="Proyecto" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-            <div class="cinta-overlay absolute inset-0 bg-black/0 transition-colors pointer-events-none"></div>
-          </div>
-          
-        </div>
-      ))}
+      {diapositiva?.btnSecundario?.active && (
+        <a href={diapositiva.btnSecundario.ruta} class="group bg-white/40 dark:bg-[#0a0a0a]/40 backdrop-blur-md border border-gray-200 dark:border-gray-800 hover:border-gray-400 dark:hover:border-gray-600 text-gray-900 dark:text-white font-sans font-bold text-[11px] sm:text-xs tracking-widest py-3.5 md:py-4 px-8 md:px-10 transition-all duration-300 hover:shadow-md flex items-center justify-center gap-3 rounded-sm w-full sm:w-auto">
+          <span>{diapositiva.btnSecundario.texto}</span>
+          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      )}
     </div>
   </div>
 
-  <!-- ================= 3. ZONA INFERIOR: BOTONES ================= -->
-  <div class="relative z-20 flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 w-full px-6 pb-12 md:pb-16">
+  <div id="carousel-container" class="relative w-full flex-1 flex flex-col items-center justify-center z-10 my-2 md:my-4 overflow-hidden cursor-grab active:cursor-grabbing select-none" style="perspective: 1000px;">
     
-    {diapositiva?.btnPrincipal?.active && (
-      <a href={diapositiva.btnPrincipal.ruta} class={`group relative text-white font-sans font-bold text-[10px] sm:text-xs tracking-widest py-3 md:py-3.5 px-8 md:px-10 rounded-sm transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center gap-3 w-full sm:w-auto bg-gradient-to-r ${getBtnGradient(diapositiva.btnPrincipal.gradiente || 'naranja')}`}>
-        <span>{diapositiva.btnPrincipal.texto}</span>
-        <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-        </svg>
-      </a>
-    )}
-  
-    {diapositiva?.btnSecundario?.active && (
-      <a href={diapositiva.btnSecundario.ruta} class="group bg-white/40 dark:bg-[#0a0a0a]/40 backdrop-blur-md border border-gray-200 dark:border-gray-800 hover:border-gray-400 dark:hover:border-gray-600 text-cr-dark dark:text-white font-sans font-bold text-[10px] sm:text-xs tracking-widest py-3 md:py-3.5 px-8 md:px-10 transition-all duration-300 hover:shadow-md flex items-center justify-center gap-3 rounded-sm w-full sm:w-auto">
-        <span>{diapositiva.btnSecundario.texto}</span>
-        <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-    )}
+    <div class="absolute inset-y-0 left-0 w-8 md:w-32 bg-gradient-to-r from-[#f8f9fa] to-transparent dark:from-[#050505] z-20 pointer-events-none"></div>
+    <div class="absolute inset-y-0 right-0 w-8 md:w-32 bg-gradient-to-l from-[#f8f9fa] to-transparent dark:from-[#050505] z-20 pointer-events-none"></div>
+
+    <div id="marquee-track" class="flex w-max items-center px-2 md:px-4 will-change-transform" style="transform-style: preserve-3d;">
+      {galeriaInfinita.map((img: string, index: number) => {
+        const realIndex = index % fotosBase.length;
+        return (
+        /* Tamaños completamente responsive: muy pequeños en móviles, creciendo hasta desktop */
+        <div class="cinta-wrapper relative w-[130px] sm:w-[180px] md:w-[240px] lg:w-[320px] h-[180px] sm:h-[260px] md:h-[340px] lg:h-[440px] flex-shrink-0" data-idx={realIndex} style="transform-style: preserve-3d;">
+          <div class="cinta-3d-item absolute inset-0 mx-1 md:mx-3 rounded-xl md:rounded-[1.5rem] overflow-hidden shadow-2xl bg-gray-200 dark:bg-gray-800 pointer-events-none transition-transform duration-75 border border-black/5 dark:border-white/5">
+            <img src={img} alt="Proyecto" class="absolute inset-0 w-full h-full object-cover pointer-events-none" loading="lazy" />
+            <div class="cinta-overlay absolute inset-0 bg-black/0 transition-colors pointer-events-none"></div>
+          </div>
+        </div>
+      )})}
+    </div>
+    
+    <div class="absolute bottom-10 md:bottom-12 left-0 w-full flex justify-center items-center gap-1.5 md:gap-2.5 z-30 pagination-dots">
+      {fotosBase.map((_, idx) => (
+        <div class={`dot h-1.5 md:h-2 rounded-full transition-all duration-300 ease-out shadow-sm ${idx === 0 ? 'w-5 md:w-6 bg-gray-800 dark:bg-white' : 'w-1.5 md:w-2 bg-gray-300 dark:bg-gray-700'}`} data-dot-idx={idx}></div>
+      ))}
+    </div>
+
+    <div id="interaction-hints" class="absolute inset-0 pointer-events-none z-30 flex flex-col justify-between items-center pb-2 transition-opacity duration-700 opacity-100">
+      
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+        <div class="flex md:hidden flex-col items-center text-white/90 drop-shadow-md animate-interaction-swipe">
+          <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11" />
+          </svg>
+        </div>
+        
+        <div class="hidden md:flex flex-col items-center gap-2 text-white/90 drop-shadow-md">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 animate-interaction-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" /></svg>
+            <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center pt-2">
+              <div class="w-1 h-2 bg-white rounded-full"></div>
+            </div>
+            <svg class="w-4 h-4 animate-interaction-pulse delay-150" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" /></svg>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- ================= FADE INFERIOR ================= -->
-  <div class="absolute bottom-0 left-0 w-full h-24 md:h-32 bg-gradient-to-t from-[#f8f9fa] dark:from-[#050505] to-transparent z-10 pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-full h-24 md:h-40 bg-gradient-to-t from-white dark:from-black to-transparent z-20 pointer-events-none"></div>
+  
+  <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center pointer-events-none text-gray-500 dark:text-gray-400">
+    <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] mb-1">Scroll</span>
+    <svg class="w-3.5 h-3.5 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+  </div>
 
 </section>
 
-<style>
-  .marquee-track-horizontal {
-    will-change: transform;
+<style is:global>
+  @keyframes interaction-swipe {
+    0%, 100% { transform: translateX(0) rotate(-5deg); }
+    50% { transform: translateX(-20px) rotate(5deg); }
   }
-  
-  .marquee-track-horizontal:hover {
-    animation-play-state: paused;
+  @keyframes interaction-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 1; }
   }
-
-  .animate-scroll-x {
-    animation: scrollHorizontal 60s linear infinite;
+  .animate-interaction-swipe {
+    animation: interaction-swipe 2.5s ease-in-out infinite;
   }
-
-  @keyframes scrollHorizontal {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } 
+  .animate-interaction-pulse {
+    animation: interaction-pulse 2s ease-in-out infinite;
   }
 </style>
 
 <script>
   // @ts-nocheck
   document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('carousel-container');
+    const track = document.getElementById('marquee-track');
     const wrappers = document.querySelectorAll('.cinta-wrapper');
-    if (!wrappers.length) return;
+    const dots = document.querySelectorAll('.dot');
+    const interactionHints = document.getElementById('interaction-hints');
+    
+    if (!container || !track || !wrappers.length) return;
 
-    const updateUnified3D = () => {
-      const centerX = window.innerWidth / 2;
+    let isDragging = false;
+    let startX = 0;
+    let currentScroll = 0; 
+    let velocity = 1.0; // Un poco más lento para mejor visualización en móvil
+    let hasInteracted = false;
+
+    const dragStart = (e) => {
+      isDragging = true;
+      container.classList.remove('cursor-grab');
+      container.classList.add('cursor-grabbing');
+      startX = (e.type.includes('mouse') ? e.pageX : e.touches[0].clientX) - currentScroll;
       
+      // Ocultar indicadores al interactuar por primera vez
+      if (!hasInteracted && interactionHints) {
+        interactionHints.style.opacity = '0';
+        hasInteracted = true;
+      }
+    };
+
+    const dragEnd = () => {
+      isDragging = false;
+      container.classList.add('cursor-grab');
+      container.classList.remove('cursor-grabbing');
+    };
+
+    const dragMove = (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+      currentScroll = x - startX;
+    };
+
+    container.addEventListener('mousedown', dragStart);
+    container.addEventListener('mouseup', dragEnd);
+    container.addEventListener('mouseleave', dragEnd);
+    container.addEventListener('mousemove', dragMove);
+
+    container.addEventListener('touchstart', dragStart, { passive: true });
+    container.addEventListener('touchend', dragEnd);
+    container.addEventListener('touchmove', dragMove, { passive: false });
+
+    const update3DCarousel = () => {
+      if (!isDragging) {
+        currentScroll -= velocity;
+      }
+
+      const trackWidth = track.scrollWidth;
+      const halfWidth = trackWidth / 2;
+      
+      if (Math.abs(currentScroll) >= halfWidth) {
+        currentScroll = 0; 
+      } else if (currentScroll > 0) {
+        currentScroll = -halfWidth; 
+      }
+
+      track.style.transform = `translate3d(${currentScroll}px, 0, 0)`;
+
+      const centerX = window.innerWidth / 2;
+      let minDistance = Infinity;
+      let activeIndex = 0;
+      
+      // VARIABLES RESPONSIVE PARA EL CALCULO 3D
+      const isMobile = window.innerWidth < 768;
+      const zMultiplier = isMobile ? 160 : 280; 
+      const zOffset = isMobile ? -30 : -80;
+      const xMultiplier = isMobile ? 25 : 45;
+      const rotateMultiplier = isMobile ? -35 : -42;
+      const divisor = isMobile ? 1.4 : 1.8;
+
       wrappers.forEach(wrapper => {
         const rect = wrapper.getBoundingClientRect();
         const wrapperCenterX = rect.left + rect.width / 2;
         const dist = wrapperCenterX - centerX;
         
-        // Normalizamos la distancia
-        const norm = dist / (window.innerWidth / 2); 
+        if (Math.abs(dist) < minDistance) {
+          minDistance = Math.abs(dist);
+          activeIndex = parseInt(wrapper.getAttribute('data-idx') || '0');
+        }
         
-        // ========================================================
-        // MATEMÁTICA CORREGIDA (Una sola pared unificada)
-        // ========================================================
+        const norm = dist / (window.innerWidth / divisor); 
         
-        // 1. ROTACIÓN: Gira hacia el centro suavemente (Max 35 grados)
-        const rotateY = norm * 35; 
-        
-        // 2. PROFUNDIDAD (translateZ): Se hunden ligeramente a los lados para formar la pared
-        const translateZ = Math.abs(norm) * -100;
-        
-        // 3. COMPENSADOR DE HUECOS (translateX): Mantiene los márgenes impecables
-        const translateX = norm * -20; 
+        const rotateY = norm * rotateMultiplier; 
+        const translateZ = (Math.abs(norm) * zMultiplier) + zOffset; 
+        const translateX = norm * xMultiplier; 
+        const scale = 1 - (Math.abs(norm) * (isMobile ? 0.03 : 0.05));
 
         const inner3D = wrapper.querySelector('.cinta-3d-item');
         if (inner3D) {
-          // Nota cómo eliminé el "perspective()" de aquí. Ahora usan la cámara global del contenedor.
-          inner3D.style.transform = `translate3d(${translateX}px, 0, ${translateZ}px) rotateY(${rotateY}deg)`;
+          inner3D.style.transform = `translate3d(${translateX}px, 0, ${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`;
         }
 
-        // 4. SOMBRAS DENSAS: Le da ese toque de estudio fotográfico
         const overlay = wrapper.querySelector('.cinta-overlay');
         if (overlay) {
-          overlay.style.backgroundColor = `rgba(0, 0, 0, ${Math.abs(norm) * 0.5})`;
+          overlay.style.backgroundColor = `rgba(0, 0, 0, ${Math.abs(norm) * (isMobile ? 0.4 : 0.5)})`;
         }
       });
       
-      requestAnimationFrame(updateUnified3D);
+      dots.forEach(dot => {
+        const dotIdx = parseInt(dot.getAttribute('data-dot-idx') || '0');
+        if (dotIdx === activeIndex) {
+          dot.classList.remove('w-1.5', 'w-2', 'bg-gray-300', 'dark:bg-gray-700');
+          dot.classList.add(isMobile ? 'w-5' : 'w-6', 'bg-gray-800', 'dark:bg-white');
+        } else {
+          dot.classList.remove('w-5', 'w-6', 'bg-gray-800', 'dark:bg-white');
+          dot.classList.add(isMobile ? 'w-1.5' : 'w-2', 'bg-gray-300', 'dark:bg-gray-700');
+        }
+      });
+      
+      requestAnimationFrame(update3DCarousel);
     };
 
-    requestAnimationFrame(updateUnified3D);
+    requestAnimationFrame(update3DCarousel);
   });
 </script>

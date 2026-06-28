@@ -39,10 +39,10 @@
         { "texto": "Respeto absoluto por los elementos visuales y la línea gráfica de tu empresa", "iconoLocal": "/assets/icons/servicios/dgv3.svg" }
       ],
       "galeria": [
+        "/assets/images/servicios/dg3.png",
         "/assets/images/servicios/dg1.png",
         "/assets/images/servicios/dg2.jpeg",
-        "/assets/images/portafolio/sodimod5.jpeg",
-        "/assets/images/hero2.jpg"
+        "/assets/images/servicios/dg4.png"
       ]
     },
     {

@@ -52,14 +52,61 @@
       { "texto": "crecimiento", "gradiente": "naranja" }
     ],
     "hitos": [
-      { "anio": "2016", "titulo": "Inicios", "descripcion": "CR PUBLICIDAD nace como una agencia de servicios publicitarios tradicionales en Lima, Perú, con el objetivo de ofrecer soluciones creativas a empresas nacionales." },
-      { "anio": "2017", "titulo": "Primera Gran Cuenta", "descripcion": "Conseguimos nuestra primera cuenta corporativa de nivel nacional, consolidando nuestra capacidad de producción y logística para proyectos a gran escala." },
-      { "anio": "2018", "titulo": "Expansión de Servicios", "descripcion": "Ampliamos nuestra oferta con la línea textil y merchandising, convirtiéndonos en una agencia integral de soluciones publicitarias." },
-      { "anio": "2019", "titulo": "Cobertura Nacional", "descripcion": "Logramos cobertura operativa a nivel nacional, llevando implementaciones publicitarias a ciudades como Arequipa, Cusco, Trujillo y más." },
-      { "anio": "2020", "titulo": "Resiliencia y Adaptación", "descripcion": "Durante la pandemia, adaptamos nuestros procesos y nos consolidamos como proveedores esenciales para marcas que seguían operando en el mercado." },
-      { "anio": "2021", "titulo": "Facility Management", "descripcion": "Lanzamos nuestra unidad de Facility Management, ofreciendo gestión integral de ambientes comerciales para grandes cadenas de retail." },
-      { "anio": "2022", "titulo": "Proyecto Mercados", "descripcion": "Creamos Proyecto Mercados, nuestra división especializada en publicidad in-house en punto de venta, con equipos dedicados en las principales cadenas." },
-      { "anio": "2023", "titulo": "Líderes Regionales", "descripcion": "Nos posicionamos como uno de los principales proveedores de trade marketing y publicidad en el Perú, atendiendo a más de 30 marcas corporativas." }
+      { 
+        "anio": "2016", 
+        "titulo": "Inicios", 
+        "descripcion": "CR PUBLICIDAD nace como una agencia de servicios publicitarios tradicionales en Lima, Perú, con el objetivo de ofrecer soluciones creativas a empresas nacionales." 
+      },
+      { 
+        "anio": "2017", 
+        "titulo": "Conexión y Confianza", 
+        "descripcion": "Logramos conectar profundamente con nuestro público, forjando relaciones de confianza con los clientes que nos permitieron consolidar nuestra capacidad de producción y logística para proyectos a gran escala." 
+      },
+      { 
+        "anio": "2018", 
+        "titulo": "Expansión de Servicios", 
+        "descripcion": "Ampliamos nuestra oferta con la línea textil y merchandising, convirtiéndonos en una agencia integral de soluciones publicitarias." 
+      },
+      { 
+        "anio": "2019", 
+        "titulo": "Cobertura Nacional", 
+        "descripcion": "Logramos cobertura operativa a nivel nacional, llevando implementaciones publicitarias a ciudades como Arequipa, Cusco, Trujillo y más." 
+      },
+      { 
+        "anio": "2020", 
+        "titulo": "Resiliencia y Adaptación", 
+        "descripcion": "Durante la pandemia, adaptamos nuestros procesos y nos consolidamos como proveedores esenciales para marcas que seguían operando en el mercado." 
+      },
+      { 
+        "anio": "2021", 
+        "titulo": "Facility Management y Ferias", 
+        "descripcion": "Lanzamos nuestra unidad de Facility Management y ampliamos nuestra operatividad hacia la gestión de ferias operativas, ofreciendo soluciones integrales para ambientes comerciales y eventos." 
+      },
+      { 
+        "anio": "2022", 
+        "titulo": "Proyecto Mercados", 
+        "descripcion": "Creamos Proyecto Mercados, nuestra división especializada en publicidad in-house en punto de venta, con equipos dedicados en las principales cadenas." 
+      },
+      { 
+        "anio": "2023", 
+        "titulo": "Líderes Regionales", 
+        "descripcion": "Nos posicionamos como uno de los principales proveedores de trade marketing y publicidad en el Perú, atendiendo a más de 30 marcas corporativas." 
+      },
+      { 
+        "anio": "2024", 
+        "titulo": "Innovación y Optimización", 
+        "descripcion": "Integramos nuevas tecnologías en nuestros procesos de producción gráfica e implementación, optimizando tiempos de entrega y elevando los estándares de calidad en cada proyecto." 
+      },
+      { 
+        "anio": "2025", 
+        "titulo": "Alianzas Estratégicas", 
+        "descripcion": "Fortalecimos nuestra red de socios comerciales y diversificamos nuestras soluciones visuales, abarcando nuevos sectores del mercado retail con un enfoque en la sostenibilidad." 
+      },
+      { 
+        "anio": "2026", 
+        "titulo": "Evolución Continua", 
+        "descripcion": "A una década de nuestra fundación, reafirmamos nuestro compromiso como socios estratégicos. Seguimos innovando para crear experiencias publicitarias que aseguren la presencia firme de las marcas de nuestros clientes." 
+      }
     ]
   }
 }
