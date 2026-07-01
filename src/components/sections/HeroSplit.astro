@@ -28,7 +28,7 @@ const diapositivasJSON = JSON.stringify(diapositivas);
 
 <section class="relative w-full h-[100dvh] min-h-[700px] md:min-h-[800px] bg-[#f8f9fa] dark:bg-[#050505] transition-colors duration-700 flex flex-col items-center pt-16 md:pt-20 overflow-hidden">
   
-  <div id="hero-text-container" data-slides={diapositivasJSON} class="relative z-30 flex flex-col items-center justify-center text-center px-4 w-full max-w-5xl mb-4 md:mb-6 transition-all duration-500 transform translate-y-0 opacity-100 min-h-[240px] sm:min-h-[260px] md:min-h-[280px]">
+  <div id="hero-text-container" data-slides={diapositivasJSON} class="relative z-30 flex flex-col items-center justify-center text-center px-4 w-full max-w-[90vw] md:max-w-6xl mb-4 md:mb-6 transition-all duration-500 transform translate-y-0 opacity-100 min-h-[220px] md:min-h-[260px]">
     
     <div id="hero-tag-container" class={`mb-3 md:mb-4 ${!primeraDiapositiva?.etiqueta ? 'hidden' : ''}`}>
       <span id="hero-tag" class="font-sans text-[10px] md:text-[12px] font-bold uppercase tracking-[0.25em] text-[#cc4a04] dark:text-[#fb923c]">
@@ -36,19 +36,19 @@ const diapositivasJSON = JSON.stringify(diapositivas);
       </span>
     </div>
     
-    <h1 class="font-display font-extrabold uppercase leading-[1.05] tracking-tight flex flex-col sm:flex-row flex-wrap items-center justify-center gap-x-3 gap-y-1">
-      <span id="hero-title-orange" class={`bg-gradient-to-r from-[#cc4a04] to-[#fb923c] text-transparent bg-clip-text text-[2rem] sm:text-4xl md:text-[4rem] lg:text-[5rem] pb-1 ${!primeraDiapositiva?.tituloNaranja ? 'hidden' : ''}`}>
+    <h1 class="font-display font-extrabold uppercase leading-[1.05] tracking-tight flex flex-row flex-wrap items-center justify-center gap-x-3 md:gap-x-5 gap-y-2 w-full">
+      <span id="hero-title-orange" class={`bg-gradient-to-r from-[#cc4a04] to-[#fb923c] text-transparent bg-clip-text text-[clamp(1.5rem,4vw,5rem)] whitespace-nowrap pb-1 ${!primeraDiapositiva?.tituloNaranja ? 'hidden' : ''}`}>
         {primeraDiapositiva.tituloNaranja}
       </span>
-      <span id="hero-title-normal" class={`text-gray-900 dark:text-white text-[2rem] sm:text-4xl md:text-[4rem] lg:text-[5rem] ${!primeraDiapositiva?.tituloNormal ? 'hidden' : ''}`}>
+      <span id="hero-title-normal" class={`text-gray-900 dark:text-white text-[clamp(1.5rem,4vw,5rem)] whitespace-nowrap ${!primeraDiapositiva?.tituloNormal ? 'hidden' : ''}`}>
         {primeraDiapositiva.tituloNormal}
       </span>
-      <span id="hero-title-blue" class={`bg-gradient-to-r from-[#173154] to-[#3b82f6] text-transparent bg-clip-text text-[2rem] sm:text-4xl md:text-[4rem] lg:text-[5rem] pb-1 ${!primeraDiapositiva?.tituloAzul ? 'hidden' : ''}`}>
+      <span id="hero-title-blue" class={`bg-gradient-to-r from-[#173154] to-[#3b82f6] text-transparent bg-clip-text text-[clamp(1.5rem,4vw,5rem)] whitespace-nowrap pb-1 ${!primeraDiapositiva?.tituloAzul ? 'hidden' : ''}`}>
         {primeraDiapositiva.tituloAzul}
       </span>
     </h1>
     
-    <p id="hero-desc" class={`font-sans text-gray-600 dark:text-gray-400 mt-3 md:mt-5 text-xs sm:text-sm md:text-base font-medium max-w-2xl mx-auto leading-relaxed px-2 ${!primeraDiapositiva?.descripcion ? 'hidden' : ''}`}>
+    <p id="hero-desc" class={`font-sans text-gray-600 dark:text-gray-400 mt-3 md:mt-5 text-xs sm:text-sm md:text-base font-medium max-w-3xl mx-auto leading-relaxed px-2 ${!primeraDiapositiva?.descripcion ? 'hidden' : ''}`}>
       {primeraDiapositiva.descripcion}
     </p>
 
@@ -78,8 +78,8 @@ const diapositivasJSON = JSON.stringify(diapositivas);
       </div>
     </div>
 
-    <div class="absolute inset-y-0 left-0 w-24 md:w-64 bg-gradient-to-r from-[#f8f9fa] via-[#f8f9fa]/90 to-transparent dark:from-[#050505] dark:via-[#050505]/90 z-20 pointer-events-none"></div>
-    <div class="absolute inset-y-0 right-0 w-24 md:w-64 bg-gradient-to-l from-[#f8f9fa] via-[#f8f9fa]/90 to-transparent dark:from-[#050505] dark:via-[#050505]/90 z-20 pointer-events-none"></div>
+    <div class="absolute -inset-y-24 md:-inset-y-40 left-0 w-24 md:w-[26rem] bg-gradient-to-r from-[#f8f9fa] via-[#f8f9fa]/95 to-transparent dark:from-[#050505] dark:via-[#050505]/95 z-20 pointer-events-none"></div>
+    <div class="absolute -inset-y-24 md:-inset-y-40 right-0 w-24 md:w-[26rem] bg-gradient-to-l from-[#f8f9fa] via-[#f8f9fa]/95 to-transparent dark:from-[#050505] dark:via-[#050505]/95 z-20 pointer-events-none"></div>
 
     <div id="marquee-track" class="flex w-max items-center will-change-transform" style="transform-style: preserve-3d;">
       {galeriaInfinita.map((img: string, index: number) => {
@@ -126,7 +126,7 @@ const diapositivasJSON = JSON.stringify(diapositivas);
   // @ts-nocheck
   document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 1. LÓGICA DE ROTACIÓN DE TEXTOS (Con Deslizamiento) ---
+    // --- 1. LÓGICA DE ROTACIÓN DE TEXTOS ---
     const textContainer = document.getElementById('hero-text-container');
     if (textContainer && textContainer.dataset.slides) {
       const slides = JSON.parse(textContainer.dataset.slides);
@@ -145,12 +145,10 @@ const diapositivasJSON = JSON.stringify(diapositivas);
         const elBtn2Text = document.getElementById('hero-btn-2-text');
 
         setInterval(() => {
-          // 1. Animación de Salida (Se desliza hacia arriba y desaparece)
           textContainer.classList.remove('opacity-100', 'translate-y-0');
           textContainer.classList.add('opacity-0', '-translate-y-6');
           
           setTimeout(() => {
-            // Cambiamos el contenido en la sombra
             currentSlideIdx = (currentSlideIdx + 1) % slides.length;
             const slide = slides[currentSlideIdx];
 
@@ -181,15 +179,12 @@ const diapositivasJSON = JSON.stringify(diapositivas);
               elBtn2Text.textContent = slide.btnSecundario.texto;
             } else { elBtn2.classList.add('hidden'); }
 
-            // 2. Preparamos el contenedor abajo (sin transición) para que suba
             textContainer.style.transition = 'none';
             textContainer.classList.remove('-translate-y-6');
             textContainer.classList.add('translate-y-6');
             
-            // Forzamos un reflow del navegador
             void textContainer.offsetHeight;
 
-            // 3. Animación de Entrada (Se desliza desde abajo hacia el centro)
             textContainer.style.transition = '';
             textContainer.classList.remove('opacity-0', 'translate-y-6');
             textContainer.classList.add('opacity-100', 'translate-y-0');
@@ -199,7 +194,7 @@ const diapositivasJSON = JSON.stringify(diapositivas);
       }
     }
 
-    // --- 2. LÓGICA DEL CARRUSEL PANORAMA (CÁLCULO EXACTO) ---
+    // --- 2. LÓGICA DEL CARRUSEL PANORAMA ---
     const container = document.getElementById('carousel-container');
     const track = document.getElementById('marquee-track');
     const wrappers = document.querySelectorAll('.cinta-wrapper');
@@ -213,7 +208,6 @@ const diapositivasJSON = JSON.stringify(diapositivas);
     let currentScroll = 0; 
     let velocity = 1.0; 
 
-    // Cálculo EXACTO para el salto sin parpadeo.
     const totalItems = wrappers.length;
     const halfItems = totalItems / 2;
     let itemWidth = wrappers[0].offsetWidth;
@@ -227,13 +221,13 @@ const diapositivasJSON = JSON.stringify(diapositivas);
     const hideSwipeHint = () => {
       if (swipeHint && swipeHint.style.opacity !== '0') {
         swipeHint.style.opacity = '0';
-        setTimeout(() => swipeHint.remove(), 700); // Lo removemos del DOM tras ocultarlo
+        setTimeout(() => swipeHint.remove(), 700); 
       }
     };
 
     const dragStart = (e) => {
       isDragging = true;
-      hideSwipeHint(); // Ocultar el globo indicador de swipe al interactuar
+      hideSwipeHint(); 
       container.classList.remove('cursor-grab');
       container.classList.add('cursor-grabbing');
       startX = (e.type.includes('mouse') ? e.pageX : e.touches[0].clientX) - currentScroll;
@@ -266,7 +260,6 @@ const diapositivasJSON = JSON.stringify(diapositivas);
         currentScroll -= velocity;
       }
 
-      // SALTO MATEMÁTICO PERFECTO: Reseteamos cuando llegamos a la mitad exacta
       if (currentScroll <= -seamlessJumpBoundary) {
         currentScroll += seamlessJumpBoundary;
         if(isDragging) startX -= seamlessJumpBoundary; 
